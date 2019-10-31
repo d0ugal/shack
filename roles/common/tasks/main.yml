@@ -1,0 +1,42 @@
+---
+
+- name: Update
+  shell: notify-send -a Shack Common "Starting role."
+
+- name: Install groups
+  become: true
+  dnf:
+    name:
+      - '@Development tools'
+      - '@C Development Tools and Libraries'
+      - '@Container Management'
+      - '@Sound and Video'
+      - '@System Tools'
+    state: latest
+
+- name: Install common core packages
+  become: true
+  dnf:
+    name:
+      - the_silver_searcher
+      - util-linux-user
+      - cmake
+      - libinput-devel
+      - git
+      - tmux
+      - python3-psutil
+      - mediawriter
+      - chromium
+      - meson
+    state: latest
+
+- name: Install Dropbox
+  become: true
+  dnf:
+    name: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2019.02.14-1.fedora.x86_64.rpm
+    state: latest
+
+- name: Install fonts
+  become: true
+  dnf:
+    name: adobe-source-code-pro-fonts

@@ -1,0 +1,47 @@
+---
+
+- name: Update
+  shell: notify-send -a Shack wmcommon "Starting role."
+
+- name: Enable Fedora Copr for termite
+  become: true
+  command: "dnf copr enable -y skidnik/termite"
+  args:
+    warn: false
+
+- name: Install wm packages
+  become: true
+  dnf:
+    name:
+      - dunst
+      - termite
+    state: latest
+
+- name: Create dunst config directory
+  file:
+    path: ~/.config/dunst
+    state: directory
+    mode: '0755'
+
+- name: Dunst config file
+  template:
+    src: dunstrc.j2
+    dest: ~/.config/dunst/dunstrc
+
+- name: Install ulauncher
+  become: true
+  dnf:
+    name:
+      - https://github.com/Ulauncher/Ulauncher/releases/download/5.3.0/ulauncher_5.3.0_fedora29.rpm
+    state: latest
+
+- name: Install applets
+  become: true
+  dnf:
+    name:
+      - network-manager-applet
+
+- name: termite config file
+  template:
+    src: termite.config.j2
+    dest: ~/.config/termite

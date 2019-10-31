@@ -1,0 +1,14 @@
+---
+
+- name: Update
+  shell: notify-send -a Shack WeeChat "Starting role."
+
+- name: Install weechat
+  become: true
+  dnf:
+    name:
+      - weechat
+    state: latest
+
+- name: Make sure the weechat directory is created
+  command: weechat-headless -r "/quit"

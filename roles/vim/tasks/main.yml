@@ -1,0 +1,11 @@
+---
+
+- name: Update
+  shell: notify-send -a Shack VIM "Starting role."
+
+- name: Install vim
+  become: true
+  dnf:
+    name:
+      - vim
+    state: latest

@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  roles:
+    - { role: common }
+    - { role: wmcommon }
+    # Sway is just hard work.
+    #- { role: sway }
+    - { role: i3 }
+    - { role: vim }
+    - { role: fish }
+    - { role: weechat }
+    - { role: python }
+    - { role: vscode }
+  tasks:
+    - name: Update
+      shell: notify-send -a Shack Finished "We are all done!"
