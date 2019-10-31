@@ -47,6 +47,7 @@
       - nautilus-dropbox
       - lpf-spotify-client
       - '@Games and Entertainment'
+      - steam
 
 - name: Install fonts
   become: true

@@ -18,6 +18,10 @@
       - rofi
       - polybar
       - nitrogen
+      - rxvt
+      - rxvt-unicode
+      - alsa-utils
+      - mate-power-manager
     state: latest
 
 - name: Create i3 config directory
