@@ -3,6 +3,12 @@
 - name: Update
   shell: notify-send -a Shack i3 "Starting role."
 
+- name: polybar copr
+  become: true
+  command: dnf copr enable -y mhartgring/polybar
+  args:
+    warn: false
+
 - name: Install i3 packages
   become: true
   dnf:
@@ -10,6 +16,8 @@
       - i3
       - i3lock
       - rofi
+      - polybar
+      - nitrogen
     state: latest
 
 - name: Create i3 config directory
@@ -22,3 +30,24 @@
   template:
     src: i3.config.j2
     dest: ~/.config/i3/config
+
+- name: Create polybar config directory
+  file:
+    path: ~/.config/polybar
+    state: directory
+    mode: '0755'
+
+- name: polybar config file
+  template:
+    src: polybar.config.j2
+    dest: ~/.config/polybar/config
+
+- name: polybar run file
+  template:
+    src: polybar-run.sh.j2
+    dest: ~/.config/polybar/run.sh
+
+- name: polybar run file +x
+  file:
+    dest: ~/.config/polybar/run.sh
+    mode: a+x
