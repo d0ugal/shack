@@ -227,3 +227,18 @@ client.unfocused #32302f #32302f #928374 #282828
 client.urgent #cc241d #cc241d #ebdbb2 #282828
 
 exec_always ~/.config/polybar/run.sh
+#exec_always --no-startup-id compton
+
+set $inner 10
+set $outer 5
+
+# SET GAPS
+gaps inner $inner
+gaps outer $outer
+
+bindsym $mod+g gaps inner all set $inner; gaps outer all set $outer
+bindsym $mod+Ctrl+g  gaps inner all set 0; gaps outer all set 0
+
+smart_gaps on
+smart_gaps inverse_outer
+smart_borders on

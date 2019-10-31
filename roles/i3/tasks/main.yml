@@ -9,11 +9,18 @@
   args:
     warn: false
 
+- name: i3-gaps copr
+  become: true
+  command: dnf copr enable -y nforro/i3-gaps
+  args:
+    warn: false
+
 - name: Install i3 packages
   become: true
   dnf:
     name:
-      - i3
+      - compton
+      - i3-gaps
       - i3lock
       - rofi
       - polybar
@@ -55,3 +62,14 @@
   file:
     dest: ~/.config/polybar/run.sh
     mode: a+x
+
+- name: Create compton config directory
+  file:
+    path: ~/.config/compton
+    state: directory
+    mode: '0755'
+
+- name: compton config file
+  template:
+    src: compton.conf.j2
+    dest: ~/.config/compton/compton.conf
