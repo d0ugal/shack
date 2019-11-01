@@ -28,6 +28,9 @@
     src: dunstrc.j2
     dest: ~/.config/dunst/dunstrc
 
+- name: Kill Dunst
+  command: killall dunst
+
 - name: Install ulauncher
   become: true
   dnf:
