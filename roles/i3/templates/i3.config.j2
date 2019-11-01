@@ -198,8 +198,6 @@ bindsym Shift+XF86AudioLowerVolume exec pactl set-sink-volume 0 50%
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86MonBrightnessUp exec light -l -A 10
 bindsym XF86MonBrightnessDown exec light -l -U 10
-bindsym Shift+XF86MonBrightnessUp exec light -k -A 10
-bindsym Shift+XF86MonBrightnessDown exec light -k -U 10
 
 focus_follows_mouse no
 
@@ -226,6 +224,7 @@ exec_always dropbox 'start'
 exec_always nm-applet
 exec_always ~/.config/polybar/run.sh
 exec_always feh --randomize --bg-scale ~/Dropbox/Wallpapers/*
+exec_always compton --config ~/.config/compton/compton.conf
 
 set $inner 10
 set $outer 5

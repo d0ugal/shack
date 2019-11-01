@@ -19,6 +19,7 @@
   become: true
   dnf:
     name:
+      - compton
       - i3-gaps
       - i3lock
       - rofi
@@ -63,3 +64,14 @@
 
 - name: Restart i3
   command: i3-msg restart
+
+- name: Create compton config directory
+  file:
+    path: ~/.config/compton
+    state: directory
+    mode: '0755'
+
+- name: compton config file
+  template:
+    src: compton.conf.j2
+    dest: ~/.config/compton/compton.conf
