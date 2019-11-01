@@ -6,7 +6,7 @@
 #cell_width_scale = 1.0
 #clickable_url = true
 #dynamic_title = true
-font = Monospace 9
+font = Monospace 11
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -35,47 +35,52 @@ scrollback_lines = 10000
 #modify_other_keys = false
 
 # set size hints for the window
-#size_hints = false
+size_hints = false
 
 # "off", "left" or "right"
-#scrollbar = off
+scrollbar = right
+
+# Dracula theme for termite
+# https://github.com/dracula/termite
+# Copyright 2013-present, All rights reserved
+# Code licensed under the MIT license
 
 [colors]
-cursor = #d8dee9
-cursor_foreground = #2e3440
 
-foreground = #d8dee9
-foreground_bold = #d8dee9
-background = #2e3440
+# special
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background      = #141414
 
-highlight = #4c566a
+# black
+color0  = #000000
+color8  = #4d4d4d
 
-color0  = #3b4252
-color1  = #bf616a
-color2  = #a3be8c
-color3  = #ebcb8b
-color4  = #81a1c1
-color5  = #b48ead
-color6  = #88c0d0
-color7  = #e5e9f0
-color8  = #4c566a
-color9  = #bf616a
-color10 = #a3be8c
-color11 = #ebcb8b
-color12 = #81a1c1
-color13 = #b48ead
-color14 = #8fbcbb
-color15 = #eceff4
+# red
+color1  = #ff5555
+color9  = #ff6e67
 
-[hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+# green
+color2  = #50fa7b
+color10 = #5af78e
 
-# vim: ft=dosini cms=#%s
+# yellow
+color3  = #f1fa8c
+color11 = #f4f99d
+
+# blue
+color4  = #bd93f9
+color12 = #caa9fa
+
+# magenta
+color5  = #ff79c6
+color13 = #ff92d0
+
+# cyan
+color6  = #8be9fd
+color14 = #9aedfe
+
+# white
+color7  = #bfbfbf
+color15 = #e6e6e6

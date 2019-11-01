@@ -41,7 +41,13 @@
     name:
       - network-manager-applet
 
+- name: Create termite config directory
+  file:
+    path: ~/.config/termite
+    state: directory
+    mode: '0755'
+
 - name: termite config file
   template:
     src: termite.config.j2
-    dest: ~/.config/termite
+    dest: ~/.config/termite/config

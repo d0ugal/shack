@@ -3,19 +3,12 @@
 - name: Update
   shell: notify-send -a Shack Sway "Starting role."
 
-- name: Enable Fedora Copr for termite
-  become: true
-  command: "dnf copr enable -y skidnik/termite"
-  args:
-    warn: false
-
 - name: Install wm packages
   become: true
   dnf:
     name:
       - sway
       - dunst
-      - termite
       - libwayland-client
       - wayland-devel
       - wayland-protocols-devel
@@ -53,11 +46,6 @@
   dnf:
     name:
       - network-manager-applet
-
-- name: termite config file
-  template:
-    src: termite.config.j2
-    dest: ~/.config/termite
 
 - name: Create sway config directory
   file:

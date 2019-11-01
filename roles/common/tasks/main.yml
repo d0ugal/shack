@@ -29,6 +29,7 @@
       - chromium
       - meson
       - light
+      - feh
     state: latest
 
 - name: RPM Fusion
