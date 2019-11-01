@@ -56,3 +56,7 @@
     name:
       - adobe-source-code-pro-fonts
       - fontawesome-fonts
+- name: Git Config
+  shell: >-
+    git config user.email "dougal@dougalmatthews.com";
+    git config user.name "Dougal Matthews"
