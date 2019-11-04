@@ -1,17 +1,34 @@
 ---
 
 - hosts: localhost
-  roles:
-    - { role: common }
-    - { role: wmcommon }
-    # Sway is just hard work.
-    #- { role: sway }
-    - { role: i3 }
-    - { role: vim }
-    - { role: fish }
-    - { role: weechat }
-    - { role: python }
-    - { role: vscode }
   tasks:
+
     - name: Update
-      shell: notify-send -a Shack Finished "We are all done!"
+      shell: notify-send -u low -a Shack Starting "Lets go!"
+
+    - name: Handle errors
+      block:
+        - include_role:
+            name: common
+        - include_role:
+            name: wmcommon
+        # Sway is hard work :(
+        #- include_role:
+        #    name: sway
+        - include_role:
+            name: vim
+        - include_role:
+            name: fish
+        - include_role:
+            name: weechat
+        - include_role:
+            name: python
+        - include_role:
+            name: vscode
+        - include_role:
+            name: i3
+        - name: Update
+          shell: notify-send -a Shack Finished "We are all done!"
+      rescue:
+        - name: Update
+          shell: notify-send -u critical -a Shack Finished "Playbook failed!"
