@@ -28,7 +28,7 @@
         - include_role:
             name: i3
         - name: Update
-          shell: notify-send -a Shack Finished "We are all done!"
+          shell: notify-send -u low -a Shack Finished "We are all done!"
       rescue:
         - name: Update
           shell: notify-send -u critical -a Shack Finished "Playbook failed!"
