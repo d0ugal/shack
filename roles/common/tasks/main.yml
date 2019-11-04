@@ -2,6 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack Common "Starting role."
+  changed_when: False
 
 - name: Install groups
   become: true

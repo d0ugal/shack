@@ -2,6 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack WeeChat "Starting role."
+  changed_when: False
 
 - name: Install weechat
   become: true

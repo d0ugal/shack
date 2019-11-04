@@ -47,10 +47,24 @@
     state: directory
     mode: '0755'
 
+- name: Create polybar config directory
+  file:
+    path: ~/.config/polybar/scripts
+    state: directory
+    mode: '0755'
+
 - name: polybar config file
   template:
     src: polybar.config.j2
     dest: ~/.config/polybar/config
+
+- name: Polybar scripts
+  template:
+    src: "{{ item }}"
+    dest: ~/.config/polybar/scripts/{{ item | basename | regex_replace('\.j2','') }}
+    mode: a+x
+  with_fileglob:
+    - ../templates/polybar-scripts/*
 
 - name: polybar run file
   template:

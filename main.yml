@@ -5,6 +5,7 @@
 
     - name: Update
       shell: notify-send -u low -a Shack Starting "Lets go!"
+      changed_when: False
 
     - name: Handle errors
       block:
@@ -29,6 +30,8 @@
             name: i3
         - name: Update
           shell: notify-send -u low -a Shack Finished "We are all done!"
+          changed_when: False
       rescue:
         - name: Update
           shell: notify-send -u critical -a Shack Finished "Playbook failed!"
+          changed_when: False
