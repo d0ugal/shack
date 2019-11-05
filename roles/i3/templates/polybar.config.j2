@@ -53,8 +53,8 @@ font-1 = "FontAwesome:style=Solid:pixelsize=14;3"
 
 radius = 10.0
 fixed-center = true
-padding-left = 0
-padding-right = 2
+padding-left = 2
+padding-right = 0
 
 module-margin-left = 1
 module-margin-right = 2
@@ -126,14 +126,15 @@ font-1 = "FontAwesome:style=Solid:pixelsize=12;3"
 
 radius = 10.0
 fixed-center = true
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 2
 
-modules-left = powermenu battery0 battery1 pulseaudio backlight-acpi
-modules-right = filesystem memory cpu temperature xkeyboard
+modules-left = pulseaudio backlight-acpi
+modules-center = filesystem memory cpu temperature xkeyboard
+modules-right = battery0 battery1 powermenu
 
 ;---------;
 ; MODULES ;
@@ -237,7 +238,7 @@ label-foreground = ${colors.primary}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " RAM "
+format-prefix = "RAM "
 format-prefix-foreground = ${colors.primary}
 format-underline = 
 label = %percentage_used%%
@@ -390,8 +391,8 @@ format-underline =
 format-warn = <ramp> <label-warn>
 format-warn-underline = 
 
-label =  TEMPERATURE %temperature-c%
-label-warn =  TEMPERATURE %temperature-c%
+label =  %temperature-c%
+label-warn =  %temperature-c%
 label-warn-foreground = ${colors.secondary}
 label-foreground = ${colors.primary}
 
