@@ -61,7 +61,7 @@ module-margin-right = 2
 
 modules-left = i3
 modules-center = xwindow
-modules-right =  vpn-active wired-lan wireless-lan eth battery0 battery1 date
+modules-right =  vpn-active wired-lan wireless-lan eth date
 
 tray-position = right
 tray-padding =2 
@@ -132,7 +132,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-modules-left = powermenu pulseaudio backlight-acpi
+modules-left = powermenu battery0 battery1 pulseaudio backlight-acpi
 modules-right = filesystem memory cpu temperature xkeyboard
 
 ;---------;
@@ -250,7 +250,7 @@ interval = 3.0
 
 format-connected-underline = ${colors.okay}
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.okay}
 label-connected = %local_ip%
 format-disconnected =
 
@@ -261,7 +261,7 @@ interval = 3.0
 
 format-connected-underline = ${colors.okay}
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.okay}
 label-connected = %local_ip%
 format-disconnected =
 
@@ -346,13 +346,13 @@ adapter = ADP1
 poll-interval = 5
 time-format = %H:%M
 
-format-charging = <animation-charging> <label-charging>
+format-charging = %{u#f5a70a} %{F#f5a70a}<animation-charging>%{F-} <label-charging>
 label-charging = %percentage%%
 
-format-discharging = <animation-discharging> <label-discharging>
+format-discharging = %{u#B2535B} %{F#B2535B}<animation-discharging>%{F-} <label-discharging>
 label-discharging = %percentage%%
 
-format-full = <ramp-capacity> <label-full>
+format-full = %{u#${colors.okay} %{F#AA55AA}<ramp-capacity>%{F-} <label-full>
 label-full = Fully charged
 
 ramp-capacity-0 = 
