@@ -1,4 +1,4 @@
-#!/bin/python
+#!/bin/python3
 
 import signal
 import subprocess
@@ -25,6 +25,6 @@ except:
     vpn_connected = False
 
 if vpn_connected:
-    print("VPN Up")
+    print("%{u#55aa55}%{F#f00}VPN")
 else:
-    print("VPN Down")
+    print("%{u#B2535B}%{F#f00}VPN")
