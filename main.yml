@@ -13,6 +13,8 @@
             name: common
         - include_role:
             name: wmcommon
+        - include_role:
+            name: scripts
         # Sway is hard work :(
         #- include_role:
         #    name: sway

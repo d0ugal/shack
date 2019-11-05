@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+import os
+
+from github import Github
+import retrace
+
+TOKEN = os.environ.get("GITHUB_TOKEN")
+USERS = (
+    "d0ugal",
+    "python-edinburgh",
+    "python-glasgow",
+    "python-scotland",
+)
+
+REMOVE = (
+)
+
+g = Github(TOKEN)
+me = g.get_user()
+
+
+@retrace.retry(interval=60)
+def star_repo(repo):
+    try:
+        print(f"Checking {repo.full_name}... ", end="")
+        if not me.has_in_starred(repo):
+            me.add_to_starred(repo)
+            print("Starred.")
+        else:
+            print("Already Starred.")
+    except Exception:
+        print(f"Failed: {repo.full_name}")
+
+
+@retrace.retry(interval=60)
+def unstar_repo(repo):
+    try:
+        print(f"Checking {repo.full_name}... ", end="")
+        if me.has_in_starred(repo):
+            me.remove_from_starred(repo)
+            print("Un-Starred.")
+        else:
+            print("Already Un-Starred.")
+    except Exception:
+        print(f"Failed: {repo.full_name}")
+
+
+@retrace.retry(interval=60)
+def star_user(user):
+    print(f"Starring repos for {user.login}")
+    for repo in user.get_repos():
+        star_repo(repo)
+
+@retrace.retry(interval=60)
+def unstar_user(user):
+    print(f"Un-Starring repos for {user.login}")
+    for repo in user.get_repos():
+        unstar_repo(repo)
+
+
+def main():
+    for username in USERS:
+        user = g.get_user(username)
+        star_user(user)
+
+    for username in REMOVE:
+        user = g.get_user(username)
+        unstar_user(user)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nCancelled")

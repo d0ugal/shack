@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+import traceback
+import urllib.error
+import urllib.request
+
+ORGS = [
+    "PyCQA",
+    "d0ugal",  # A user, but the APIs are the same. We also mirror a users orgs
+    "django",
+    "getsentry",
+    "openstack",
+    "mkdocs",
+    "pallets",
+    "pypa",
+    "python",
+]
+
+ROOT = os.path.expanduser("~/code/mirror/")
+
+if not os.path.exists(ROOT):
+    os.makedirs(ROOT)
+
+URL_TEMPLATE = (
+    "https://api.github.com/users/%s/repos"
+    "?per_page=100&page=%s&sort=updated&direction=desc"
+)
+ORG_TEMPLATE = "https://api.github.com/users/%s"
+ORGS_TEMPLATE = "https://api.github.com/users/%s/orgs"
+
+CLONED = 0
+UPDATED = 0
+UPDATED_WITH_CHANGES = 0
+FAILED = []
+LONGEST = 0
+API_REQUESTS = 0
+
+G = "\x1b[6;30;42m"
+A = "\x1b[6;30;43m"
+R = "\x1b[6;30;41m"
+T = "\x1b[6;30;47m"
+C = "\x1b[0m"
+
+
+def _req(url):
+    global API_REQUESTS
+    API_REQUESTS += 1
+    try:
+        response = urllib.request.urlopen(url)
+    except urllib.error.URLError as e:
+        print(R, f"Request failed. Retrying after sleep. url:{url}. error:{e}", C)
+        time.sleep(300)
+        return _req(url)
+    response_string = response.read().decode("utf-8")
+    return json.loads(response_string)
+
+
+def repos(org):
+
+    global LONGEST
+
+    page = 0
+    while True:
+        page += 1
+        url = URL_TEMPLATE % (org, page)
+        repos = _req(url)
+        if len(repos) == 0:
+            return
+
+        for repo in repos:
+            LONGEST = max(LONGEST, len(repo["name"]))
+            yield repo
+
+
+def clone_org(org, extra_orgs):
+
+    global ROOT
+
+    url = ORG_TEMPLATE % org
+    org_details = _req(url)
+    repo_count = org_details["public_repos"]
+
+    if org_details["type"] == "User":
+        url = ORGS_TEMPLATE % org
+        extra_orgs.extend([r["login"] for r in _req(url)])
+
+    print(T, f"     Org      : {org:31} {repo_count:4} public repos", C, flush=True)
+    path = os.path.join(ROOT, org)
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+    os.chdir(path)
+
+    for i, repo in enumerate(repos(org), start=1):
+        if not os.path.exists("%s/%s" % (path, repo["name"])):
+            clone_repo(i, org, repo)
+        else:
+            update_repo(i, org, repo)
+
+
+def clone_orgs(orgs=None):
+
+    extra_orgs = []
+
+    if orgs is None:
+        orgs = ORGS
+
+    for org in orgs:
+        try:
+            clone_org(org, extra_orgs)
+        except KeyboardInterrupt:
+            print(f"Skipping org {org}")
+
+    extra_orgs = set(extra_orgs)
+
+    if extra_orgs:
+        clone_orgs(extra_orgs)
+
+
+def clone_repo(i, org, repo):
+    global CLONED
+    print(G, f"{i:04} Cloning  : {repo['name']:40} ... ", end="", flush=True)
+    try:
+        subprocess.check_output(
+            ["git", "clone", repo["clone_url"]], stderr=subprocess.STDOUT
+        )
+        CLONED += 1
+        print("Done", C, flush=True)
+    except subprocess.CalledProcessError as e:
+        FAILED.append((org, repo))
+        print(R, "Failed", str(e), C, flush=True)
+
+
+def update_repo(i, org, repo):
+    global UPDATED, UPDATED_WITH_CHANGES
+    print(A, f"{i:04} Updating : {repo['name']:40} ... ", end="\r", flush=True)
+    cwd = os.getcwd()
+    try:
+        os.chdir(repo["name"])
+        before = subprocess.check_output(
+            "git rev-parse HEAD", shell=True, stderr=subprocess.STDOUT
+        )
+        subprocess.check_output(
+            "git fetch --all; git reset $(git remote) --hard",
+            shell=True,
+            stderr=subprocess.STDOUT,
+        )
+        after = subprocess.check_output(
+            "git rev-parse HEAD", shell=True, stderr=subprocess.STDOUT
+        )
+        UPDATED += 1
+        if before == after:
+            print(A, f"{i:04} Updating : {repo['name']:40} ... Done", C, flush=True)
+            return False
+        else:
+            print(G, f"{i:04} Updated  : {repo['name']:40} ... Done", C, flush=True)
+            UPDATED_WITH_CHANGES += 1
+            return True
+    except subprocess.CalledProcessError as e:
+        FAILED.append((org, repo))
+        print(A, f"{i:04} Updating : {repo['name']:40} ... ", flush=True)
+        print(R, "Failed: ", str(e), flush=True)
+        os.chdir(cwd)
+        shutil.rmtree(repo["name"])
+        print("Removed. Re-cloning.", C, flush=True)
+        clone_repo(i, org, repo)
+    finally:
+        os.chdir(cwd)
+
+
+def get_size(path):
+    return int(subprocess.check_output(["du", "-s", path]).split()[0])
+
+
+def main():
+    clone_orgs()
+
+
+if __name__ == "__main__":
+    os.system("cls" if os.name == "nt" else "clear")
+    print(
+        A,
+        f"Getting initial directory size. Then we will start!",
+        C,
+        end="\r",
+        flush=True,
+    )
+    before = get_size(ROOT)
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(C, "\nCancelled", flush=True)
+    except:
+        print(C, flush=True)
+        traceback.print_exc(file=sys.stdout)
+
+    print(A, f"Getting end directory size...", end="\r", flush=True)
+    after = get_size(ROOT)
+    print("\n")
+    print("Cloned      : ", CLONED)
+    print("Updated     : ", UPDATED, UPDATED_WITH_CHANGES)
+    print("Longest     : ", LONGEST)
+    print("API calls   : ", API_REQUESTS)
+    print("Size before : ", before)
+    print("Size after  : ", after)
+    print("Size change : ", after - before)
+
+    if FAILED:
+        print("FAILED...")
+        for org, repo in FAILED:
+            print("    %s/%s" % (org, repo["name"]))
