@@ -23,6 +23,7 @@
 
 - name: Upgrade pip
   shell: source /home/dougal/.pyenv/.pyenvrc && pip install -U pip
+  changed_when: False
 
 - name: Install pipx
   pip:
@@ -53,3 +54,4 @@
     - vulture
     - yaql
     - flashfocus
+  changed_when: False

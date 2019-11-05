@@ -13,3 +13,4 @@
 
 - name: Make sure the weechat directory is created
   command: weechat-headless -r "/quit"
+  changed_when: False

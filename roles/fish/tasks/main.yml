@@ -15,6 +15,7 @@
   shell: fish -c 'set fish_greeting ""'
   args:
     executable: /usr/bin/fish
+  changed_when: False
 
 - name: Fish config file
   template:

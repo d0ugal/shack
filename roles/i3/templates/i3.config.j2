@@ -151,7 +151,7 @@ bindsym $mod+equal mode "MOAR"
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -221,7 +221,7 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 client.background       #FFFFFF
 
-exec redshift
+bindsym $mod+Shift+w exec feh --randomize --bg-scale ~/Dropbox/Wallpapers/*
 
 exec_always i3-battery-check
 exec_always dropbox 'start'
@@ -230,6 +230,7 @@ exec_always ~/.config/polybar/run.sh
 exec_always feh --randomize --bg-scale ~/Dropbox/Wallpapers/*
 exec_always compton --config ~/.config/compton/compton.conf
 
+exec redshift
 exec --no-startup-id i3-msg 'workspace 1:; exec /usr/bin/termite; exec /usr/bin/spotify;workspace 2:; exec /usr/bin/firefox; exec /usr/bin/firefox;workspace 3:; exec /usr/bin/termite; exec /usr/bin/termite;'
 
 set $inner 10
