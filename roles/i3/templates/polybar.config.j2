@@ -1,12 +1,13 @@
 [colors]
 background = #222
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #FFF
+primary = #ffeeed
 secondary = #e36414
-alert = #9a03qe
+alert = #B2535B
+warn = #f5a70a
+okay = #55AA55
 
 ;------------;
 ; TOPBAR    ;
@@ -45,18 +46,6 @@ bottom = false
 
 font-0 = Source Code Pro:style=Regular:size=12:antialias=true;3"
 font-1 = "FontAwesome:style=Solid:pixelsize=14;3"
-
-;--------;
-; COLORS ;
-;--------;
-
-background = #CC000000
-background-alt = #555
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #E1D4AE
-secondary = #e60053
-alert = #B2535B
 
 ;---------------;
 ; MISCELLANEOUS ;
@@ -130,18 +119,6 @@ bottom = true
 
 font-0 = Source Code Pro:style=Regular:size=12:antialias=true;3
 font-1 = "FontAwesome:style=Solid:pixelsize=12;3"
-
-;--------;
-; COLORS ;
-;--------;
-
-background = #DD000000
-background-alt = #555
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #E1D4AE
-secondary = #e60053
-alert = #B2535B
 
 ;---------------;
 ; MISCELLANEOUS ;
@@ -229,8 +206,9 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-[module/xbacklight]
-type = internal/xbacklight
+[module/backlight-acpi]
+type = internal/backlight
+card = intel_backlight
 
 format = <label> <bar>
 label =  %percentage%%
@@ -242,15 +220,10 @@ bar-indicator-foreground = ${colors.primary}
 bar-indicator-font = 
 bar-fill = ─
 bar-fill-font = 4
-bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${colors.okay}
 bar-empty = ─
 bar-empty-font = 4
 bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
@@ -275,7 +248,7 @@ type = internal/network
 interface = wlp4s0
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.okay}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -286,7 +259,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.okay}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -321,13 +294,13 @@ label-muted =   0%
 label-muted-foreground = ${colors.secondary}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #B2535B
+bar-volume-foreground-0 = ${colors.okay}
+bar-volume-foreground-1 = ${colors.okay}
+bar-volume-foreground-2 = ${colors.okay}
+bar-volume-foreground-3 = ${colors.okay}
+bar-volume-foreground-4 = ${colors.okay}
+bar-volume-foreground-5 = ${colors.warn}
+bar-volume-foreground-6 = ${colors.alert}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 4
@@ -349,13 +322,13 @@ format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${colors.okay}
+bar-volume-foreground-1 = ${colors.okay}
+bar-volume-foreground-2 = ${colors.okay}
+bar-volume-foreground-3 = ${colors.okay}
+bar-volume-foreground-4 = ${colors.okay}
+bar-volume-foreground-5 = ${colors.warn}
+bar-volume-foreground-6 = ${colors.alert}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -373,10 +346,10 @@ full-at = 98
 
 time-format = %H:%M
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = -
+format-charging-underline = ${colors.okay}
 
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = ${colors.red}
 
 format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.primary}
