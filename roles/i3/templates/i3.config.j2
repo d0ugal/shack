@@ -230,6 +230,7 @@ exec_always ~/.config/polybar/run.sh
 exec_always feh --randomize --bg-scale ~/Dropbox/Wallpapers/*
 exec_always compton --config ~/.config/compton/compton.conf
 
+exec --no-startup-id i3-msg 'workspace 1:; exec /usr/bin/termite; exec /usr/bin/spotify;workspace 2:; exec /usr/bin/firefox; exec /usr/bin/firefox;workspace 3:; exec /usr/bin/termite; exec /usr/bin/termite;'
 
 set $inner 10
 set $outer 5
@@ -244,3 +245,5 @@ bindsym $mod+Shift+g  gaps inner all set 0; gaps outer all set 0
 smart_gaps on
 smart_gaps inverse_outer
 smart_borders on
+
+assign [class="Spotify"] 1:
