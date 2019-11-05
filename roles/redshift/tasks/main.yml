@@ -1,0 +1,17 @@
+- name: Install redshift
+  become: true
+  dnf:
+    name:
+      - redshift
+    state: latest
+
+- name: Create redshift config directory
+  file:
+    path: ~/.config/redshift
+    state: directory
+    mode: '0755'
+
+- name: redshift config file
+  template:
+    src: redshift.conf.j2
+    dest: ~/.config/redshift/redshift.conf

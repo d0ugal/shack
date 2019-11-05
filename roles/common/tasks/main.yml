@@ -33,7 +33,6 @@
       - light
       - feh
       - blueman
-      - redshift
     state: latest
 
 - name: RPM Fusion
