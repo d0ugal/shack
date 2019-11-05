@@ -61,7 +61,7 @@ module-margin-right = 2
 
 modules-left = i3
 modules-center = xwindow
-modules-right =  vpn-active wired-lan wireless-lan eth battery date
+modules-right =  vpn-active wired-lan wireless-lan eth battery0 battery1 date
 
 tray-position = right
 tray-padding =2 
@@ -190,7 +190,7 @@ label-focused-padding = 1
 label-unfocused = %name%
 label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.primary}
-label-unfocused-underline = 
+label-unfocused-underline = ${colors.foreground-alt}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
@@ -338,41 +338,46 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-[module/battery]
+[module/battery0]
 type = internal/battery
+full-at = 99
 battery = BAT0
 adapter = ADP1
-full-at = 98
-
+poll-interval = 5
 time-format = %H:%M
+
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.okay}
+label-charging = %percentage%%
 
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${colors.red}
+label-discharging = %percentage%%
 
-format-full-prefix = "  "
-format-full-prefix-foreground = ${colors.primary}
-format-full-underline = ${self.format-charging-underline}
-format-full-foreground = ${colors.primary}
+format-full = <ramp-capacity> <label-full>
+label-full = Fully charged
 
-label-charging = %time% %percentage%%
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-label-discharging = %time% %percentage%%
 animation-discharging-0 = 
 animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-3 = 
 animation-discharging-4 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+animation-discharging-framerate = 500
+
+[module/battery1]
+inherit = module/battery0
+battery = BAT1
 
 [module/temperature]
 type = internal/temperature
