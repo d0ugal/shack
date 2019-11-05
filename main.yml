@@ -15,6 +15,8 @@
             name: wmcommon
         - include_role:
             name: scripts
+        - include_role:
+            name: i3
         # Sway is hard work :(
         #- include_role:
         #    name: sway
@@ -30,8 +32,6 @@
             name: vscode
         - include_role:
             name: redshift
-        - include_role:
-            name: i3
         - name: Update
           shell: notify-send -u low -a Shack Finished "We are all done!"
           changed_when: False
