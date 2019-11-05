@@ -76,9 +76,6 @@
     dest: ~/.config/polybar/run.sh
     mode: a+x
 
-- name: Restart i3
-  command: i3-msg restart
-
 - name: Create compton config directory
   file:
     path: ~/.config/compton
