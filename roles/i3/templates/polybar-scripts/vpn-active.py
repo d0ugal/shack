@@ -25,6 +25,6 @@ except:
     vpn_connected = False
 
 if vpn_connected:
-    print("%{u#55aa55}%{F#f00}VPN")
+    print("%{u#55aa55}%{F#f00}%{F-} VPN")
 else:
-    print("%{u#B2535B}%{F#f00}VPN")
+    print("%{u#B2535B}%{F#f00}%{F-} VPN")
