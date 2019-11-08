@@ -28,6 +28,7 @@
       - rxvt-unicode
       - alsa-utils
       - mate-power-manager
+      - arandr
     state: latest
 
 - name: Create i3 config directory

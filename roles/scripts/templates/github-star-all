@@ -12,8 +12,7 @@ USERS = (
     "python-scotland",
 )
 
-REMOVE = (
-)
+REMOVE = ()
 
 g = Github(TOKEN)
 me = g.get_user()
@@ -50,6 +49,7 @@ def star_user(user):
     print(f"Starring repos for {user.login}")
     for repo in user.get_repos():
         star_repo(repo)
+
 
 @retrace.retry(interval=60)
 def unstar_user(user):

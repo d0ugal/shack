@@ -17,7 +17,8 @@ okay = #55AA55
 pseudo-transparency = true
 line-size = 3
 line-color = #f00
-
+monitor = DP-1-1
+monitor-fallback = eDP-1
 border-size = 4
 border-color = #00000000
 
@@ -83,6 +84,72 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 ;------------;
+; TOPBAR    ;
+;------------;
+
+[bar/PolybarTopLeft]
+pseudo-transparency = true
+line-size = 3
+line-color = #f00
+monitor = DP-1-3
+monitor-fallback = eDP-1
+border-size = 4
+border-color = #00000000
+
+;------------;
+; DIMENSIONS ;
+;------------;
+
+width = 100%
+height = 40
+offset-y = 0
+offset-x = 0
+
+border-top-size = 10
+border-bottom-size = 0
+border-right-size = 10
+border-left-size = 10
+
+;----------;
+; LOCATION ;
+;----------;
+
+bottom = false
+
+;-------;
+; FONTS ;
+;-------;
+
+font-0 = SourceCodePro:style=Regular:size=12:antialias=true;3"
+font-1 = "FontAwesome:style=Solid:pixelsize=14;antialias=true;3"
+
+;---------------;
+; MISCELLANEOUS ;
+;---------------;
+
+radius = 10.0
+fixed-center = true
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+modules-left = i3
+modules-right = xwindow
+
+override-redirect = false
+ 
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;------------;
 ; BOTBAR    ;
 ;------------;
 
@@ -90,7 +157,8 @@ cursor-scroll = ns-resize
 pseudo-transparency = true
 line-size = 3
 line-color = #f00
-
+monitor = DP-1-1
+monitor-fallback = eDP-1
 border-size = 4
 border-color = #00000000
 
@@ -175,7 +243,7 @@ format = <label-state> <label-mode>
 index-sort = false
 wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 strip-wsnumbers = true
 
 label-mode-padding = 2
@@ -281,12 +349,12 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
-date =
+date = " %b %d"
 date-alt = " %Y-%m-%d"
 
-time = %H:%M
+time = %H:%M:%S
 time-alt = %H:%M:%S
 
 format-prefix =  
@@ -354,7 +422,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery0]
 type = internal/battery
-full-at = 100
+full-at = 99
 battery = BAT0
 adapter = ADP1
 poll-interval = 5

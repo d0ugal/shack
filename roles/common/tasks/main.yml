@@ -33,6 +33,7 @@
       - light
       - feh
       - blueman
+      - pavucontrol
     state: latest
 
 - name: RPM Fusion
@@ -51,6 +52,7 @@
       - dropbox
       - nautilus-dropbox
       - lpf-spotify-client
+      - plex-media-player
       - '@Games and Entertainment'
       - steam
 
