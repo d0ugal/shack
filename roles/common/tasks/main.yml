@@ -56,6 +56,12 @@
       - '@Games and Entertainment'
       - steam
 
+- name: Add user to the lpf group
+  become: true
+  user:
+    name: dougal
+    group: pkg-build
+
 - name: Install fonts
   become: true
   dnf:

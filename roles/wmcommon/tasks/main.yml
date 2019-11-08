@@ -33,6 +33,7 @@
 - name: Kill Dunst
   command: killall dunst
   changed_when: False
+  ignore_errors: yes
 
 - name: Install ulauncher
   become: true
