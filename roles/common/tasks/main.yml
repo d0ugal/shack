@@ -98,6 +98,7 @@
   systemd:
     state: started
     name: docker
+    enabled: true
 
 - name: Add user to the docker group
   become: true
