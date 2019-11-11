@@ -74,6 +74,12 @@
     git config user.name "Dougal Matthews"
   changed_when: False
 
+- name: Slack client
+  become: true
+  dnf:
+    name:
+      - https://downloads.slack-edge.com/linux_releases/slack-4.1.2-0.1.fc21.x86_64.rpm
+
 - name: Add docker repo
   become: true
   shell: >
