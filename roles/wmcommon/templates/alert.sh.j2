@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eux
+set -o pipefail
+
+if [ "$1" != "Spotify" ];
+  paplay /usr/share/sounds/speech-dispatcher/prompt.wav;
+fi

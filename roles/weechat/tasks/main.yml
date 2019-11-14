@@ -15,3 +15,14 @@
   command: weechat-headless -r "/quit"
   changed_when: False
   ignore_errors: True
+
+- name: Download weechat-notify-send
+  get_url:
+    url: https://raw.githubusercontent.com/s3rvac/weechat-notify-send/master/notify_send.py
+    dest: ~/.weechat/python/notify_send.py
+
+- name: auto-load notify-send
+  file:
+    src:  ~/.weechat/python/notify_send.py
+    dest:  ~/.weechat/python/autoload/notify_send.py
+    state: link

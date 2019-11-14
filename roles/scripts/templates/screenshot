@@ -1,8 +1,9 @@
 #!/bin/bash
 
-set -x;
+set -xe;
 
-SCREEN_DIR=~/Dropbox/Public/Screenshots
+SCREEN_DIR=~/Dropbox/Screenshots/`date +%Y/%m`/
+mkdir $SCREEN_DIR -p
 SCREEN_PROMPT=1
 
 window='root'
@@ -49,6 +50,6 @@ echo "$link" >> ~/Dropbox/screenshot-log.txt;
 notify-send -u critical -a "Screenshot" "$link";
 echo "$link";
 echo "$link" | xclip -sel clip;
-chromium-broswer "$link";
+firefox "$link";
 
 exit

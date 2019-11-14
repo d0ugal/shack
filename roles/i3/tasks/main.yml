@@ -87,3 +87,25 @@
   template:
     src: compton.conf.j2
     dest: ~/.config/compton/compton.conf
+
+- name: xinitrc
+  template:
+    src: xinitrc.j2
+    dest: ~/.xinitrc
+
+
+- name: Create rofi config directory
+  file:
+    path: ~/.config/rofi
+    state: directory
+    mode: '0755'
+
+- name: rofi theme
+  template:
+    src: rofi-config.j2
+    dest: ~/.config/rofi/config
+
+- name: rofi theme
+  template:
+    src: rofi-theme.j2
+    dest: ~/.config/rofi/default.rasi
