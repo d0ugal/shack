@@ -10,7 +10,7 @@
   vars:
     pyenv_path: "/home/dougal/.pyenv"
     pyenv_owner: "dougal"
-    pyenv_global: "3.8.0 3.7.5 3.6.9 3.5.7 2.7.17"
+    pyenv_global: "3.7.5 2.7.17"
     pyenv_update_git_install: yes
     pyenv_python_versions:
       - "3.8.0"
@@ -31,13 +31,16 @@
     executable: ~/.pyenv/shims/pip
     state: latest
 
+- name: Remove any installed packages
+  shell: ~/.pyenv/shims/pipx uninstall-all
+  changed_when: False
+
 - name: Install pipx packages
-  shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3.8 --pip-args='--upgrade' --force
+  shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade' --force
   with_items:
     - awscli
     - black
     - entry_point_inspector
-    - flake8
     - git-review
     - httpie
     - livereload
@@ -54,4 +57,9 @@
     - vulture
     - yaql
     - flashfocus
+    - flake8
+  changed_when: False
+
+- name: pipx inject
+  shell: ~/.pyenv/shims/pipx inject mkdocs mkdocs-material
   changed_when: False

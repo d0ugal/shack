@@ -26,13 +26,15 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec termite -e fish
-bindsym $mod+Delete exec termite -e fish
 
 bindsym $mod+Mod1+Return exec nautilus
 bindsym $mod+Mod1+Delete exec nautilus
 
 bindsym $mod+BackSpace exec firefox --browser
+bindsym $mod+Delete exec firefox --profile ~/.mozilla/firefox/m89ngmk1.Personal/
 bindsym $mod+Shift+BackSpace exec chromium-browser --force-device-scale-factor=1.5
+bindsym $mod+Home exec pavucontrol
+bindsym $mod+End exec blueman-manager
 
 bindsym $mod+n workspace next
 bindsym $mod+Shift+n workspace prev
