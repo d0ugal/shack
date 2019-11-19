@@ -2,6 +2,8 @@
 set -eux
 set -o pipefail
 
+active_window = $(xdotool getactivewindow getwindowname);
+
 if [[ "$1" == "weechat" ]];
 then
   paplay /usr/share/sounds/speech-dispatcher/prompt.wav

@@ -18,6 +18,7 @@
       - dunst
       - termite
       - scrot
+      - xdotool
     state: latest
 
 - name: Create dunst config directory
