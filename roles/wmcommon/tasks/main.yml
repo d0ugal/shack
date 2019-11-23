@@ -34,8 +34,8 @@
 
 - name: Dunst alert script
   template:
-    src: alert.sh.j2
-    dest: ~/.config/dunst/alert.sh
+    src: alert.py
+    dest: ~/.config/dunst/alert.py
     mode: a+x
 
 - name: Kill Dunst

@@ -32,6 +32,8 @@
       - meson
       - light
       - feh
+      - gtk2
+      - gtk2-devel
       - blueman
       - pavucontrol
       - ImageMagick

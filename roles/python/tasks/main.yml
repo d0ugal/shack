@@ -10,7 +10,7 @@
   vars:
     pyenv_path: "/home/dougal/.pyenv"
     pyenv_owner: "dougal"
-    pyenv_global: "3.7.5 2.7.17"
+    pyenv_global: "3.7.5 3.8.0 2.7.17"
     pyenv_update_git_install: yes
     pyenv_python_versions:
       - "3.8.0"
@@ -41,6 +41,8 @@
     - awscli
     - black
     - entry_point_inspector
+    - flake8
+    - flashfocus
     - git-review
     - httpie
     - livereload
@@ -56,8 +58,6 @@
     - tox
     - vulture
     - yaql
-    - flashfocus
-    - flake8
   changed_when: False
 
 - name: pipx inject

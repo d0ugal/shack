@@ -1,0 +1,18 @@
+---
+
+- name: Update
+  shell: notify-send -a Shack MPD "Starting role."
+  changed_when: False
+
+- name: Install
+  become: true
+  dnf:
+    name:
+      - mpd
+
+- name: Start mpd service
+  become: true
+  systemd:
+    state: started
+    name: mpd
+    enabled: true

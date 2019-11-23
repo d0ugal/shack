@@ -30,7 +30,7 @@ bindsym $mod+Return exec termite -e fish
 bindsym $mod+Mod1+Return exec nautilus
 bindsym $mod+Mod1+Delete exec nautilus
 
-bindsym $mod+BackSpace exec firefox --browser
+bindsym $mod+BackSpace exec firefox --browser --profile ~/.mozilla/firefox/u8tsj9a2.default/
 bindsym $mod+Delete exec firefox --profile ~/.mozilla/firefox/m89ngmk1.Personal/
 bindsym $mod+Shift+BackSpace exec chromium-browser --force-device-scale-factor=1.5
 bindsym $mod+Home exec pavucontrol
@@ -100,6 +100,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
+# Page up to chat, page down to media
+bindsym $mod+Prior workspace 
+bindsym $mod+Next workspace 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -236,7 +239,7 @@ exec_always feh --randomize --bg-scale ~/Dropbox/Wallpapers/*
 exec_always compton --config ~/.config/compton/compton.conf
 
 exec redshift
-exec --no-startup-id i3-msg 'workspace ; exec /usr/bin/termite -e weechat; workspace ; exec /usr/bin/firefox; workspace ; exec /usr/bin/spotify; exec /usr/bin/slack;'
+exec --no-startup-id i3-msg 'workspace ; exec /usr/bin/termite -e weechat; exec /usr/bin/slack; workspace 1; exec /usr/bin/firefox; workspace ; exec /usr/bin/spotify; exec /usr/bin/plexmediaplayer;'
 
 set $inner 10
 set $outer 5
