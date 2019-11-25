@@ -114,7 +114,10 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-# move focused container to workspace
+# move focused container to workspa
+# Page up to chat, page down to media
+bindsym $mod+Prior move container to workspace 
+bindsym $mod+Next move container to workspace 
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -243,6 +246,7 @@ exec --no-startup-id i3-msg 'workspace ; exec /usr/bin/termite -e weechat; ex
 
 set $inner 10
 set $outer 5
+set $total 15
 
 # SET GAPS
 gaps inner $inner
@@ -250,6 +254,7 @@ gaps outer $outer
 
 bindsym $mod+z gaps inner all set $inner; gaps outer all set $outer
 bindsym $mod+Shift+z  gaps inner all set 0; gaps outer all set 0
+bindsym $mod+x gaps inner current set 0; gaps outer current set 0; gaps top current set $total;
 
 smart_gaps on
 smart_gaps inverse_outer
