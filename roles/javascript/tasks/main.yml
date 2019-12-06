@@ -9,3 +9,9 @@
   dnf:
     name:
       - npm
+
+- name: Install neovim
+  become: true
+  npm:
+    global: true
+    name: neovim

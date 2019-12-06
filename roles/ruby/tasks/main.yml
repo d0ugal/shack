@@ -1,0 +1,6 @@
+- name: Install ruby
+  become: true
+  dnf:
+    name:
+      - ruby
+      - gem

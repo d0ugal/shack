@@ -4,9 +4,31 @@
   shell: notify-send -a Shack VIM "Starting role."
   changed_when: False
 
-- name: Install vim
+- name: Install neovim
   become: true
   dnf:
     name:
-      - vim
+      - neovim
     state: latest
+
+- name: Create config directory
+  file:
+    path: ~/.config/nvim/autoload/
+    state: directory
+    mode: '0755'
+
+- name: Download vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.config/nvim/autoload/plug.vim
+
+- name: create init.vim
+  template:
+    src: init.vim
+    dest: ~/.config/nvim/init.vim
+
+- name: Plugin install
+  shell: nvim +'PlugInstall --sync' +qa
+
+- name: Plugin update
+  shell: nvim +'PlugUpdate --sync' +qa

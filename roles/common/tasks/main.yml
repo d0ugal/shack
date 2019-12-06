@@ -37,6 +37,11 @@
       - blueman
       - pavucontrol
       - ImageMagick
+      - jq
+      - htop
+      - zeal
+      - st
+      - fzf
     state: latest
 
 - name: RPM Fusion

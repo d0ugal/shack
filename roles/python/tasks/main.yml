@@ -18,7 +18,11 @@
       - "3.6.9"
       - "3.5.7"
       - "2.7.17"
-    pyenv_virtualenvs: []
+    pyenv_virtualenvs:
+      - venv_name: "vim_py2"
+        py_version: "2.7.17"
+      - venv_name: "vim_py3"
+        py_version: "3.8.0"
     pyenv_setting_path: /home/dougal/.bashrc
 
 - name: Upgrade pip
@@ -48,6 +52,7 @@
     - livereload
     - mistral-lint
     - mkdocs
+    - molecule
     - pipdeptree
     - pipenv
     - poetry
@@ -63,3 +68,9 @@
 - name: pipx inject
   shell: ~/.pyenv/shims/pipx inject mkdocs mkdocs-material
   changed_when: False
+
+- name: vim inject pynvim
+  shell: "{{ item }} install pynvim"
+  with_items:
+     - ~/.pyenv/versions/vim_py2/bin/pip
+     - ~/.pyenv/versions/vim_py3/bin/pip

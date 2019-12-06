@@ -30,11 +30,8 @@ bindsym $mod+Return exec termite -e fish
 bindsym $mod+Mod1+Return exec nautilus
 bindsym $mod+Mod1+Delete exec nautilus
 
-bindsym $mod+BackSpace exec firefox --browser --profile ~/.mozilla/firefox/u8tsj9a2.default/
-bindsym $mod+Delete exec firefox --profile ~/.mozilla/firefox/m89ngmk1.Personal/
+bindsym $mod+BackSpace exec firefox --browser
 bindsym $mod+Shift+BackSpace exec chromium-browser --force-device-scale-factor=1.5
-bindsym $mod+Home exec pavucontrol
-bindsym $mod+End exec blueman-manager
 
 bindsym $mod+n workspace next
 bindsym $mod+Shift+n workspace prev
@@ -101,8 +98,8 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 # Page up to chat, page down to media
-bindsym $mod+Prior workspace 
-bindsym $mod+Next workspace 
+bindsym $mod+Home workspace 
+bindsym $mod+End workspace 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -116,8 +113,8 @@ bindsym $mod+0 workspace number 10
 
 # move focused container to workspa
 # Page up to chat, page down to media
-bindsym $mod+Shift+Prior move container to workspace 
-bindsym $mod+Shift+Next move container to workspace 
+bindsym $mod+Shift+Home move container to workspace 
+bindsym $mod+Shift+End move container to workspace 
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -221,6 +218,7 @@ for_window [instance="gtk-recordmydesktop"]   floating enable
 for_window [instance="Gtk-recordmydesktop"]   floating enable
 for_window [instance="^gtk-recordMyDesktop"]   floating enable
 for_window [title="^gtk-recordMyDesktop"]   floating enable
+for_window [class=".* - Zeal$"] floating enable, move container to workspace 4
 
 bindsym $mod+t exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
@@ -232,7 +230,7 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 client.background       #FFFFFF
 
-bindsym $mod+Shift+w exec feh --randomize --bg-scale ~/Dropbox/Wallpapers/*
+bindsym $mod+Shift+w exec feh -Z --randomize --bg-scale ~/Dropbox/Wallpapers/*
 
 exec_always i3-battery-check
 exec_always dropbox 'start'

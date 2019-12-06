@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 import sys
-import os
+import subprocess
 import json
 
-# Can we use the following bash and only make the noise if I am not using weechat?
-# active_window=$(xdotool getactivewindow getwindowname);
+active_window = subprocess.run(
+    "xdotool getactivewindow getwindowname", shell=True, capture_output=True
+)
 
 # argv looks like this;
 # ["/home/dougal/.config/dunst/alert.py", "Shack", "wmcommon", "Starting role.", "dialog-information", "NORMAL"]
@@ -16,5 +17,14 @@ full_body = sys.argv[3]
 icon = sys.argv[4]
 level = sys.argv[5]
 
-if app == "weechat" or level == "CRITICAL"
-    os.system("paplay /usr/share/sounds/speech-dispatcher/prompt.wav")
+LOW = "LOW"
+NORMAL = "NORMAL"
+CRITICAL = "CRITICAL"
+
+# with open("/tmp/dunst-alert-py.log", "a") as f:
+#    f.write(str(sys.argv) + "\n")
+
+weechat_active = active_window.stdout.startswith(b"weechat")
+
+if (app == "weechat" and not weechat_active) or level == CRITICAL:
+    subprocess.run("paplay /usr/share/sounds/speech-dispatcher/prompt.wav", shell=True)

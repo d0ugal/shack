@@ -2,17 +2,14 @@
 
 - hosts: localhost
   tasks:
-
-    - name: Update
-      shell: notify-send -u low -a Shack Starting "Lets go!"
-      changed_when: False
-
     - name: Handle errors
       block:
         - include_role:
             name: common
         - include_role:
             name: wmcommon
+        - include_role:
+            name: vim
         - include_role:
             name: scripts
         - include_role:
@@ -22,8 +19,6 @@
         # Sway is hard work :(
         #- include_role:
         #    name: sway
-        - include_role:
-            name: vim
         - include_role:
             name: fish
         - include_role:
@@ -36,6 +31,10 @@
             name: redshift
         - include_role:
             name: javascript
+        - include_role:
+            name: ruby
+        - include_role:
+            name: go
         - name: Update
           shell: notify-send -u low -a Shack Finished "We are all done!"
           changed_when: False
