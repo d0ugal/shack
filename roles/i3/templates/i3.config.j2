@@ -218,7 +218,7 @@ for_window [instance="gtk-recordmydesktop"]   floating enable
 for_window [instance="Gtk-recordmydesktop"]   floating enable
 for_window [instance="^gtk-recordMyDesktop"]   floating enable
 for_window [title="^gtk-recordMyDesktop"]   floating enable
-for_window [class=".* - Zeal$"] floating enable, move container to workspace 4
+for_window [class=".*Zeal$"] floating enable, move container to workspace current
 
 bindsym $mod+t exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
@@ -232,6 +232,7 @@ client.background       #FFFFFF
 
 bindsym $mod+Shift+w exec feh -Z --randomize --bg-scale ~/Dropbox/Wallpapers/*
 
+exec_always zeal
 exec_always i3-battery-check
 exec_always dropbox 'start'
 exec_always nm-applet
