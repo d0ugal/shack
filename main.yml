@@ -5,6 +5,8 @@
     - name: Handle errors
       block:
         - include_role:
+            name: init
+        - include_role:
             name: common
         - include_role:
             name: wmcommon
@@ -16,9 +18,6 @@
             name: scripts
         - include_role:
             name: mpd
-        # Sway is hard work :(
-        #- include_role:
-        #    name: sway
         - include_role:
             name: fish
         - include_role:
@@ -35,6 +34,8 @@
             name: ruby
         - include_role:
             name: go
+        - include_role:
+            name: gui_apps
         - name: Update
           shell: notify-send -u low -a Shack Finished "We are all done!"
           changed_when: False

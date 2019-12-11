@@ -5,7 +5,7 @@
     mode: '0755'
 
 - name: Copy over scripts
-  template:
+  copy:
     src: "{{ item }}"
     dest: ~/bin/{{ item | basename | regex_replace('\.j2','') }}
     mode: a+x

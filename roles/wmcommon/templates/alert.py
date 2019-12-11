@@ -21,10 +21,20 @@ LOW = "LOW"
 NORMAL = "NORMAL"
 CRITICAL = "CRITICAL"
 
-# with open("/tmp/dunst-alert-py.log", "a") as f:
-#    f.write(str(sys.argv) + "\n")
+with open("/tmp/dunst-alert-py.log", "a") as f:
+    f.write(str(sys.argv) + "\n")
+
+FILE = None
 
 weechat_active = active_window.stdout.startswith(b"weechat")
+if app == "weechat" and not weechat_active:
+    FILE = "/usr/share/sounds/freedesktop/stereo/message.oga"
 
-if (app == "weechat" and not weechat_active) or level == CRITICAL:
-    subprocess.run("paplay /usr/share/sounds/speech-dispatcher/prompt.wav", shell=True)
+if level == CRITICAL:
+    FILE = "/usr/share/sounds/speech-dispatcher/gummy-cat-2.wav"
+
+if app == "NetworkManager" and summary == "VPN Connection Failed":
+    FILE = "/usr/share/sounds/speech-dispatcher/prompt.wav"
+
+if FILE:
+    subprocess.run(f"paplay {FILE}", shell=True)

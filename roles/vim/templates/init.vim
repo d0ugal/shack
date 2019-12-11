@@ -1,3 +1,48 @@
+if &compatible
+  set nocompatible
+endif
+
+let mapleader=","
+
+set mouse=""
+set encoding=utf-8
+
+set title
+set nowrap
+
+set cursorline
+set cursorcolumn
+
+set tabstop=8
+set shiftwidth=4
+set shiftround
+set softtabstop=4
+set expandtab
+
+set backspace=indent,eol,start
+
+set autoindent
+set copyindent
+
+set showmatch
+set ignorecase
+set smartcase
+set smarttab
+set hlsearch
+set incsearch
+
+"
+set wildmenu
+
+" Stop creating backup and swap files
+set noswapfile
+set nobackup
+set nowb
+
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+nnoremap <esc> :noh<return>
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'junegunn/fzf.vim'
@@ -43,6 +88,16 @@ nnoremap <C-H> <C-W><C-H>
 " Open new splits below and to the right, which seems more sensible
 set splitbelow
 set splitright
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <leader>nt :call NumberToggle()<cr>
 
 
 " --- The following are suggested configs from coc ---

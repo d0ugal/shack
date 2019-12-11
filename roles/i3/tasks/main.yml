@@ -29,7 +29,6 @@
       - alsa-utils
       - mate-power-manager
       - arandr
-    state: latest
 
 - name: Create i3 config directory
   file:
@@ -38,8 +37,8 @@
     mode: '0755'
 
 - name: i3 config file
-  template:
-    src: i3.config.j2
+  copy:
+    src: i3.config
     dest: ~/.config/i3/config
 
 - name: Create polybar config directory
@@ -55,12 +54,12 @@
     mode: '0755'
 
 - name: polybar config file
-  template:
-    src: polybar.config.j2
+  copy:
+    src: polybar.config
     dest: ~/.config/polybar/config
 
 - name: Polybar scripts
-  template:
+  copy:
     src: "{{ item }}"
     dest: ~/.config/polybar/scripts/{{ item | basename | regex_replace('\.j2','') }}
     mode: a+x
@@ -68,8 +67,8 @@
     - ../templates/polybar-scripts/*
 
 - name: polybar run file
-  template:
-    src: polybar-run.sh.j2
+  copy:
+    src: polybar-run.sh
     dest: ~/.config/polybar/run.sh
 
 - name: polybar run file +x
@@ -84,13 +83,13 @@
     mode: '0755'
 
 - name: compton config file
-  template:
-    src: compton.conf.j2
+  copy:
+    src: compton.conf
     dest: ~/.config/compton/compton.conf
 
 - name: xinitrc
-  template:
-    src: xinitrc.j2
+  copy:
+    src: xinitrc
     dest: ~/.xinitrc
 
 
@@ -101,11 +100,11 @@
     mode: '0755'
 
 - name: rofi theme
-  template:
-    src: rofi-config.j2
+  copy:
+    src: rofi-config
     dest: ~/.config/rofi/config
 
 - name: rofi theme
-  template:
-    src: rofi-theme.j2
+  copy:
+    src: rofi-theme
     dest: ~/.config/rofi/default.rasi

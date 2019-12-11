@@ -13,62 +13,29 @@
       - '@Container Management'
       - '@Sound and Video'
       - '@System Tools'
-    state: latest
 
 - name: Install common core packages
   become: true
   dnf:
     name:
-      - dnf-plugins-core
-      - the_silver_searcher
-      - util-linux-user
+      - ImageMagick
       - cmake
-      - libinput-devel
-      - git
-      - tmux
-      - python3-psutil
-      - mediawriter
-      - chromium
-      - meson
-      - light
+      - dnf-plugins-core
       - feh
+      - fzf
+      - git
       - gtk2
       - gtk2-devel
-      - blueman
-      - pavucontrol
-      - ImageMagick
-      - jq
       - htop
-      - zeal
+      - jq
+      - libinput-devel
+      - light
+      - meson
+      - python3-psutil
       - st
-      - fzf
-    state: latest
-
-- name: RPM Fusion
-  become: true
-  shell: >
-    dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm;
-    dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm;
-  args:
-    warn: false
-  changed_when: False
-
-- name: Install non-free
-  become: true
-  dnf:
-    name:
-      - dropbox
-      - nautilus-dropbox
-      - lpf-spotify-client
-      - plex-media-player
-      - '@Games and Entertainment'
-      - steam
-
-- name: Add user to the lpf group
-  become: true
-  user:
-    name: dougal
-    group: pkg-build
+      - the_silver_searcher
+      - tmux
+      - util-linux-user
 
 - name: Install fonts
   become: true
@@ -76,17 +43,12 @@
     name:
       - adobe-source-code-pro-fonts
       - fontawesome-fonts
+
 - name: Git Config
   shell: >-
     git config user.email "dougal@dougalmatthews.com";
     git config user.name "Dougal Matthews"
   changed_when: False
-
-- name: Slack client
-  become: true
-  dnf:
-    name:
-      - https://downloads.slack-edge.com/linux_releases/slack-4.1.2-0.1.fc21.x86_64.rpm
 
 - name: Add docker repo
   become: true

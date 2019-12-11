@@ -9,7 +9,6 @@
   dnf:
     name:
       - neovim
-    state: latest
 
 - name: Create config directory
   file:
@@ -23,7 +22,7 @@
     dest: ~/.config/nvim/autoload/plug.vim
 
 - name: create init.vim
-  template:
+  copy:
     src: init.vim
     dest: ~/.config/nvim/init.vim
 

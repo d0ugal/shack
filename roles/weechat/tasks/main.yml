@@ -9,7 +9,6 @@
   dnf:
     name:
       - weechat
-    state: latest
 
 - name: Make sure the weechat directory is created
   command: weechat-headless -r "/quit"

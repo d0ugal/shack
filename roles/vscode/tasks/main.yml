@@ -20,7 +20,6 @@
   become: true
   dnf:
     name: code
-    state: latest
 
 - name: set inotify watchers
   become: yes

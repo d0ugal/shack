@@ -19,7 +19,6 @@
       - termite
       - scrot
       - xdotool
-    state: latest
 
 - name: Create dunst config directory
   file:
@@ -28,12 +27,12 @@
     mode: '0755'
 
 - name: Dunst config file
-  template:
-    src: dunstrc.j2
+  copy:
+    src: dunstrc
     dest: ~/.config/dunst/dunstrc
 
 - name: Dunst alert script
-  template:
+  copy:
     src: alert.py
     dest: ~/.config/dunst/alert.py
     mode: a+x
@@ -42,13 +41,6 @@
   command: killall dunst
   changed_when: False
   ignore_errors: yes
-
-- name: Install ulauncher
-  become: true
-  dnf:
-    name:
-      - https://github.com/Ulauncher/Ulauncher/releases/download/5.4.0/ulauncher_5.4.0_fedora29.rpm
-    state: latest
 
 - name: Install applets
   become: true
@@ -63,6 +55,6 @@
     mode: '0755'
 
 - name: termite config file
-  template:
-    src: termite.config.j2
+  copy:
+    src: termite.config
     dest: ~/.config/termite/config

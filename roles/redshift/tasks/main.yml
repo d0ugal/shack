@@ -3,7 +3,6 @@
   dnf:
     name:
       - redshift
-    state: latest
 
 - name: Create redshift config directory
   file:
@@ -12,6 +11,6 @@
     mode: '0755'
 
 - name: redshift config file
-  template:
-    src: redshift.conf.j2
+  copy:
+    src: redshift.conf
     dest: ~/.config/redshift/redshift.conf
