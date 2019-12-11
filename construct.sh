@@ -2,7 +2,13 @@
 set -eux
 set -o pipefail
 
-sudo dnf install -y ansible;
+
+if rpm -q --quiet ansible;
+then
+    echo "Ansible installed";
+else
+    sudo dnf install -y ansible;
+fi
 
 ansible-galaxy install -r requirements.yml;
 
