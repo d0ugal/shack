@@ -18,5 +18,5 @@
 
 - name: Fish config file
   copy:
-    src: config.fish
+    src: ./templates/config.fish
     dest: ~/.config/fish/config.fish

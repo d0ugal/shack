@@ -23,7 +23,7 @@
 
 - name: create init.vim
   copy:
-    src: init.vim
+    src: ./templates/init.vim
     dest: ~/.config/nvim/init.vim
 
 - name: Plugin install

@@ -28,12 +28,12 @@
 
 - name: Dunst config file
   copy:
-    src: dunstrc
+    src: ./templates/dunstrc
     dest: ~/.config/dunst/dunstrc
 
 - name: Dunst alert script
   copy:
-    src: alert.py
+    src: ./templates/alert.py
     dest: ~/.config/dunst/alert.py
     mode: a+x
 
@@ -56,5 +56,5 @@
 
 - name: termite config file
   copy:
-    src: termite.config
+    src: ./templates/termite.config
     dest: ~/.config/termite/config

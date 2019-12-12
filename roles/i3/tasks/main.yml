@@ -38,7 +38,7 @@
 
 - name: i3 config file
   copy:
-    src: i3.config
+    src: ./templates/i3.config
     dest: ~/.config/i3/config
 
 - name: Create polybar config directory
@@ -55,7 +55,7 @@
 
 - name: polybar config file
   copy:
-    src: polybar.config
+    src: ./templates/polybar.config
     dest: ~/.config/polybar/config
 
 - name: Polybar scripts
@@ -68,7 +68,7 @@
 
 - name: polybar run file
   copy:
-    src: polybar-run.sh
+    src: ./templates/polybar-run.sh
     dest: ~/.config/polybar/run.sh
 
 - name: polybar run file +x
@@ -84,12 +84,12 @@
 
 - name: compton config file
   copy:
-    src: compton.conf
+    src: ./templates/compton.conf
     dest: ~/.config/compton/compton.conf
 
 - name: xinitrc
   copy:
-    src: xinitrc
+    src: ./templates/xinitrc
     dest: ~/.xinitrc
 
 
@@ -101,10 +101,10 @@
 
 - name: rofi theme
   copy:
-    src: rofi-config
+    src: ./templates/rofi-config
     dest: ~/.config/rofi/config
 
 - name: rofi theme
   copy:
-    src: rofi-theme
+    src: ./templates/rofi-theme
     dest: ~/.config/rofi/default.rasi

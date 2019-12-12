@@ -12,5 +12,5 @@
 
 - name: redshift config file
   copy:
-    src: redshift.conf
+    src: ./templates/redshift.conf
     dest: ~/.config/redshift/redshift.conf
