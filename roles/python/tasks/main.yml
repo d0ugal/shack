@@ -47,6 +47,7 @@
   with_items:
     - awscli
     - black
+    - doc2dash
     - entry_point_inspector
     - flake8
     - flashfocus

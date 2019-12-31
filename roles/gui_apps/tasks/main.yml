@@ -13,6 +13,7 @@
       - zeal
       - workrave
       - workrave-gtk2
+      - gitstats
 
 - name: Is Slack installed
   shell: >-
