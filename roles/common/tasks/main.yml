@@ -22,6 +22,7 @@
       - cmake
       - dnf-plugins-core
       - feh
+      - nitrogen
       - fzf
       - git
       - hub
