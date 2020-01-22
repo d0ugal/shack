@@ -66,6 +66,7 @@
     - towncrier
     - tox
     - vulture
+    - yamllint
     - yaql
   changed_when: False
 

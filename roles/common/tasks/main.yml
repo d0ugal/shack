@@ -24,6 +24,7 @@
       - feh
       - fzf
       - git
+      - hub
       - gtk2
       - gtk2-devel
       - htop
