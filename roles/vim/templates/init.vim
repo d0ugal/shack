@@ -57,6 +57,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/taglist.vim', {'tag': '4.5'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
 Plug 'nathanaelkane/vim-indent-guides', {'tag': '1.6'}
+Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
 
