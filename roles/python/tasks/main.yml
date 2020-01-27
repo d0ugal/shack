@@ -65,6 +65,7 @@
     - reno
     - towncrier
     - tox
+    - uvicorn
     - vulture
     - yamllint
     - yaql
