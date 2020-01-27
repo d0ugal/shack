@@ -61,8 +61,12 @@ Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
 
-" Make fzf like ctrlp
+" File search
 nnoremap <C-p> :Files<Cr>
+" Command search
+nnoremap <C-S-p> :Commands<Cr>
+" Git commit search
+nnoremap <C-g> :Commits<Cr>
 
 " Add line numbers
 set number
