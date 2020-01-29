@@ -1,9 +1,8 @@
 ---
 
-- hosts: localhost
+- hosts: all
   roles:
     - { role: vim }
-    - { role: fish }
   tasks:
     - name: Update
       shell: notify-send -a Shack Finished "We are all done!"

@@ -1,12 +1,14 @@
 ---
 
-- name: Update
-  shell: notify-send -a Shack VIM "Starting role."
-  changed_when: False
+- name: Enable nvim repo
+  package:
+    name:
+      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  when: ansible_distribution == 'CentOS'
 
 - name: Install neovim
   become: true
-  dnf:
+  package:
     name:
       - neovim
 
