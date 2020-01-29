@@ -67,6 +67,7 @@ nnoremap <C-p> :Files<Cr>
 nnoremap <C-S-p> :Commands<Cr>
 " Git commit search
 nnoremap <C-g> :Commits<Cr>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Add line numbers
 set number
