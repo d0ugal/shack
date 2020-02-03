@@ -22,17 +22,19 @@
       - cmake
       - dnf-plugins-core
       - feh
-      - nitrogen
       - fzf
       - git
-      - hub
       - gtk2
       - gtk2-devel
       - htop
+      - hub
       - jq
       - libinput-devel
       - light
       - meson
+      - nitrogen
+      - postgresql
+      - postgresql-devel
       - python3-psutil
       - st
       - the_silver_searcher

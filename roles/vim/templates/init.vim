@@ -45,26 +45,28 @@ nnoremap <esc> :noh<return>
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'nathanaelkane/vim-indent-guides', {'tag': '1.6'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'psf/black'
+Plug 'ruanyl/vim-gh-line'
+Plug 'scrooloose/nerdtree', {'tag': '6.3.0'}
+Plug 'tommcdo/vim-fugitive-blame-ext'
+Plug 'tpope/vim-eunuch', {'tag': 'v1.2'}
 Plug 'tpope/vim-fugitive', {'tag': 'v3.1'}
 Plug 'tpope/vim-sensible', {'tag': 'v1.2'}
-Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-eunuch', {'tag': 'v1.2'}
-Plug 'scrooloose/nerdtree', {'tag': '6.3.0'}
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/taglist.vim', {'tag': '4.5'}
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
-Plug 'nathanaelkane/vim-indent-guides', {'tag': '1.6'}
-Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
 
-" File search
-nnoremap <C-p> :Files<Cr>
 " Command search
 nnoremap <C-S-p> :Commands<Cr>
+" File search
+nnoremap <C-p> :Files<Cr>
 " Git commit search
 nnoremap <C-g> :Commits<Cr>
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'

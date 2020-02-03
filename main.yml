@@ -5,11 +5,11 @@
     - name: Handle errors
       block:
         - include_role:
+            name: vim
+        - include_role:
             name: init
         - include_role:
             name: common
-        - include_role:
-            name: vim
         - include_role:
             name: wmcommon
         - include_role:
