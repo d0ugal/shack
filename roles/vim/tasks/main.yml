@@ -30,8 +30,8 @@
 
 - name: Plugin install
   command: nvim +'PlugInstall --sync' +qa
-  changed_when: False
+  changed_when: false
 
 - name: Plugin update
   command: nvim +'PlugUpdate --sync' +qa
-  changed_when: False
+  changed_when: false
