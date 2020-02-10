@@ -1,9 +1,5 @@
 ---
 
-- name: Update
-  shell: notify-send -a Shack Common "Starting role."
-  changed_when: false
-
 - name: Install groups
   become: true
   dnf:
@@ -48,11 +44,15 @@
       - adobe-source-code-pro-fonts
       - fontawesome-fonts
 
-- name: Git Config
-  shell: >-
-    git config user.email "dougal@dougalmatthews.com";
-    git config user.name "Dougal Matthews"
-  changed_when: false
+- name: Git Config Email
+  git_config:
+    name: user.email
+    value: "dougal@dougalmatthews.com"
+
+- name: Git Config Name
+  git_config:
+    name: user.name
+    value: "Dougal Matthews"
 
 - name: Add docker repo
   become: true
