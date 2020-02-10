@@ -2,7 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack Python "Starting role."
-  changed_when: False
+  changed_when: false
 
 - name: "Install pyenv and Python versions"
   include_role:
@@ -11,7 +11,7 @@
     pyenv_path: "/home/dougal/.pyenv"
     pyenv_owner: "dougal"
     pyenv_global: "3.7.5 3.8.0 3.6.9 3.5.7 2.7.17"
-    pyenv_update_git_install: yes
+    pyenv_update_git_install: true
     pyenv_python_versions:
       - "3.8.0"
       - "3.7.5"
@@ -27,7 +27,7 @@
 
 - name: Upgrade pip
   shell: source /home/dougal/.pyenv/.pyenvrc && pip install -U pip
-  changed_when: False
+  changed_when: false
 
 - name: Install pipx
   pip:
@@ -37,7 +37,7 @@
 
 - name: Remove any installed packages
   shell: ~/.pyenv/shims/pipx uninstall-all
-  changed_when: False
+  changed_when: false
   when:
     - pipx_clean is defined
     - pipx_clean|bool
@@ -69,14 +69,14 @@
     - vulture
     - yamllint
     - yaql
-  changed_when: False
+  changed_when: false
 
 - name: pipx mkdocs inject
   shell: ~/.pyenv/shims/pipx inject mkdocs mkdocs-material
-  changed_when: False
+  changed_when: false
 
 - name: vim inject pynvim
   shell: "{{ item }} install pynvim"
   with_items:
-     - ~/.pyenv/versions/vim_py2/bin/pip
-     - ~/.pyenv/versions/vim_py3/bin/pip
+    - ~/.pyenv/versions/vim_py2/bin/pip
+    - ~/.pyenv/versions/vim_py3/bin/pip

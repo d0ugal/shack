@@ -1,3 +1,4 @@
+---
 - name: Install ruby
   become: true
   dnf:

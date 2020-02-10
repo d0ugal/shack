@@ -2,7 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack Fish "Starting role."
-  changed_when: False
+  changed_when: false
 
 - name: Install fish
   become: true
@@ -14,7 +14,7 @@
   shell: fish -c 'set fish_greeting ""'
   args:
     executable: /usr/bin/fish
-  changed_when: False
+  changed_when: false
 
 - name: Fish config file
   copy:

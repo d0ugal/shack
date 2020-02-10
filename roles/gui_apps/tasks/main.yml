@@ -1,6 +1,7 @@
+---
 - name: Update
   shell: notify-send -a Shack "GUI Apps" "Starting role."
-  changed_when: False
+  changed_when: false
 
 - name: Install common core packages
   become: true
@@ -42,7 +43,7 @@
     dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm;
   args:
     warn: false
-  changed_when: False
+  changed_when: false
 
 - name: Install non-free
   become: true

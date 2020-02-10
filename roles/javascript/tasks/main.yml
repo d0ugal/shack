@@ -1,8 +1,7 @@
 ---
-
 - name: Update
   shell: notify-send -a Shack JavaScript "Starting role."
-  changed_when: False
+  changed_when: false
 
 - name: Install npm packages
   become: true
