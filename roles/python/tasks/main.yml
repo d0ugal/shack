@@ -45,6 +45,7 @@
 - name: Install pipx packages
   shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade' --force
   with_items:
+    - ansible-lint
     - awscli
     - black
     - doc2dash
@@ -56,7 +57,6 @@
     - livereload
     - mistral-lint
     - mkdocs
-    - molecule
     - pipdeptree
     - pipenv
     - poetry
@@ -71,7 +71,7 @@
     - yaql
   changed_when: False
 
-- name: pipx inject
+- name: pipx mkdocs inject
   shell: ~/.pyenv/shims/pipx inject mkdocs mkdocs-material
   changed_when: False
 
