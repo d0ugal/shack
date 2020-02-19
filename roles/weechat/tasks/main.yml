@@ -2,7 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack WeeChat "Starting role."
-  changed_when: false
+  changed_when: False
 
 - name: Install weechat
   become: true
@@ -12,8 +12,8 @@
 
 - name: Make sure the weechat directory is created
   command: weechat-headless -r "/quit"
-  changed_when: false
-  ignore_errors: true
+  changed_when: False
+  ignore_errors: True
 
 - name: Download notify-send
   get_url:
@@ -22,8 +22,8 @@
 
 - name: auto-load notify-send
   file:
-    src: ~/.weechat/python/notify_send.py
-    dest: ~/.weechat/python/autoload/notify_send.py
+    src:  ~/.weechat/python/notify_send.py
+    dest:  ~/.weechat/python/autoload/notify_send.py
     state: link
 
 - name: Download highmon
@@ -33,8 +33,8 @@
 
 - name: auto-load highmon
   file:
-    src: ~/.weechat/perl/highmon.pl
-    dest: ~/.weechat/perl/autoload/highmon.pl
+    src:  ~/.weechat/perl/highmon.pl
+    dest:  ~/.weechat/perl/autoload/highmon.pl
     state: link
 
 - name: Download autojoin
@@ -44,8 +44,8 @@
 
 - name: auto-load autojoin
   file:
-    src: ~/.weechat/python/autojoin.py
-    dest: ~/.weechat/python/autoload/autojoin.py
+    src:  ~/.weechat/python/autojoin.py
+    dest:  ~/.weechat/python/autoload/autojoin.py
     state: link
 
 - name: Download autosort
@@ -55,6 +55,6 @@
 
 - name: auto-load autosort
   file:
-    src: ~/.weechat/python/autosort.py
-    dest: ~/.weechat/python/autoload/autosort.py
+    src:  ~/.weechat/python/autosort.py
+    dest:  ~/.weechat/python/autoload/autosort.py
     state: link

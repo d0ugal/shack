@@ -2,7 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack Go "Starting role."
-  changed_when: false
+  changed_when: False
 
 - name: "Install go deps"
   become: true

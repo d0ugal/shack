@@ -2,7 +2,7 @@
 
 - name: Update
   shell: notify-send -a Shack Common "Starting role."
-  changed_when: false
+  changed_when: False
 
 - name: Install groups
   become: true
@@ -52,7 +52,7 @@
   shell: >-
     git config user.email "dougal@dougalmatthews.com";
     git config user.name "Dougal Matthews"
-  changed_when: false
+  changed_when: False
 
 - name: Add docker repo
   become: true
@@ -62,7 +62,7 @@
       https://download.docker.com/linux/fedora/docker-ce.repo
   args:
     warn: false
-  changed_when: false
+  changed_when: False
 
 - name: Install Docker
   become: true

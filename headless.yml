@@ -2,7 +2,7 @@
 
 - hosts: all
   roles:
-    - {role: vim}
+    - { role: vim }
   tasks:
     - name: Update
       shell: notify-send -a Shack Finished "We are all done!"

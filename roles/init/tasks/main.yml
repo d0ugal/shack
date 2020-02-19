@@ -1,4 +1,3 @@
----
 - name: Copy using inline content
   copy:
     content: "[defaults]\n\ncallback_whitelist = profile_tasks\n"

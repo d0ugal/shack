@@ -1,4 +1,3 @@
----
 - name: Create user bin directory
   file:
     path: ~/bin
