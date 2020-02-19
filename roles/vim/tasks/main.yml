@@ -29,9 +29,7 @@
     dest: ~/.config/nvim/init.vim
 
 - name: Plugin install
-  command: nvim +'PlugInstall --sync' +qa
-  changed_when: False
+  shell: nvim +'PlugInstall --sync' +qa
 
 - name: Plugin update
-  command: nvim +'PlugUpdate --sync' +qa
-  changed_when: False
+  shell: nvim +'PlugUpdate --sync' +qa
