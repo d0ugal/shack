@@ -1,5 +1,11 @@
 ---
-- name: Setup ansible config
+- name: Copy using inline content
   copy:
     content: "[defaults]\n\ncallback_whitelist = profile_tasks\n"
     dest: ~/.ansible.cfg
+
+- name: Update all packages
+  become: true
+  dnf:
+    name: '*'
+    state: latest

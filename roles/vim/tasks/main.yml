@@ -4,10 +4,7 @@
   package:
     name:
       - https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  when: ansible_distribution == 'Fedora'
-
-- debug:
-    var: ansible_distribution
+  when: ansible_distribution == 'CentOS'
 
 - name: Install neovim
   become: true
