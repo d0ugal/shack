@@ -8,12 +8,14 @@
     name:
       - blueman
       - chromium
+      - gimp
+      - gitstats
+      - inkscape
       - mediawriter
       - pavucontrol
-      - zeal
       - workrave
       - workrave-gtk2
-      - gitstats
+      - zeal
 
 - name: Is Slack installed
   shell: >-
