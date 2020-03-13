@@ -10,7 +10,7 @@
   vars:
     pyenv_path: "/home/dougal/.pyenv"
     pyenv_owner: "dougal"
-    pyenv_global: "3.7.6 3.8.2 3.6.10 3.5.9 2.7.17"
+    pyenv_global: "3.8.2 3.7.6 3.6.10 3.5.9 2.7.17"
     pyenv_update_git_install: yes
     pyenv_python_versions:
       - "3.8.2"
