@@ -6,9 +6,10 @@
 
 - name: Install npm packages
   become: true
-  dnf:
+  apt:
     name:
       - npm
+      - nodejs
 
 - name: Install neovim
   become: true

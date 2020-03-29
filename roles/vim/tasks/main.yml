@@ -6,9 +6,10 @@
 
 - name: Install neovim
   become: true
-  dnf:
+  apt:
     name:
       - neovim
+      - exuberant-ctags
 
 - name: Create config directory
   file:

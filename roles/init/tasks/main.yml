@@ -5,6 +5,4 @@
 
 - name: Update all packages
   become: true
-  dnf:
-    name: '*'
-    state: latest
+  apt: upgrade=dist force_apt_get=yes

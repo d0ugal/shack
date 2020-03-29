@@ -6,6 +6,6 @@
 
 - name: "Install go deps"
   become: true
-  dnf:
+  apt:
     name:
       - golang

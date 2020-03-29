@@ -4,49 +4,25 @@
   shell: notify-send -a Shack Common "Starting role."
   changed_when: False
 
-- name: Install groups
-  become: true
-  dnf:
-    name:
-      - '@Development tools'
-      - '@C Development Tools and Libraries'
-      - '@Container Management'
-      - '@Sound and Video'
-      - '@System Tools'
-
 - name: Install common core packages
   become: true
-  dnf:
+  apt:
     name:
-      - ImageMagick
       - cmake
-      - dnf-plugins-core
       - feh
       - fzf
       - git
-      - gtk2
-      - gtk2-devel
       - htop
       - hub
       - jq
-      - libinput-devel
-      - light
+      - libinput-dev
       - meson
       - nitrogen
       - postgresql
-      - postgresql-devel
       - python3-psutil
-      - st
-      - the_silver_searcher
+      - silversearcher-ag
       - tmux
-      - util-linux-user
-
-- name: Install fonts
-  become: true
-  dnf:
-    name:
-      - adobe-source-code-pro-fonts
-      - fontawesome-fonts
+      - util-linux
 
 - name: Git Config
   shell: >-
@@ -54,34 +30,8 @@
     git config user.name "Dougal Matthews"
   changed_when: False
 
-- name: Add docker repo
-  become: true
-  shell: >
-    dnf config-manager \
-      --add-repo \
-      https://download.docker.com/linux/fedora/docker-ce.repo
-  args:
-    warn: false
-  changed_when: False
-
 - name: Install Docker
   become: true
-  dnf:
+  snap:
     name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-compose
-
-- name: Start Docker service
-  become: true
-  systemd:
-    state: started
-    name: docker
-    enabled: true
-
-- name: Add user to the docker group
-  become: true
-  user:
-    name: dougal
-    group: docker
+      - docker

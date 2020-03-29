@@ -26,7 +26,7 @@
     pyenv_setting_path: /home/dougal/.bashrc
 
 - name: Upgrade pip
-  shell: source /home/dougal/.pyenv/.pyenvrc && pip install -U pip
+  shell: ~/.pyenv/shims/pip install -U pip
   changed_when: False
 
 - name: Install pipx
@@ -50,20 +50,15 @@
     - doc2dash
     - entry_point_inspector
     - flake8
-    - flashfocus
     - git-review
     - httpie
     - livereload
-    - mistral-lint
     - mkdocs
-    - molecule
     - pip-tools
     - pipdeptree
     - pipenv
     - poetry
     - pynd
-    - python-openstackclient
-    - reno
     - towncrier
     - tox
     - uvicorn
@@ -72,9 +67,9 @@
     - yaql
   changed_when: False
 
-#- name: pipx inject
-#  shell: ~/.pyenv/shims/pipx inject mkdocs mkdocs-material
-#  changed_when: False
+- name: pipx inject
+  shell: ~/.pyenv/shims/pipx inject mkdocs mkdocs-material
+  changed_when: False
 
 - name: vim inject pynvim
   shell: "{{ item }} install pynvim"
