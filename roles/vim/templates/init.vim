@@ -49,7 +49,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
 Plug 'gregsexton/MatchTag'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 Plug 'nathanaelkane/vim-indent-guides', {'tag': '1.6'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
