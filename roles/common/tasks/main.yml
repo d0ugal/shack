@@ -27,7 +27,8 @@
 - name: Git Config
   shell: >-
     git config user.email "dougal@dougalmatthews.com";
-    git config user.name "Dougal Matthews"
+    git config user.name "Dougal Matthews";
+    git config --global --replace-all core.editor "vim";
   changed_when: False
 
 - name: Install Docker
