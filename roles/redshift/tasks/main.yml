@@ -1,6 +1,6 @@
 - name: Install redshift
   become: true
-  dnf:
+  apt:
     name:
       - redshift
 

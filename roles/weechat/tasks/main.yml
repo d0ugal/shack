@@ -6,9 +6,10 @@
 
 - name: Install weechat
   become: true
-  dnf:
+  apt:
     name:
       - weechat
+      - weechat-headless
 
 - name: Make sure the weechat directory is created
   command: weechat-headless -r "/quit"
