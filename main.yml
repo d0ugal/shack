@@ -33,8 +33,6 @@
         #- include_role:
         #    name: mpd
         #- include_role:
-        #    name: vscode
-        #- include_role:
         #    name: gui_apps
         - name: Update
           shell: notify-send -u low -a Shack Finished "We are all done!"
