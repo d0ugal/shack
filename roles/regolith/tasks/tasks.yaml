@@ -1,0 +1,23 @@
+---
+
+- name: Create i3 config directory
+  file:
+    path: ~/.config/regolith/i3 
+    state: directory
+    mode: '0755'
+
+- name: i3 config file
+  copy:
+    src: ./templates/i3config
+    dest: ~/.config/regolith/i3/config
+
+- name: Create i3xrocks config directory
+  file:
+    path: ~/.config/regolith/i3xrocks
+    state: directory
+    mode: '0755'
+
+- name: i3xrocks config file
+  copy:
+    src: ./templates/i3xrocks
+    dest: ~/.config/regolith/i3xrocks/config
