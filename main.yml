@@ -27,8 +27,6 @@
         - include_role:
             name: redshift
         #- include_role:
-        #    name: wmcommon
-        #- include_role:
         #    name: i3
         - name: Update
           shell: notify-send -u low -a Shack Finished "We are all done!"
