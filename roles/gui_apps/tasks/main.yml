@@ -1,7 +1,4 @@
-- name: Update
-  shell: notify-send -a Shack "GUI Apps" "Starting role."
-  changed_when: False
-
+---
 - name: Install common core packages
   become: true
   dnf:

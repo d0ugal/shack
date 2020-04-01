@@ -1,9 +1,4 @@
 ---
-
-- name: Update
-  shell: notify-send -a Shack VIM "Starting role."
-  changed_when: False
-
 - name: Install neovim
   become: true
   apt:

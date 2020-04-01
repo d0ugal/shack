@@ -1,9 +1,4 @@
 ---
-
-- name: Update
-  shell: notify-send -a Shack MPD "Starting role."
-  changed_when: False
-
 - name: Install
   become: true
   dnf:

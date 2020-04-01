@@ -1,8 +1,4 @@
 ---
-
-- name: Update
-  shell: notify-send -a Shack i3 "Starting role."
-
 - name: polybar copr
   become: true
   command: dnf copr enable -y mhartgring/polybar

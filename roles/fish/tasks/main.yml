@@ -1,9 +1,4 @@
 ---
-
-- name: Update
-  shell: notify-send -a Shack Fish "Starting role."
-  changed_when: False
-
 - name: Install fish
   become: true
   apt:

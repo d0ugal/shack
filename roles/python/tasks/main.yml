@@ -1,9 +1,5 @@
 ---
 
-- name: Update
-  shell: notify-send -a Shack Python "Starting role."
-  changed_when: False
-
 - name: "Install pyenv and Python versions"
   include_role:
     name: avanov.pyenv

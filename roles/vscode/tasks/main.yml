@@ -1,9 +1,4 @@
 ---
-
-- name: Update
-  shell: notify-send -a Shack VSCode "Starting role."
-  changed_when: False
-
 - name: Add vscode key
   become: true
   rpm_key:
