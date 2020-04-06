@@ -1,0 +1,38 @@
+---
+- name: Add telegram repo
+  become: true
+  apt_repository:
+    repo: ppa:atareao/telegram
+    state: absent
+
+- name: Install telegram
+  become: true
+  apt:
+    name: telegram
+    state: absent
+
+- name: Install Snaps
+  become: true
+  snap:
+    name:
+      - spotify
+      - telegram-desktop
+
+- name: Install Classic Snaps
+  become: true
+  snap:
+    name:
+      - slack
+      - codium
+    classic: yes
+
+- name: Enable Zeal repo
+  become: true
+  apt_repository:
+    repo: ppa:zeal-developers/ppa
+
+- name: Install Zeal
+  become: true
+  apt:
+    name:
+      - zeal

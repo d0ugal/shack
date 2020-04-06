@@ -28,9 +28,12 @@
             name: redshift
         - include_role:
             name: regolith
-        - name: Update
-          shell: notify-send -u low -a Shack Finished "We are all done!"
-          changed_when: False
+        - include_role:
+            name: gui_apps
+        - include_role:
+            name: maas
+        - include_role:
+            name: launchpad
       rescue:
         - name: Update
           shell: notify-send -u critical -a Shack Finished "Playbook failed!"

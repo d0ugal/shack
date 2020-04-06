@@ -1,0 +1,8 @@
+---
+
+- name: Install Snaps
+  become: true
+  snap:
+    name:
+      - gitlptools
+    classic: yes

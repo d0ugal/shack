@@ -3,6 +3,7 @@
   become: true
   apt:
     name:
+      - cloc
       - cmake
       - feh
       - fzf

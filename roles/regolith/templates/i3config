@@ -35,7 +35,7 @@ floating_modifier $mod
 hide_edge_borders smart
 
 ## Launch // Terminal // <Super> Enter ##
-bindsym $mod+Return exec /usr/bin/x-terminal-emulator
+bindsym $mod+Return exec /usr/bin/gnome-terminal
 
 ## Launch // Browser // <Super><Shift> Enter ##
 bindsym $mod+Shift+Return exec gtk-launch $(xdg-settings get default-web-browser)
@@ -99,6 +99,13 @@ bindsym $mod+Shift+t focus mode_toggle
 ## Modify // Window Layout Mode // <Super> t ##
 bindsym $mod+t layout toggle tabbed splith splitv
 
+## Special workspaces
+bindsym $mod+Home workspace 🗨
+bindsym $mod+End workspace 🎵
+bindsym $mod+Insert workspace 🗨
+bindsym $mod+Delete workspace 🎵
+bindsym $mod+Prior workspace 🔨
+bindsym $mod+Next workspace 🏠
 ## Navigate // Workspace // <Super> 0..9 ##
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -131,6 +138,13 @@ bindsym $mod+Shift+Tab workspace prev
 ## Navigate // Previous Workspace // <Super><Alt> ← ##
 bindsym $mod+$alt+Left workspace prev
 
+## Special workspaces
+bindsym $mod+Shift+Home move container to workspace 🗨
+bindsym $mod+Shift+End move container to workspace 🎵
+bindsym $mod+Shift+Insert move container to workspace 🗨
+bindsym $mod+Shift+Delete move container to workspace 🎵
+bindsym $mod+Shift+Prior move container to workspace 🔨
+bindsym $mod+Shift+Next move container to workspace 🏠
 ## Modify // Move Window to Workspace // <Super><Shift> 0..9 ##
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -355,7 +369,7 @@ set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput none
 set_from_resource $i3-wm.bar.stripworkspacenumbers i3-wm.bar.stripworkspacenumbers yes
 
 # i3xrocks config file. Override this for custom status indicators on the bar.
-set_from_resource $i3-wm.i3xrocks.config i3-wm.i3xrocks.config "~/.config/regolith/i3xrocks/config"
+set_from_resource $i3-wm.i3xrocks.config i3-wm.i3xrocks.config "/home/dougal/.config/regolith/i3xrocks/config"
 
 # The bar configuration
 bar {

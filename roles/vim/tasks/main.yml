@@ -24,6 +24,3 @@
 
 - name: Plugin install
   shell: nvim +'PlugInstall --sync' +qa
-
-- name: Plugin update
-  shell: nvim +'PlugUpdate --sync' +qa

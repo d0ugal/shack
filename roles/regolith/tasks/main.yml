@@ -6,7 +6,7 @@
     state: directory
     mode: '0755'
 
-- name: i3 config file
+- name: Copy i3 config file
   copy:
     src: ./templates/i3config
     dest: ~/.config/regolith/i3/config
