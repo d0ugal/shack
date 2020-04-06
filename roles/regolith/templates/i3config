@@ -138,6 +138,11 @@ bindsym $mod+Shift+Tab workspace prev
 ## Navigate // Previous Workspace // <Super><Alt> ← ##
 bindsym $mod+$alt+Left workspace prev
 
+bindsym $mod+b workspace back_and_forth
+
+## Kill focused window
+bindsym $mod+q kill
+
 ## Special workspaces
 bindsym $mod+Shift+Home move container to workspace 🗨
 bindsym $mod+Shift+End move container to workspace 🎵
@@ -362,9 +367,9 @@ set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urg
 set_from_resource $i3-wm.font i3-wm.font "pango:Source Code Pro Medium 13"
 font $i3-wm.font
 
-set_from_resource $i3-wm.bar.position i3-wm.bar.position bottom
-set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 13, Material Design Icons 13"
-set_from_resource $i3-wm.bar.separator i3-wm.bar.separator " "
+set_from_resource $i3-wm.bar.position i3-wm.bar.position top
+set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 14, Material Design Icons 14"
+set_from_resource $i3-wm.bar.separator i3-wm.bar.separator "|"
 set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput none
 set_from_resource $i3-wm.bar.stripworkspacenumbers i3-wm.bar.stripworkspacenumbers yes
 
@@ -406,3 +411,12 @@ exec --no-startup-id /usr/bin/regolith-ftue
 
 # Hide the mouse pointer if unused for a duration
 exec --no-startup-id /usr/bin/unclutter -b
+
+# Start dropbox
+exec --no-startup-id dropbox 'start'
+
+# Zeal
+exec --no-startup-id zeal
+
+# redshift
+exec --no-startup-id redshift
