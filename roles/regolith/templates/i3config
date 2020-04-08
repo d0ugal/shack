@@ -38,7 +38,7 @@ hide_edge_borders smart
 bindsym $mod+Return exec /usr/bin/gnome-terminal
 
 ## Launch // Browser // <Super><Shift> Enter ##
-bindsym $mod+Shift+Return exec gtk-launch $(xdg-settings get default-web-browser)
+bindsym $mod+BackSpace exec gtk-launch $(xdg-settings get default-web-browser)
 
 set_from_resource $rofiTheme rofi.theme "regolith-theme"
 
@@ -80,24 +80,26 @@ bindsym $mod+Ctrl+Shift+Down move workspace to output down
 bindsym $mod+Ctrl+Shift+Up move workspace to output up
 bindsym $mod+Ctrl+Shift+Right move workspace to output right
 
-## Modify // Next Window Orientation // <Super> Backspace ##
-bindsym $mod+BackSpace split toggle
-
 ## Modify // Window Fullscreen Toggle // <Super> f ##
 bindsym $mod+f fullscreen toggle
 
 ## Modify // Window Floating Toggle // <Super><Shift> f ##
 bindsym $mod+Shift+f floating toggle
-## Modify // Move to Scratchpad // <Super><Ctrl> m ##
-bindsym $mod+Ctrl+m move to scratchpad
-## Navigate // Scratchpad // <Super><Ctrl> a ##
-bindsym $mod+Ctrl+a scratchpad show
+## Modify // Move to Scratchpad
+bindsym $mod+Shift+g move to scratchpad
+## Navigate // Scratchpad
+bindsym $mod+g scratchpad show
 
 ## Navigate // Tile/Float Focus Toggle // <Super><Shift> t ##
 bindsym $mod+Shift+t focus mode_toggle
 
-## Modify // Window Layout Mode // <Super> t ##
-bindsym $mod+t layout toggle tabbed splith splitv
+# split in vertical orientation
+bindsym $mod+v split v
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 ## Special workspaces
 bindsym $mod+Home workspace 🗨
@@ -140,14 +142,12 @@ bindsym $mod+$alt+Left workspace prev
 
 bindsym $mod+b workspace back_and_forth
 
-## Kill focused window
-bindsym $mod+q kill
 
 ## Special workspaces
 bindsym $mod+Shift+Home move container to workspace 🗨
 bindsym $mod+Shift+End move container to workspace 🎵
-bindsym $mod+Shift+Insert move container to workspace 🗨
-bindsym $mod+Shift+Delete move container to workspace 🎵
+bindsym $mod+Shift+Insert move container to workspace 🔨
+bindsym $mod+Shift+Delete move container to workspace 🏠
 bindsym $mod+Shift+Prior move container to workspace 🔨
 bindsym $mod+Shift+Next move container to workspace 🏠
 ## Modify // Move Window to Workspace // <Super><Shift> 0..9 ##
@@ -196,9 +196,9 @@ bindsym $mod+$alt+Ctrl+8 move container to workspace number $ws18; workspace num
 bindsym $mod+$alt+Ctrl+9 move container to workspace number $ws19; workspace number $ws19
 
 ## Session // Exit App // <Super><Shift> q ##
-bindsym $mod+Shift+q [con_id="__focused__"] kill
+bindsym $mod+q [con_id="__focused__"] kill
 ## Session // Kill App // <Super><Alt> q ##
-bindsym $mod+$alt+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
+bindsym $mod+Shift+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
 
 ## Session // Reload i3 Config // <Super><Shift> c ##
 bindsym $mod+Shift+c reload
@@ -219,14 +219,12 @@ bindsym $mod+Shift+p exec /usr/bin/gnome-session-quit --power-off
 bindsym $mod+Escape exec gnome-screensaver-command --lock
 
 ## Session // Sleep // <Super><Shift> s ##
-bindsym $mod+Shift+s exec systemctl suspend
+bindsym $mod+Shift+z exec systemctl suspend
 
 ## Modify // Settings // <Super> c ##
 bindsym $mod+c exec gnome-control-center
 ## Modify // Display Settings // <Super> d ##
 bindsym $mod+d exec gnome-control-center display
-## Modify // Wifi Settings // <Super> w ##
-bindsym $mod+w exec gnome-control-center wifi
 ## Launch // File Browser // <Super><Shift> n ##
 bindsym $mod+Shift+n exec nautilus
 ## Launch // Notification Viewer // <Super> n ##
@@ -241,6 +239,7 @@ bindsym $mod+period exec /usr/bin/i3-snapshot -c < /tmp/i3-snapshot
 # Toggle bar visibility
 ## Modify // Toggle Bar // <Super> i ##
 bindsym $mod+i bar mode toggle
+bindsym $mod+Shift+i exec i3-input
 
 # Cause Settings app to float above tiled windows
 floating_maximum_size -1 x -1
@@ -308,8 +307,8 @@ gaps outer $i3-wm.gaps.outer.size
 smart_gaps on
 
 # Create variables from Xresources for i3's look.
-set_from_resource $focused.color.border i3-wm.client.focused.color.border "#002b36"
-set_from_resource $focused.color.background i3-wm.client.focused.color.background "#586e75"
+set_from_resource $focused.color.border i3-wm.client.focused.color.border "#dd6114"
+set_from_resource $focused.color.background i3-wm.client.focused.color.background "#ff0000"
 set_from_resource $focused.color.text i3-wm.client.focused.color.text "#fdf6e3"
 set_from_resource $focused.color.indicator i3-wm.client.focused.color.indicator "#268bd2"
 set_from_resource $focused.color.child_border i3-wm.client.focused.color.child_border
@@ -339,6 +338,9 @@ client.focused          $focused.color.border              $focused.color.backgr
 client.focused_inactive $focused_inactive.color.border     $focused_inactive.color.background $focused_inactive.color.text       $focused_inactive.color.indicator  $focused_inactive.color.child_border
 client.unfocused        $unfocused.color.border            $unfocused.color.background        $unfocused.color.text              $unfocused.color.indicator         $unfocused.color.child_border
 client.urgent           $urgent.color.border               $urgent.color.background           $urgent.color.text                 $urgent.color.indicator            $urgent.color.child_border
+
+new_window pixel 2
+new_float pixel 2
 
 # Enable popup during fullscreen
 popup_during_fullscreen smart
@@ -371,10 +373,9 @@ set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urg
 set_from_resource $i3-wm.font i3-wm.font "pango:Source Code Pro Medium 13"
 font $i3-wm.font
 
-set_from_resource $i3-wm.bar.position i3-wm.bar.position top
 set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 14, Material Design Icons 14"
-set_from_resource $i3-wm.bar.separator i3-wm.bar.separator "|"
-set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput none
+set_from_resource $i3-wm.bar.separator i3-wm.bar.separator " "
+set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput right
 set_from_resource $i3-wm.bar.stripworkspacenumbers i3-wm.bar.stripworkspacenumbers yes
 
 # i3xrocks config file. Override this for custom status indicators on the bar.
@@ -382,7 +383,7 @@ set_from_resource $i3-wm.i3xrocks.config i3-wm.i3xrocks.config "/home/dougal/.co
 
 # The bar configuration
 bar {
-  position $i3-wm.bar.position
+  position top
   font $i3-wm.bar.font
   separator_symbol $i3-wm.bar.separator
   status_command i3xrocks -c $i3-wm.i3xrocks.config
