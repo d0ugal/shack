@@ -102,8 +102,8 @@ bindsym $mod+t layout toggle tabbed splith splitv
 ## Special workspaces
 bindsym $mod+Home workspace 🗨
 bindsym $mod+End workspace 🎵
-bindsym $mod+Insert workspace 🗨
-bindsym $mod+Delete workspace 🎵
+bindsym $mod+Insert workspace 🔨
+bindsym $mod+Delete workspace 🏠
 bindsym $mod+Prior workspace 🔨
 bindsym $mod+Next workspace 🏠
 ## Navigate // Workspace // <Super> 0..9 ##
