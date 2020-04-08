@@ -93,6 +93,9 @@ bindsym $mod+g scratchpad show
 ## Navigate // Tile/Float Focus Toggle // <Super><Shift> t ##
 bindsym $mod+Shift+t focus mode_toggle
 
+## Toggle Gnome night light
+bindsym $mod+t exec toggle-night-light 
+
 # split in vertical orientation
 bindsym $mod+v split v
 
