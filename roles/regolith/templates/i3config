@@ -246,6 +246,10 @@ bindsym $mod+i bar mode toggle
 floating_maximum_size -1 x -1
 for_window [class="Gnome-control-center"] floating enable
 
+# Move workspaces between monitors
+bindsym $mod+o move workspace to output left
+bindsym $mod+p move workspace to output right
+
 ## Resize // Enter Resize Mode // <Super> r ##
 mode "Resize Mode" {
         # These bindings trigger as soon as you enter the resize mode
@@ -417,6 +421,3 @@ exec --no-startup-id dropbox 'start'
 
 # Zeal
 exec --no-startup-id zeal
-
-# redshift
-exec --no-startup-id redshift

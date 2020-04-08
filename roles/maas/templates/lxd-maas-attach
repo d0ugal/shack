@@ -1,0 +1,5 @@
+#!/bin/bash -ex
+
+NAME="maas"
+
+lxc exec --cwd /home/ubuntu --user 1000 -t $NAME bash

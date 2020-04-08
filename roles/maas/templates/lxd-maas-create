@@ -1,0 +1,25 @@
+#!/bin/bash -ex
+#
+# Create and start a bionic lxd with the home directory mounted
+
+
+NAME="maas"
+IMAGE="images:ubuntu/18.04"
+
+ID=$(id -u)
+SUBUID='root:$ID:1'
+
+if ! grep -q $SUBUID /etc/subuid; then
+    echo $SUBUID | sudo tee -a /etc/subuid /etc/subgid
+fi
+
+lxc init $IMAGE $NAME
+
+lxc config set $NAME raw.idmap "both $ID $ID"
+
+lxc config device add $NAME homedir disk source=$HOME path=/home/ubuntu
+
+lxc start $NAME
+
+# There is probably a way to do this...
+echo "echo 'ubuntu	ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"

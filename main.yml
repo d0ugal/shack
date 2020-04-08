@@ -25,8 +25,6 @@
         - include_role:
             name: scripts
         - include_role:
-            name: redshift
-        - include_role:
             name: regolith
         - include_role:
             name: gui_apps

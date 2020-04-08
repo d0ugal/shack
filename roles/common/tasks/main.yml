@@ -3,6 +3,7 @@
   become: true
   apt:
     name:
+      - build-essential
       - cloc
       - cmake
       - feh
@@ -11,6 +12,7 @@
       - htop
       - hub
       - jq
+      - lxd
       - libinput-dev
       - meson
       - nitrogen
@@ -32,3 +34,9 @@
   snap:
     name:
       - docker
+
+- name: Add user to group
+  become: true
+  user:
+    name: dougal
+    groups: lxd

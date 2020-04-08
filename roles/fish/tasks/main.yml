@@ -15,3 +15,8 @@
   copy:
     src: ./templates/config.fish
     dest: ~/.config/fish/config.fish
+    
+- name: Set shell
+  user:
+    name: dougal
+    shell: /usr/bin/fish
