@@ -36,3 +36,4 @@
   apt:
     name:
       - zeal
+      - virt-manager
