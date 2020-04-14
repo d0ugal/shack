@@ -6,18 +6,20 @@
       - build-essential
       - cloc
       - cmake
+      - cpu-checker
       - feh
       - fzf
       - git
       - htop
       - hub
       - jq
-      - lxd
       - libinput-dev
+      - lxd
       - meson
       - nitrogen
       - postgresql
       - python3-psutil
+      - qemu-kvm
       - silversearcher-ag
       - tmux
       - util-linux
@@ -34,6 +36,13 @@
   snap:
     name:
       - docker
+
+- name: Install juju
+  become: true
+  snap:
+    name:
+      - juju
+    classic: yes
 
 - name: Add user to group
   become: true

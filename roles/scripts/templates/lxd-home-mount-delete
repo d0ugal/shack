@@ -1,5 +1,5 @@
 #!/bin/bash -ex
 
-NAME="maas"
+NAME="bionic-with-home-mounted"
 
 lxc delete $NAME --force

@@ -1,16 +1,4 @@
 ---
-- name: Add telegram repo
-  become: true
-  apt_repository:
-    repo: ppa:atareao/telegram
-    state: absent
-
-- name: Install telegram
-  become: true
-  apt:
-    name: telegram
-    state: absent
-
 - name: Install Snaps
   become: true
   snap:
@@ -31,9 +19,13 @@
   apt_repository:
     repo: ppa:zeal-developers/ppa
 
-- name: Install Zeal
+- name: Install apt apps
   become: true
   apt:
     name:
       - zeal
       - virt-manager
+      - playerctl
+      - network-manager-openvpn-gnome
+      - gnome-session
+      - gdm3

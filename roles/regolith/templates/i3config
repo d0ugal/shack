@@ -84,23 +84,25 @@ bindsym $mod+Ctrl+Shift+Right move workspace to output right
 bindsym $mod+f fullscreen toggle
 
 ## Modify // Window Floating Toggle // <Super><Shift> f ##
-bindsym $mod+Shift+f floating toggle
+bindsym $mod+t floating toggle
+bindsym $mod+Shift+t sticky toggle
+bindsym $mod+Ctrl+t focus mode_toggle
 ## Modify // Move to Scratchpad
 bindsym $mod+Shift+g move to scratchpad
 ## Navigate // Scratchpad
 bindsym $mod+g scratchpad show
 
-## Navigate // Tile/Float Focus Toggle // <Super><Shift> t ##
-bindsym $mod+Shift+t focus mode_toggle
+## Play Pause
+bindsym $mod+m exec playerctl play-pause
+bindsym $mod+Shift+m exec playerctl next
 
 ## Toggle Gnome night light
-bindsym $mod+t exec toggle-night-light 
+bindsym $mod+y exec toggle-night-light 
 
 # split in vertical orientation
 bindsym $mod+v split v
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -225,7 +227,7 @@ bindsym $mod+Escape exec gnome-screensaver-command --lock
 bindsym $mod+Shift+z exec systemctl suspend
 
 ## Modify // Settings // <Super> c ##
-bindsym $mod+c exec gnome-control-center
+bindsym $mod+s exec gnome-control-center
 ## Modify // Display Settings // <Super> d ##
 bindsym $mod+d exec gnome-control-center display
 ## Launch // File Browser // <Super><Shift> n ##
@@ -305,9 +307,6 @@ set_from_resource $i3-wm.gaps.inner.size i3-wm.gaps.inner.size 5
 set_from_resource $i3-wm.gaps.outer.size i3-wm.gaps.outer.size 0
 gaps inner $i3-wm.gaps.inner.size
 gaps outer $i3-wm.gaps.outer.size
-
-# Only enable gaps on a workspace when there is at least one container
-smart_gaps on
 
 # Create variables from Xresources for i3's look.
 set_from_resource $focused.color.border i3-wm.client.focused.color.border "#dd6114"

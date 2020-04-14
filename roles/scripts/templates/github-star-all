@@ -1,12 +1,23 @@
 #!/usr/bin/env python
 import os
 
-from github import Github
-import retrace
+try:
+    from github import Github
+except ImportError:
+    raise
+    print("pip install PyGithub")
+
+try:
+    import retrace
+except ImportError:
+    raise
+    print("pip install retrace")
 
 TOKEN = os.environ.get("GITHUB_TOKEN")
 USERS = (
+    "canonical",
     "d0ugal",
+    "maas",
     "python-edinburgh",
     "python-glasgow",
     "python-scotland",

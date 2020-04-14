@@ -13,10 +13,11 @@ import urllib.request
 
 ORGS = [
     "PyCQA",
+    "canonical",
     "d0ugal",  # A user, but the APIs are the same. We also mirror a users orgs
     "django",
-    "getsentry",
-    "openstack",
+    "jazzband",
+    "maas",
     "mkdocs",
     "pallets",
     "pypa",

@@ -3,8 +3,8 @@
 # Create and start a bionic lxd with the home directory mounted
 
 
-NAME="maas"
-IMAGE="images:ubuntu/18.04"
+NAME="bionic-with-home-mounted"
+IMAGE="bionic"
 
 ID=$(id -u)
 SUBUID='root:$ID:1'
@@ -13,7 +13,7 @@ if ! grep -q $SUBUID /etc/subuid; then
     echo $SUBUID | sudo tee -a /etc/subuid /etc/subgid
 fi
 
-lxc init $IMAGE $NAME
+lxc init ubuntu:$IMAGE $NAME
 
 lxc config set $NAME raw.idmap "both $ID $ID"
 

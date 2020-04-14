@@ -21,3 +21,7 @@
   copy:
     src: ./templates/i3xrocks
     dest: ~/.config/regolith/i3xrocks/config
+
+- name: Restart i3
+  shell: i3-msg restart
+  changed_when: false

@@ -1,0 +1,72 @@
+#!/bin/bash -ex
+
+if sudo virsh net-list | grep -z -v 'maas' &> /dev/null; then
+    cat << EOF > /tmp/maas.xml
+    <network>
+    <name>maas</name>
+    <forward mode='nat'>
+        <nat>
+        <port start='1024' end='65535'/>
+        </nat>
+    </forward>
+    <dns enable='no'/>
+    <bridge name='virbr1' stp='off' delay='0'/>
+    <domain name='testnet'/>
+    <ip address='172.16.99.1' netmask='255.255.255.0'>
+    </ip>
+    </network>
+EOF
+    sudo virsh net-define /tmp/maas.xml
+    rm /tmp/maas.xml
+    sudo virsh net-start maas
+    sudo virsh net-autostart maas
+fi
+
+
+if sudo virsh pool-list | grep -z -v 'default' &> /dev/null; then
+    sudo virsh pool-define-as default dir - - - - "/var/lib/libvirt/images"  
+    sudo virsh pool-autostart default  
+    sudo virsh pool-start default
+fi
+
+
+CONTAINER=bionic-maas-pod
+CIDR=172.16.99.2/24
+lxc init ubuntu:bionic $CONTAINER -s default --no-profiles
+lxc network attach virbr0 $CONTAINER eth0 eth0
+lxc network attach virbr1 $CONTAINER eth1 eth1
+lxc config set $CONTAINER security.privileged true
+lxc config set $CONTAINER user.user-data "#cloud-config
+package_upgrade: true
+apt:
+  sources:
+    maas:
+      source: ppa:maas/next
+packages:
+  - jq
+  - maas
+  - libvirt-bin
+  - qemu-kvm
+locale: en_US.UTF-8
+timezone: $(timedatectl | grep 'Time zone:' | awk '{print $3}')
+runcmd:
+  - [touch, /tmp/startup-complete]
+"
+lxc config set $CONTAINER user.network-config "version: 2
+ethernets:
+  eth0:
+    match:
+      name: eth0
+    dhcp4: true
+  eth1:
+    match:
+      name: eth1
+bridges:
+  br0:
+    interfaces: [eth1]
+    addresses:
+     - $CIDR
+"
+lxc config device add $CONTAINER kvm unix-char path=/dev/kvm
+lxc start $CONTAINER
+lxc exec $CONTAINER -- /bin/bash -c 'while ! [ -f /tmp/startup-complete ]; do sleep 0.5; done'
