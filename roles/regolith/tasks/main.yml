@@ -25,3 +25,6 @@
 - name: Restart i3
   shell: i3-msg restart
   changed_when: false
+  when:
+    - i3_restart is defined
+    - i3_restart|bool

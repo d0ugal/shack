@@ -39,7 +39,7 @@
     - pipx_clean|bool
 
 - name: Install pipx packages
-  shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade' --force
+  shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade'
   with_items:
     - awscli
     - black
@@ -72,3 +72,4 @@
   with_items:
      - ~/.pyenv/versions/vim_py2/bin/pip
      - ~/.pyenv/versions/vim_py3/bin/pip
+  changed_when: False

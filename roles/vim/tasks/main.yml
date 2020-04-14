@@ -24,3 +24,4 @@
 
 - name: Plugin install
   shell: nvim +'PlugInstall --sync' +qa
+  changed_when: False

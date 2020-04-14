@@ -3,5 +3,6 @@
 CONTAINER=bionic-maas-pod
 CIDR=172.16.99.2/24
 
-lxc delete $CONTAINER --force;
-sudo virsh net-destroy maas;
+lxc delete $CONTAINER --force || true;
+sudo virsh net-destroy maas || true;
+sudo virsh net-undefine maas || true;
