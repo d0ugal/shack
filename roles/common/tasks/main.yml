@@ -47,5 +47,7 @@
 - name: Add user to group
   become: true
   user:
+    append: yes
     name: dougal
-    groups: lxd
+    groups:
+      - lxd
