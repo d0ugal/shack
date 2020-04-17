@@ -44,6 +44,13 @@
       - juju
     classic: yes
 
+- name: Install snapcraft
+  become: true
+  snap:
+    name:
+      - snapcraft
+    classic: yes
+
 - name: Add user to group
   become: true
   user:
