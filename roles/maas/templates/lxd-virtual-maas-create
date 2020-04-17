@@ -80,38 +80,38 @@ EOF
 }
 
 install_maas_snap(){
-   lxc exec $LXD_INSTANCE_NAME -- snap install $MAAS_SNAP_DEFAULT 
-   lxc exec $LXD_INSTANCE_NAME -- /snap/maas/current/helpers/maas-database-setup
-   lxc exec $LXD_INSTANCE_NAME -- maas createadmin --username $USERNAME --password $PASSWORD --email testing@example.com
+    lxc exec $LXD_INSTANCE_NAME -- snap install $MAAS_SNAP_DEFAULT 
+    lxc exec $LXD_INSTANCE_NAME -- /snap/maas/current/helpers/maas-database-setup
+    lxc exec $LXD_INSTANCE_NAME -- maas createadmin --username $USERNAME --password $PASSWORD --email testing@example.com
 }
 
 copy_ssh_keys(){
-   lxc exec $LXD_INSTANCE_NAME -- cp -r /root/.ssh/ /var/snap/maas/current/root/.ssh
+    lxc exec $LXD_INSTANCE_NAME -- cp -r /root/.ssh/ /var/snap/maas/current/root/.ssh
 }
 
 cli_login(){
-   API_KEY=$(lxc exec $LXD_INSTANCE_NAME -- maas apikey --username $USERNAME)
-   IP=$(lxc exec bionic-maas-kvm -- ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-   URL="http://$IP:5240/MAAS/"
+    API_KEY=$(lxc exec $LXD_INSTANCE_NAME -- maas apikey --username $USERNAME)
+    IP=$(lxc exec bionic-maas-kvm -- ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+    URL="http://$IP:5240/MAAS/"
 
-   lxc exec $LXD_INSTANCE_NAME -- maas login virt $URL $API_KEY
+    lxc exec $LXD_INSTANCE_NAME -- maas login virt $URL $API_KEY
 }
 
 enable_dhcp(){
-   fabric_id=$(lxc exec $LXD_INSTANCE_NAME -- sh -c 'maas virt subnet read 172.16.99.0/24 | jq .vlan.fabric -r')
-   lxc exec $LXD_INSTANCE_NAME -- maas virt ipranges create type=dynamic start_ip=172.16.99.190 end_ip=172.16.99.253 comment="Dynamic"
-   lxc exec $LXD_INSTANCE_NAME -- maas virt vlan update $fabric_id 0 dhcp_on=True primary_rack=bionic-maas-kvm
+    fabric_id=$(lxc exec $LXD_INSTANCE_NAME -- sh -c 'maas virt subnet read 172.16.99.0/24 | jq .vlan.fabric -r')
+    lxc exec $LXD_INSTANCE_NAME -- maas virt ipranges create type=dynamic start_ip=172.16.99.190 end_ip=172.16.99.253 comment="Dynamic"
+    lxc exec $LXD_INSTANCE_NAME -- maas virt vlan update $fabric_id 0 dhcp_on=True primary_rack=bionic-maas-kvm
 }
 
 add_kvm_pod(){
-   lxc exec $LXD_INSTANCE_NAME -- maas virt pods create type=virsh power_address=qemu+ssh://root@127.0.0.1/system
+    lxc exec $LXD_INSTANCE_NAME -- maas virt pods create type=virsh power_address=qemu+ssh://root@127.0.0.1/system
 }
 
 finish(){
 
-xdg-open $URL
+    xdg-open $URL
 
-   cat << EOF
+    cat << EOF
 A Virtual MAAS Setup is now ready.
 
 The username and password are both "testing"
