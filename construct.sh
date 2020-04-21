@@ -12,4 +12,6 @@ fi
 
 ansible-galaxy install -r requirements.yml;
 
-ansible-playbook main.yml -K --verbose;
+# Restart i3 with; ./construct.sh -e "i3_restart=True"
+# Reinstall pipx packages with; ./construct.sh -e "pipx_clean=True"
+ansible-playbook main.yml -K --verbose $@;

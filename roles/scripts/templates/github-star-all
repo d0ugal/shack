@@ -16,14 +16,15 @@ except ImportError:
 TOKEN = os.environ.get("GITHUB_TOKEN")
 USERS = (
     "canonical",
-    "d0ugal",
     "maas",
     "python-edinburgh",
     "python-glasgow",
     "python-scotland",
 )
 
-REMOVE = ()
+REMOVE = (
+    "d0ugal",
+)
 
 g = Github(TOKEN)
 me = g.get_user()

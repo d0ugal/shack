@@ -23,6 +23,7 @@
       - silversearcher-ag
       - tmux
       - util-linux
+      - devscripts
 
 - name: Git Config
   shell: >-

@@ -62,6 +62,7 @@ Plug 'tpope/vim-eunuch', {'tag': 'v1.2'}
 Plug 'tpope/vim-fugitive', {'tag': 'v3.1'}
 Plug 'tpope/vim-sensible', {'tag': 'v1.2'}
 Plug 'vim-scripts/taglist.vim', {'tag': '4.5'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
 
@@ -110,6 +111,14 @@ function! NumberToggle()
 endfunc
 
 nnoremap <leader>nt :call NumberToggle()<cr>
+
+
+" Jenkinsfile VIM syntax highlighting
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
+
+
+
 
 
 " --- The following are suggested configs from coc ---
@@ -242,3 +251,5 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Don't add to the end of the file! Add news things above coc.

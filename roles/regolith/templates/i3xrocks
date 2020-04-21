@@ -48,7 +48,7 @@ interval=5
 #
 # Displays network load
 [nettraffic]
-interval=10
+interval=1
 
 # Keyboard layout
 #
@@ -59,7 +59,7 @@ interval=10
 # Memory
 
 [memory]
-interval=10
+interval=5
 
 # CPU usage
 #
