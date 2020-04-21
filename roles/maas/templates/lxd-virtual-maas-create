@@ -39,7 +39,6 @@ config:
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-     - touch /tmp/startup-complete
 description: Provide access to /dev/kvm in the container, for hardware accelleration
 devices:
   kvm:
@@ -55,7 +54,7 @@ EOF
 
 create_instance(){
     lxc launch ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_KVM_PROFILE
-    lxc exec $LXD_INSTANCE_NAME -- /bin/bash -c 'while ! [ -f /tmp/startup-complete ]; do sleep 0.5; done'
+    lxc exec $LXD_INSTANCE_NAME -- cloud-init status --wait
 
 }
 
