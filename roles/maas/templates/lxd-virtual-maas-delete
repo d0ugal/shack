@@ -1,7 +1,8 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 DEFAULT_IMAGE="bionic"
 LXD_KVM_PROFILE="kvm"
 LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-kvm"
 
-lxc delete $LXD_INSTANCE_NAME --force || true;
+lxc delete $LXD_INSTANCE_NAME --force;
+echo "Instance $LXD_INSTANCE_NAME deleted";
