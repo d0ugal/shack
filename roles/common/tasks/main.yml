@@ -3,10 +3,13 @@
   become: true
   apt:
     name:
+      - bridge-utils
+      - brz
       - build-essential
       - cloc
       - cmake
       - cpu-checker
+      - devscripts
       - feh
       - fzf
       - git
@@ -23,7 +26,6 @@
       - silversearcher-ag
       - tmux
       - util-linux
-      - devscripts
 
 - name: Git Config
   shell: >-
