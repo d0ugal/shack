@@ -22,6 +22,40 @@
     src: ./templates/i3xrocks
     dest: ~/.config/regolith/i3xrocks/config
 
+- name: Use the noop compositor
+  become: true
+  apt:
+    name:
+      - regolith-compositor-none
+
+- name: Install regolith "looks"
+  become: true
+  apt:
+    name:
+      - regolith-look-ayu-dark
+      - regolith-look-ayu-mirage
+      - regolith-look-ayu
+      - regolith-look-cahuella
+      - regolith-look-nord
+      - regolith-look-solarized-dark
+      - regolith-look-ubuntu
+
+- name: Remove regolith theme
+  file:
+    path: /home/dougal/.Xresources-regolith
+    state: absent
+
+- name: Set look
+  shell: regolith-look set ubuntu
+  changed_when: false
+
+- name: refresh look
+  shell: regolith-look refresh
+  changed_when: false
+  when:
+    - i3_restart is defined
+    - i3_restart|bool
+
 - name: Restart i3
   shell: i3-msg restart
   changed_when: false
