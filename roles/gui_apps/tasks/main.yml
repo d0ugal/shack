@@ -26,7 +26,6 @@
     name:
       - zeal
       - virt-manager
-      - playerctl
       - network-manager-openvpn-gnome
       - gnome-session
       - gdm3
