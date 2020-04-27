@@ -5,6 +5,7 @@
     name:
       - weechat
       - weechat-headless
+      - mplayer
 
 - name: Make sure the weechat directory is created
   command: weechat-headless -r "/quit"
@@ -54,3 +55,15 @@
     src:  ~/.weechat/python/autosort.py
     dest:  ~/.weechat/python/autoload/autosort.py
     state: link
+
+- name: Download launcher.pl
+  get_url:
+    url: https://raw.githubusercontent.com/weechat/scripts/master/perl/launcher.pl
+    dest: ~/.weechat/perl/launcher.pl
+
+- name: auto-load launcher
+  file:
+    src:  ~/.weechat/perl/launcher.pl
+    dest:  ~/.weechat/perl/autoload/launcher.pl
+    state: link
+
