@@ -6,17 +6,17 @@
   vars:
     pyenv_path: "/home/dougal/.pyenv"
     pyenv_owner: "dougal"
-    pyenv_global: "3.8.2 3.7.7 3.6.10 3.5.9 2.7.17"
+    pyenv_global: "3.8.2 3.7.7 3.6.10 3.5.9 2.7.18"
     pyenv_update_git_install: yes
     pyenv_python_versions:
       - "3.8.2"
       - "3.7.7"
       - "3.6.10"
       - "3.5.9"
-      - "2.7.17"
+      - "2.7.18"
     pyenv_virtualenvs:
       - venv_name: "vim_py2"
-        py_version: "2.7.17"
+        py_version: "2.7.18"
       - venv_name: "vim_py3"
         py_version: "3.8.2"
     pyenv_setting_path: /home/dougal/.bashrc
