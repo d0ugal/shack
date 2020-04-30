@@ -28,6 +28,25 @@
     name:
       - regolith-compositor-none
 
+- name: i3xrocks blocklets
+  become: true
+  apt:
+    name:
+      - i3xrocks-battery
+      - i3xrocks-cpu-usage
+      - i3xrocks-focused-window-name
+      - i3xrocks-key-indicator
+      - i3xrocks-keyboard-layout
+      - i3xrocks-memory
+      - i3xrocks-net-traffic
+      - i3xrocks-nm-vpn
+      - i3xrocks-openvpn
+      - i3xrocks-temp
+      - i3xrocks-time
+      - i3xrocks-volume
+      - i3xrocks-weather
+      - i3xrocks-wifi
+
 - name: Install regolith "looks"
   become: true
   apt:

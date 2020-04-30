@@ -234,7 +234,7 @@ bindsym $mod+d exec gnome-control-center display
 ## Launch // File Browser // <Super><Shift> n ##
 bindsym $mod+Shift+n exec nautilus
 ## Launch // Notification Viewer // <Super> n ##
-bindsym $mod+n exec /usr/share/rofication/rofication-gui.py
+bindsym $mod+n exec rofication-gui
 
 # i3-snapshot for load/save current layout
 ## Modify // Save Window Layout // <Super> , ##
@@ -395,20 +395,20 @@ set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urg
 set_from_resource $i3-wm.font i3-wm.font "pango:Source Code Pro Medium 13"
 font $i3-wm.font
 
-set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 28, Material Design Icons 28"
-set_from_resource $i3-wm.bar.separator i3-wm.bar.separator " "
+set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 14, Material Design Icons 14"
+set_from_resource $i3-wm.bar.separator i3-wm.bar.separator "|"
 set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput primary
 set_from_resource $i3-wm.bar.stripworkspacenumbers i3-wm.bar.stripworkspacenumbers yes
 
 # i3xrocks config file. Override this for custom status indicators on the bar.
-set_from_resource $i3-wm.i3xrocks.config i3-wm.i3xrocks.config "/home/dougal/.config/regolith/i3xrocks/config"
+set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command 2>/tmp/i3blocks.err i3xrocks -vvv -c /home/dougal/.config/regolith/i3xrocks/config | tee /tmp/i3blocks.out
 
 # The bar configuration
 bar {
   position top
   font $i3-wm.bar.font
   separator_symbol $i3-wm.bar.separator
-  status_command i3xrocks -c $i3-wm.i3xrocks.config
+  status_command $i3-wm.bar.status_command
   tray_output $i3-wm.bar.trayoutput
   strip_workspace_numbers $i3-wm.bar.stripworkspacenumbers
 
@@ -428,16 +428,16 @@ bar {
 # The following exec calls run programs in the background when i3 starts.
 
 # Start the installed regolith-compositor
-exec --no-startup-id /usr/share/regolith-compositor/init
+set_from_resource $i3-wm.program.compositor i3-wm.program.compositor /usr/share/regolith-compositor/init
+exec --no-startup-id $i3-wm.program.compositor
 
 # Start Rofication for notifications
-exec --no-startup-id /usr/share/rofication/rofication-daemon.py
-
-# Launch first time user experience script
-exec --no-startup-id /usr/bin/regolith-ftue
+set_from_resource $i3-wm.program.notifications i3-wm.program.notifications /usr/bin/rofication-daemon
+exec --no-startup-id $i3-wm.program.notifications
 
 # Hide the mouse pointer if unused for a duration
-exec --no-startup-id /usr/bin/unclutter -b
+set_from_resource $i3-wm.program.unclutter i3-wm.program.unclutter /usr/bin/regolith-ftue /usr/bin/unclutter -b
+exec --no-startup-id $i3-wm.program.unclutter
 
 # Start dropbox
 exec --no-startup-id dropbox 'start'
