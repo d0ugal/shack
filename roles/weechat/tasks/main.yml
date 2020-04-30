@@ -1,4 +1,18 @@
 ---
+
+- name: Add weechat key
+  become: true
+  apt_key:
+    keyserver: keys.openpgp.org
+    id: 11E9DE8848F2B65222AA75B8D1820DB22A11534E
+
+- name: Enable weechat repo
+  become: true
+  apt_repository:
+    repo: deb https://weechat.org/ubuntu eoan main
+    state: present
+    filename: weechat
+
 - name: Install weechat
   become: true
   apt:
@@ -6,6 +20,7 @@
       - weechat
       - weechat-headless
       - mplayer
+    state: latest
 
 - name: Make sure the weechat directory is created
   command: weechat-headless -r "/quit"
