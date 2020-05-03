@@ -1,0 +1,3 @@
+#!/bin/sh
+
+todoist-today | wc -l

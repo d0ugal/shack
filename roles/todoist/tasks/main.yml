@@ -1,0 +1,31 @@
+---
+
+- name: Download todoist CLI
+  get_url:
+    url: https://github.com/sachaos/todoist/releases/download/v0.15.0/todoist_linux_amd64
+    dest: ~/bin/todoist
+
+- name: chmod todoist
+  file:
+    path: ~/bin/todoist
+    mode: +x
+
+- name: Install peco
+  become: true
+  snap:
+    name:
+      - peco
+
+- name: Copy over scripts
+  copy:
+    src: "{{ item }}"
+    dest: ~/bin/{{ item | basename | regex_replace('\.j2','') }}
+    mode: a+x
+  with_fileglob:
+    - ../templates/*
+
+- name: Add the todoist cron job to sync
+  cron:
+    name: todoist sync
+    minute: "*/5"
+    job: 'todoist sync'
