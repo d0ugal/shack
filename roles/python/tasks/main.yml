@@ -44,14 +44,12 @@
     - awscli
     - black
     - doc2dash
-    - entry_point_inspector
     - flake8
     - git-review
     - httpie
     - livereload
     - mkdocs
     - pip-tools
-    - pipdeptree
     - pipenv
     - poetry
     - pynd
@@ -60,7 +58,6 @@
     - uvicorn
     - vulture
     - yamllint
-    - yaql
   changed_when: False
 
 - name: pipx inject
