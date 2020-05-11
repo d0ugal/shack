@@ -6,6 +6,7 @@
       - spotify
       - telegram-desktop
       - chromium
+      - discord
 
 - name: Install Classic Snaps
   become: true
@@ -29,3 +30,13 @@
       - network-manager-openvpn-gnome
       - gnome-session
       - gdm3
+
+- name: Plex media player
+  get_url:
+    url: https://knapsu.eu/data/plex/Plex_Media_Player_2.56.0.1071-85947843_x64.AppImage
+    dest: ~/bin/plex-media-player
+
+- name: chmod p-m-p
+  file:
+    path: ~/bin/plex-media-player
+    mode: +x

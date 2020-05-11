@@ -81,3 +81,11 @@
   when:
     - i3_restart is defined
     - i3_restart|bool
+
+- name: Copy over scripts
+  copy:
+    src: "{{ item }}"
+    dest: ~/bin/{{ item | basename | regex_replace('\.j2','') }}
+    mode: a+x
+  with_fileglob:
+    - ../templates/i3xrocks-scripts/*

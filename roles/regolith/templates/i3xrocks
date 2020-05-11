@@ -38,7 +38,7 @@ align=center
 # Todoist
 #
 # Displays todays task count
-[rofication]
+[todoist]
 command=todoist-today-count
 label=☑ 
 interval=10
@@ -54,6 +54,14 @@ interval=10
 
 [memory]
 interval=5
+
+# Load
+#
+# Displays todays task count
+[load]
+command=i3xrocks-load
+label=📈 
+interval=1
 
 # CPU usage
 #
@@ -95,4 +103,4 @@ interval=30
 
 # Date Time
 [time]
-interval=10
+interval=1

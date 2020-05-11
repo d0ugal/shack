@@ -10,9 +10,6 @@ set encoding=utf-8
 set title
 set nowrap
 
-set cursorline
-set cursorcolumn
-
 set tabstop=8
 set shiftwidth=4
 set shiftround

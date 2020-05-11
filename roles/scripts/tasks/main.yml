@@ -11,3 +11,18 @@
     mode: a+x
   with_fileglob:
     - ../templates/*
+
+- name: Delete mirrored repos
+  file:
+    path: ~/code/mirror/
+    state: absent
+  when:
+    - cloneall is defined
+    - cloneall |bool
+
+- name: Updated cloned repos
+  shell: ~/bin/cloneall
+  changed_when: False
+  when:
+    - cloneall is defined
+    - cloneall |bool

@@ -401,7 +401,8 @@ set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput primary
 set_from_resource $i3-wm.bar.stripworkspacenumbers i3-wm.bar.stripworkspacenumbers yes
 
 # i3xrocks config file. Override this for custom status indicators on the bar.
-set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command 2>/tmp/i3blocks.err i3xrocks -vvv -c /home/dougal/.config/regolith/i3xrocks/config | tee /tmp/i3blocks.out
+#set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command 2>/tmp/i3blocks.err i3xrocks -vvv -c /home/dougal/.config/regolith/i3xrocks/config | tee /tmp/i3blocks.out
+set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command i3xrocks -c /home/dougal/.config/regolith/i3xrocks/config
 
 # The bar configuration
 bar {

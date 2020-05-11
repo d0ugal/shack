@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -eux
 set -o pipefail
 
@@ -14,4 +15,5 @@ ansible-galaxy install -r requirements.yml;
 
 # Restart i3 with; ./construct.sh -e "i3_restart=True"
 # Reinstall pipx packages with; ./construct.sh -e "pipx_clean=True"
+# Update the mirrored repos with; ./construct.sh -e "cloneall=True"
 ansible-playbook main.yml -K --verbose $@;
