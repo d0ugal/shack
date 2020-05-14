@@ -92,7 +92,7 @@ copy_ssh_keys(){
 
 cli_login(){
     API_KEY=$(lxc exec $LXD_INSTANCE_NAME -- maas apikey --username $USERNAME)
-    IP=$(lxc exec bionic-maas-kvm -- ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+    IP=$(lxc exec $LXD_INSTANCE_NAME -- ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
     URL="http://$IP:5240/MAAS/"
 
     lxc exec $LXD_INSTANCE_NAME -- maas login virt $URL $API_KEY
