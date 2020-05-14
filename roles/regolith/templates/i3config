@@ -93,10 +93,6 @@ bindsym $mod+Shift+g move to scratchpad
 ## Navigate // Scratchpad
 bindsym $mod+g scratchpad show
 
-## Play Pause
-bindsym $mod+m exec playerctl play-pause
-bindsym $mod+Shift+m exec playerctl next
-
 ## Toggle Gnome night light
 bindsym $mod+y exec toggle-night-light 
 
@@ -254,6 +250,9 @@ for_window [class="Gnome-control-center"] floating enable
 # Move workspaces between monitors
 bindsym $mod+o move workspace to output left
 bindsym $mod+p move workspace to output right
+
+# Rename workspace
+bindsym $mod+a exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace:' 
 
 ## Resize // Enter Resize Mode // <Super> r ##
 mode "Resize Mode" {

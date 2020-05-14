@@ -60,6 +60,7 @@ Plug 'tpope/vim-fugitive', {'tag': 'v3.1'}
 Plug 'tpope/vim-sensible', {'tag': 'v1.2'}
 Plug 'vim-scripts/taglist.vim', {'tag': '4.5'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'rhysd/git-messenger.vim'
 
 call plug#end()
 
@@ -69,7 +70,10 @@ nnoremap <C-S-p> :Commands<Cr>
 nnoremap <C-p> :Files<Cr>
 " Git commit search
 nnoremap <C-g> :Commits<Cr>
+
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+nnoremap <C-b> :GitMessenger<Cr>
 
 " Add line numbers
 set number

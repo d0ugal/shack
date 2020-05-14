@@ -1,4 +1,10 @@
 ---
+
+- name: Enable neovim repo
+  become: true
+  apt_repository:
+    repo: ppa:neovim-ppa/stable
+
 - name: Install neovim
   become: true
   apt:
@@ -25,3 +31,10 @@
 - name: Plugin install
   shell: nvim +'PlugInstall --sync' +qa
   changed_when: False
+
+- name: Plugin update
+  shell: nvim +'PlugUpdate --sync' +qa
+  changed_when: False
+  when:
+    - vim_plug_update is defined
+    - vim_plug_update|bool

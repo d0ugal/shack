@@ -16,4 +16,5 @@ ansible-galaxy install -r requirements.yml;
 # Restart i3 with; ./construct.sh -e "i3_restart=True"
 # Reinstall pipx packages with; ./construct.sh -e "pipx_clean=True"
 # Update the mirrored repos with; ./construct.sh -e "cloneall=True"
+# Update vim plugins (can be slow!); ./construct.sh -e "vim_plug_update=True"
 ansible-playbook main.yml -K --verbose $@;

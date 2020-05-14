@@ -2,7 +2,7 @@
 
 DEFAULT_IMAGE="bionic"
 LXD_KVM_PROFILE="kvm"
-LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-kvm"
+LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-virt"
 MAAS_SNAP_DEFAULT="--channel=latest/edge maas"
 
 USERNAME="testing"
@@ -55,11 +55,7 @@ EOF
 }
 
 create_instance(){
-    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_KVM_PROFILE
-    lxc config set $LXD_INSTANCE_NAME raw.idmap "both $ID $ID"
-    lxc config device add $LXD_INSTANCE_NAME homedir disk source=$HOME path=/home/ubuntu
-    lxc start $LXD_INSTANCE_NAME
-
+    lxc launch ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_KVM_PROFILE
     lxc exec $LXD_INSTANCE_NAME -- cloud-init status --wait
 
 }

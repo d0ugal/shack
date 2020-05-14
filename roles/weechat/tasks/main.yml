@@ -82,3 +82,13 @@
     dest:  ~/.weechat/perl/autoload/launcher.pl
     state: link
 
+- name: Download buffer_autoset.py
+  get_url:
+    url: https://raw.githubusercontent.com/weechat/scripts/master/python/buffer_autoset.py
+    dest: ~/.weechat/python/buffer_autoset.py
+
+- name: auto-load buffer_autoset
+  file:
+    src:  ~/.weechat/python/buffer_autoset.py
+    dest:  ~/.weechat/python/autoload/buffer_autoset.py
+    state: link

@@ -1,5 +1,0 @@
-#!/bin/bash -ex
-
-NAME="bionic-with-home-mounted"
-
-lxc delete $NAME --force

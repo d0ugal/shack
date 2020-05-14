@@ -1,0 +1,62 @@
+#!/bin/bash -ex
+
+DEFAULT_IMAGE="bionic"
+LXD_MAAS_DEV_PROFILE="maas-dev"
+LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-dev"
+MAAS_SNAP_DEFAULT="--channel=latest/edge maas"
+
+ID=$(id -u)
+
+
+verify_instance_doesnt_exist(){
+    if lxc info "$LXD_INSTANCE_NAME" >/dev/null 2>&1; then
+	cat << EOF
+The LXC instance $LXD_INSTANCE_NAME already exists.
+
+If you want to recreate it run the following command and restart this script;
+
+    lxc delete $LXD_INSTANCE_NAME --force
+EOF
+        exit 1
+    fi
+}
+
+ensure_profile() {
+    if ! lxc profile show "$LXD_MAAS_DEV_PROFILE" >/dev/null 2>&1; then
+        lxc profile create "$LXD_MAAS_DEV_PROFILE"
+    fi
+
+    local uid
+    uid=$(id -u "$USER")
+
+    cat <<EOF | lxc profile edit "$LXD_MAAS_DEV_PROFILE"
+config:
+  user.user-data: |
+    #cloud-config
+    package_upgrade: true
+    packages: [build-essential,git]
+    runcmd:
+     - cat /dev/zero | ssh-keygen -q -N ""
+     - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+     - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make install-dependencies'
+     - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make all'
+description: Container with requirements for maas unit tests
+name: maas-dev
+used_by: []
+EOF
+}
+
+create_instance(){
+    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_MAAS_DEV_PROFILE
+    lxc config set $LXD_INSTANCE_NAME raw.idmap "both $ID $ID"
+    lxc config device add $LXD_INSTANCE_NAME homedir disk source=$HOME path=/home/ubuntu
+    lxc start $LXD_INSTANCE_NAME
+
+    lxc exec $LXD_INSTANCE_NAME -- cloud-init status --wait
+
+}
+
+
+verify_instance_doesnt_exist
+ensure_profile
+create_instance

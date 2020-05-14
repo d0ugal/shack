@@ -1,5 +1,0 @@
-#!/bin/bash -ex
-
-NAME="bionic-with-home-mounted"
-
-lxc exec --cwd /home/ubuntu --user 1000 -t $NAME bash
