@@ -11,6 +11,8 @@
     name:
       - neovim
       - exuberant-ctags
+      - universal-ctags
+      - bat
 
 - name: Create config directory
   file:
