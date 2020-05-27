@@ -47,7 +47,7 @@ function fish_prompt
   set_color normal
 end
 
-function pyclean
+function dirclean
   git clean -fxd
   find . -type f -name "*.py[co]" -delete -print
   find . -path '*/__pycache__/*' -delete -print

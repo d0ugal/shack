@@ -1,9 +1,8 @@
 #!/bin/bash -ex
 
 DEFAULT_IMAGE="bionic"
-LXD_MAAS_DEV_PROFILE="maas-dev"
-LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-dev"
-MAAS_SNAP_DEFAULT="--channel=latest/edge maas"
+LXD_PROFILE="maas-test"
+LXD_INSTANCE_NAME="$DEFAULT_IMAGE-$LXD_PROFILE"
 
 ID=$(id -u)
 
@@ -22,14 +21,14 @@ EOF
 }
 
 ensure_profile() {
-    if ! lxc profile show "$LXD_MAAS_DEV_PROFILE" >/dev/null 2>&1; then
-        lxc profile create "$LXD_MAAS_DEV_PROFILE"
+    if ! lxc profile show "$LXD_PROFILE" >/dev/null 2>&1; then
+        lxc profile create "$LXD_PROFILE"
     fi
 
     local uid
     uid=$(id -u "$USER")
 
-    cat <<EOF | lxc profile edit "$LXD_MAAS_DEV_PROFILE"
+    cat <<EOF | lxc profile edit "$LXD_PROFILE"
 config:
   user.user-data: |
     #cloud-config
@@ -41,18 +40,18 @@ config:
      - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make install-dependencies'
      - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make all'
 description: Container with requirements for maas unit tests
-name: maas-dev
+name: maas-test
 used_by: []
 EOF
 }
 
 create_instance(){
-    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_MAAS_DEV_PROFILE
+    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_PROFILE
     lxc config set $LXD_INSTANCE_NAME raw.idmap "both $ID $ID"
     lxc config device add $LXD_INSTANCE_NAME homedir disk source=$HOME path=/home/ubuntu
     lxc start $LXD_INSTANCE_NAME
 
-    lxc exec $LXD_INSTANCE_NAME -- cloud-init status --wait
+    lxc exec $LXD_INSTANCE_NAME -- cloud-init status --long --wait
 
 }
 

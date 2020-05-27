@@ -1,9 +1,8 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 DEFAULT_IMAGE="bionic"
-LXD_KVM_PROFILE="kvm"
-LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-virt"
-MAAS_SNAP_DEFAULT="--channel=latest/edge maas"
+LXD_PROFILE="maas-git"
+LXD_INSTANCE_NAME="$DEFAULT_IMAGE-$LXD_PROFILE"
 
 USERNAME="testing"
 PASSWORD="testing"
@@ -25,22 +24,23 @@ EOF
 }
 
 ensure_profile() {
-    if ! lxc profile show "$LXD_KVM_PROFILE" >/dev/null 2>&1; then
-        lxc profile create "$LXD_KVM_PROFILE"
+    if ! lxc profile show "$LXD_PROFILE" >/dev/null 2>&1; then
+        lxc profile create "$LXD_PROFILE"
     fi
 
     local uid
     uid=$(id -u "$USER")
 
-    cat <<EOF | lxc profile edit "$LXD_KVM_PROFILE"
+    cat <<EOF | lxc profile edit "$LXD_PROFILE"
 config:
   user.user-data: |
     #cloud-config
     package_upgrade: true
-    packages: [libvirt-bin, qemu-kvm, cpu-checker, libvirt-clients, jq]
+    packages: [build-essential,git,libvirt-bin, qemu-kvm, cpu-checker, libvirt-clients, jq]
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+     - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make install-dependencies'
 description: Provide access to /dev/kvm in the container, for hardware accelleration
 devices:
   kvm:
@@ -49,13 +49,17 @@ devices:
     minor: "232"
     path: /dev/kvm
     type: unix-char
-name: kvm
+name: maas-git
 used_by: []
 EOF
 }
 
 create_instance(){
-    lxc launch ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_KVM_PROFILE
+    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_PROFILE
+    lxc config set $LXD_INSTANCE_NAME raw.idmap "both $ID $ID"
+    lxc config device add $LXD_INSTANCE_NAME homedir disk source=$HOME path=/home/ubuntu
+    lxc start $LXD_INSTANCE_NAME
+
     lxc exec $LXD_INSTANCE_NAME -- cloud-init status --long --wait
 
 }
@@ -81,7 +85,8 @@ EOF
 }
 
 install_maas_snap(){
-    lxc exec $LXD_INSTANCE_NAME -- snap install $MAAS_SNAP_DEFAULT 
+    lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/maas/ && make sync-dev-snap"
+    lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/maas/ && sudo snap try build/dev-snap/prime"
     lxc exec $LXD_INSTANCE_NAME -- /snap/maas/current/helpers/maas-database-setup
     lxc exec $LXD_INSTANCE_NAME -- maas createadmin --username $USERNAME --password $PASSWORD --email testing@example.com
 }
