@@ -1,4 +1,10 @@
 ---
+
+- name: Enable git ppa
+  become: true
+  apt_repository:
+    repo: ppa:git-core/ppa
+
 - name: Install common core packages
   become: true
   apt:
