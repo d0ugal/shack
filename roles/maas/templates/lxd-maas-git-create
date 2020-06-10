@@ -85,8 +85,13 @@ EOF
 }
 
 install_maas_snap(){
+    # This is a blatent hack, but cleaning out this directroy before doing the 
+    # sync seems to make things much more reliable. ¯\_(ツ)_/¯
+    lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/maas/ && rm -rf build/dev-snap/"
+
     lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/maas/ && make sync-dev-snap"
     lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/maas/ && sudo snap try build/dev-snap/prime"
+    lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/maas/ && sudo ./utilities/connect-snap-interfaces"
     lxc exec $LXD_INSTANCE_NAME -- /snap/maas/current/helpers/maas-database-setup
     lxc exec $LXD_INSTANCE_NAME -- maas createadmin --username $USERNAME --password $PASSWORD --email testing@example.com
 }

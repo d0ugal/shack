@@ -66,12 +66,14 @@ Plug 'majutsushi/tagbar'
 
 call plug#end()
 
-" Command search
-nnoremap <C-S-p> :Commands<Cr>
 " File search
-nnoremap <C-p> :Files<Cr>
+nnoremap <C-S-p> :Files<Cr>
+" Git File search
+nnoremap <C-p> :GFiles<Cr>
 " Git commit search
-nnoremap <C-g> :Commits<Cr>
+nnoremap <C-g> :BCommits<Cr>
+" File history search
+nnoremap <C-h> :History<Cr>
 
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
