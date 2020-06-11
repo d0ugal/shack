@@ -36,7 +36,7 @@ set noswapfile
 set nobackup
 set nowb
 
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:<
 
 nnoremap <esc> :noh<return>
 
@@ -95,6 +95,9 @@ function! FloatingFZF()
 endfunction
 
 nnoremap <C-b> :GitMessenger<Cr>
+
+" Toggle invisible characters
+noremap <leader>l :set list!<CR>
 
 " Go to tab by number
 noremap <leader>1 1gt
