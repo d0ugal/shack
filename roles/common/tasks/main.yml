@@ -39,7 +39,12 @@
     git config user.email "dougal@dougalmatthews.com";
     git config user.name "Dougal Matthews";
     git config --global --replace-all core.editor "vim";
+    git config --global core.excludesfile ~/.gitignore
   changed_when: False
+
+- copy:
+    content: ".vim"
+    dest: ~/.gitignore
 
 - name: Install Docker
   become: true
