@@ -1,0 +1,101 @@
+#!/bin/bash -ex
+
+DEFAULT_IMAGE="bionic"
+
+USERNAME="testing"
+PASSWORD="testing"
+
+ID=$(id -u)
+
+
+verify_instance_doesnt_exist(){
+
+    if lxc info "$LXD_INSTANCE_NAME" >/dev/null 2>&1; then
+        cat << EOF
+The LXC instance $LXD_INSTANCE_NAME already exists.
+
+If you want to recreate it run the following command and restart this script;
+
+    lxc delete $LXD_INSTANCE_NAME--force
+EOF
+        exit 1
+    fi
+}
+
+create_maas_network(){
+    echo 4
+
+    network_def=$(mktemp /tmp/maas.xml.XXXXXX)
+
+    cat << EOF > $network_def
+<network>
+  <name>maas</name>
+  <forward mode="nat"/>
+  <bridge name="maas" stp="off" delay="0"/>
+  <ip address="172.16.99.1" netmask="255.255.255.0"/>
+</network>
+EOF
+
+    lxc file push $network_def $LXD_INSTANCE_NAME/tmp/maas.xml;
+    rm "$network_def";
+    lxc exec $LXD_INSTANCE_NAME -- virsh net-define /tmp/maas.xml;
+    lxc exec $LXD_INSTANCE_NAME -- virsh net-start maas;
+    lxc exec $LXD_INSTANCE_NAME -- virsh net-autostart maas;
+}
+
+maas_url(){
+    IP=$(lxc exec $LXD_INSTANCE_NAME -- ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+    URL="http://$IP:5240/MAAS/"
+}
+
+cli_login(){
+    maas_url
+
+    API_KEY=$(lxc exec $LXD_INSTANCE_NAME -- maas apikey --username $USERNAME)
+    lxc exec $LXD_INSTANCE_NAME -- maas login virt $URL $API_KEY
+}
+
+enable_dhcp(){
+    fabric_id=$(lxc exec $LXD_INSTANCE_NAME -- sh -c 'maas virt subnet read 172.16.99.0/24 | jq .vlan.fabric -r')
+    lxc exec $LXD_INSTANCE_NAME -- maas virt ipranges create type=dynamic start_ip=172.16.99.190 end_ip=172.16.99.253 comment="Dynamic"
+    lxc exec $LXD_INSTANCE_NAME -- maas virt vlan update $fabric_id 0 dhcp_on=True primary_rack=$LXD_INSTANCE_NAME
+}
+
+add_kvm_host(){
+    lxc exec $LXD_INSTANCE_NAME -- maas virt pods create type=virsh power_address=qemu+ssh://root@127.0.0.1/system
+}
+
+copy_ssh_keys(){
+    lxc exec $LXD_INSTANCE_NAME -- cp -r /root/.ssh/ /var/snap/maas/current/root/.ssh
+}
+
+maas_init(){
+
+    maas_url
+
+    lxc exec $LXD_INSTANCE_NAME -- snap install maas-test-db --channel="2.8"
+    lxc exec $LXD_INSTANCE_NAME -- snap stop maas
+    lxc exec $LXD_INSTANCE_NAME -- snap disconnect maas:test-db-socket || true
+    lxc exec $LXD_INSTANCE_NAME -- snap run --shell maas-test-db.psql -c db-reinit
+    lxc exec $LXD_INSTANCE_NAME -- snap connect maas:test-db-socket maas-test-db
+    lxc exec $LXD_INSTANCE_NAME -- snap start maas
+    lxc exec $LXD_INSTANCE_NAME -- maas init region+rack --force --database-uri maas-test-db:/// --maas-url "$URL"
+}
+
+maas_createadmin(){
+    lxc exec $LXD_INSTANCE_NAME -- maas createadmin --username $USERNAME --password $PASSWORD --email testing@example.com
+}
+
+finish(){
+    maas_url
+
+    xdg-open $URL
+    echo $URL
+
+    cat << EOF
+A Virtual MAAS Setup is now ready.
+
+The username and password are both "testing"
+EOF
+
+}

@@ -1,24 +1,10 @@
 #!/bin/bash -ex
 
-DEFAULT_IMAGE="bionic"
+source ./lxd-maas-common
+
 LXD_PROFILE="maas-test"
 LXD_INSTANCE_NAME="$DEFAULT_IMAGE-$LXD_PROFILE"
 
-ID=$(id -u)
-
-
-verify_instance_doesnt_exist(){
-    if lxc info "$LXD_INSTANCE_NAME" >/dev/null 2>&1; then
-	cat << EOF
-The LXC instance $LXD_INSTANCE_NAME already exists.
-
-If you want to recreate it run the following command and restart this script;
-
-    lxc delete $LXD_INSTANCE_NAME --force
-EOF
-        exit 1
-    fi
-}
 
 ensure_profile() {
     if ! lxc profile show "$LXD_PROFILE" >/dev/null 2>&1; then
