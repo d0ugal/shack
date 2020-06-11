@@ -1,6 +1,7 @@
 #!/bin/bash -ex
 
-source ./lxd-maas-common
+dir_path=$(dirname $(realpath $0))
+source $dir_path/lxd-maas-common
 
 LXD_PROFILE="maas-git"
 LXD_INSTANCE_NAME="$DEFAULT_IMAGE-$LXD_PROFILE"
