@@ -73,3 +73,8 @@
     name: dougal
     groups:
       - lxd
+
+- name: Bash config file
+  copy:
+    src: ./templates/bashrc
+    dest: ~/.bashrc
