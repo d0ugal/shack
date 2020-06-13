@@ -1,11 +1,17 @@
 ---
 
-- name: Install npm packages
+- name: Install node packages
   become: true
   apt:
     name:
       - npm
-      - nodejs
+
+- name: Install Snaps
+  become: true
+  snap:
+    name: node
+    channel: latest/edge
+    classic: yes
 
 - name: Install neovim
   become: true
