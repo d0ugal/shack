@@ -8,6 +8,7 @@
       - chromium
       - discord
       - mattermost-desktop
+      - matterhorn # yeah, okay, not a gui, oh well
 
 - name: Install Classic Snaps
   become: true
