@@ -53,6 +53,7 @@
     - pipenv
     - poetry
     - pynd
+    - super3
     - towncrier
     - tox
     - uvicorn
