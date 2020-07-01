@@ -38,6 +38,12 @@
     - pipx_clean is defined
     - pipx_clean|bool
 
+- name: Upgrade all installed packages
+  shell: ~/.pyenv/shims/pipx upgrade-all
+  changed_when: False
+  when:
+    - pipx_clean is not defined
+
 - name: Install pipx packages
   shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade'
   with_items:
@@ -47,6 +53,7 @@
     - flake8
     - git-review
     - httpie
+    - jenkins-job-builder
     - livereload
     - mkdocs
     - pip-tools

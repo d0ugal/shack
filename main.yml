@@ -31,6 +31,8 @@
         - include_role:
             name: gui_apps
         - include_role:
+            name: lxc
+        - include_role:
             name: maas
         - include_role:
             name: launchpad

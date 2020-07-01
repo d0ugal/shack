@@ -1,0 +1,46 @@
+- name: Install lxd
+  become: true
+  apt:
+    name:
+      - lxd
+
+- name: Add user to lxd group
+  become: true
+  user:
+    append: yes
+    name: dougal
+    groups:
+      - lxd
+
+- name: Create user bin directory
+  file:
+    path: ~/bin
+    state: directory
+    mode: '0755'
+
+- name: Copy over scripts
+  copy:
+    src: "{{ item }}"
+    dest: ~/bin/{{ item | basename | regex_replace('\.j2','') }}
+    mode: a+x
+  with_fileglob:
+    - ../templates/*
+
+- name: Jenkins Profile
+  lxd_profile:
+    description: Add Jenkins to a container
+    name: jenkins
+    config:
+      user.user-data: |
+        #cloud-config
+        package_upgrade: true
+        packages: [build-essential,git,openjdk-11-jre-headless,python-pip]
+        runcmd:
+        - cat /dev/zero | ssh-keygen -q -N ""
+        - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+        - wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
+        - sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+        - apt-get update
+        - apt-get upgrade -y
+        - apt-get install -y jenkins
+        - pip install jenkins-job-builder

@@ -8,7 +8,13 @@
       - chromium
       - discord
       - mattermost-desktop
-      - matterhorn # yeah, okay, not a gui, oh well
+
+- name: Install not really gui apps
+  become: true
+  snap:
+    name:
+      - matterhorn
+      - spt
 
 - name: Install Classic Snaps
   become: true

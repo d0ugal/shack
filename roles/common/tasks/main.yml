@@ -23,7 +23,6 @@
       - hub
       - jq
       - libinput-dev
-      - lxd
       - meson
       - nitrogen
       - postgresql
@@ -52,6 +51,20 @@
     name:
       - docker
 
+- name: Ensure group "docker" exists
+  become: true
+  group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  become: true
+  user:
+    append: yes
+    name: dougal
+    groups:
+      - docker
+
 - name: Install juju
   become: true
   snap:
@@ -65,14 +78,6 @@
     name:
       - snapcraft
     classic: yes
-
-- name: Add user to group
-  become: true
-  user:
-    append: yes
-    name: dougal
-    groups:
-      - lxd
 
 - name: Bash config file
   copy:

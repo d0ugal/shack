@@ -24,8 +24,8 @@ config:
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-     - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make install-dependencies'
-     - sudo -H -u ubuntu bash -c 'cd ~/code/maas/ && make all'
+     - sudo -H -u ubuntu bash -c 'cd ~/code/canonical/maas/ && make install-dependencies'
+     - sudo -H -u ubuntu bash -c 'cd ~/code/canonical/maas/ && make all'
 description: Container with requirements for maas unit tests
 name: maas-test
 used_by: []

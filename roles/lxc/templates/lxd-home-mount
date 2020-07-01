@@ -3,8 +3,8 @@
 # Create and start a bionic lxd with the home directory mounted
 
 
-NAME="bionic-with-home-mounted"
 IMAGE="bionic"
+NAME="$IMAGE-with-home-mounted"
 
 ID=$(id -u)
 SUBUID='root:$ID:1'
@@ -20,6 +20,3 @@ lxc config set $NAME raw.idmap "both $ID $ID"
 lxc config device add $NAME homedir disk source=$HOME path=/home/ubuntu
 
 lxc start $NAME
-
-# There is probably a way to do this...
-echo "echo 'ubuntu	ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
