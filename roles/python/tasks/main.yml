@@ -1,5 +1,19 @@
 ---
 
+- name: Install some deps
+  become: true
+  apt:
+    name:
+      - liblzma-dev
+
+- name: pyenv clean
+  file:
+    path: "/home/dougal/.pyenv"
+    state: absent
+  when:
+    - pyenv_clean is defined
+    - pyenv_clean|bool
+
 - name: "Install pyenv and Python versions"
   include_role:
     name: avanov.pyenv
@@ -9,9 +23,9 @@
     pyenv_global: "3.8.2 3.7.7 3.6.10 3.5.9 2.7.18"
     pyenv_update_git_install: yes
     pyenv_python_versions:
-      - "3.8.2"
-      - "3.7.7"
-      - "3.6.10"
+      - "3.8.5"
+      - "3.7.8"
+      - "3.6.16"
       - "3.5.9"
       - "2.7.18"
     pyenv_virtualenvs:
