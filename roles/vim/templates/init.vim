@@ -80,7 +80,7 @@ nnoremap <C-l> :Lines<Cr>
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --ignore .tox -g ""'
 let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:14,fg+:0,bg:0,hl:9,bg+:8,hl+:9 --color=info:1,prompt:9,pointer:12,marker:4,spinner:11,header:0 --layout=reverse  --margin=1,2'
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 

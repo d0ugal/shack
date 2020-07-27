@@ -1,0 +1,32 @@
+#!/bin/bash -ex
+#
+# Create and start a bionic lxd with the home directory mounted
+
+
+IMAGE="bionic"
+SLUG=$(echo "$PWD" | iconv -t ascii//TRANSLIT | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z)
+NAME="$IMAGE-with-$SLUG"
+
+ID=$(id -u)
+SUBUID='root:$ID:1'
+
+if ! grep -q $SUBUID /etc/subuid; then
+    echo $SUBUID | sudo tee -a /etc/subuid /etc/subgid
+fi
+
+lxc delete --force $NAME || true
+
+lxc init ubuntu:$IMAGE $NAME -p default -p essentials
+
+lxc config set $NAME raw.idmap "both $ID $ID"
+
+lxc config device add $NAME homedir disk source=$PWD path=/pwd
+
+lxc start $NAME
+
+lxc exec $NAME -- cloud-init status --long --wait
+
+lxc exec $NAME --cwd /pwd -- sudo --login || true
+
+
+lxc delete --force $NAME

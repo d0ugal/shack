@@ -26,6 +26,16 @@
   with_fileglob:
     - ../templates/*
 
+- name: Essentials
+  lxd_profile:
+    description: Container essentials
+    name: essentials
+    config:
+      user.user-data: |
+        #cloud-config
+        package_upgrade: true
+        packages: [tox]
+
 - name: Jenkins Profile
   lxd_profile:
     description: Add Jenkins to a container

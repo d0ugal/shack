@@ -39,8 +39,8 @@
     git config user.name "Dougal Matthews";
     git config --global --replace-all core.editor "vim";
     git config --global core.excludesfile ~/.gitignore;
-    git config pull.rebase true;
-    git config rebase.autoStash true;
+    git config --global pull.rebase true;
+    git config --global rebase.autoStash true;
   changed_when: False
 
 - copy:
