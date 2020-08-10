@@ -85,3 +85,8 @@
   copy:
     src: ./templates/bashrc
     dest: ~/.bashrc
+
+- name: ssh config file
+  copy:
+    src: ./templates/ssh_config
+    dest: ~/.ssh/config
