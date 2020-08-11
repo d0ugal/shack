@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-DEFAULT_IMAGE="bionic"
+DEFAULT_IMAGE="focal"
 
 USERNAME="testing"
 PASSWORD="testing"
