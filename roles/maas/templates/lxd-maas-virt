@@ -22,7 +22,13 @@ config:
   user.user-data: |
     #cloud-config
     package_upgrade: true
-    packages: [libvirt-bin, qemu-kvm, cpu-checker, libvirt-clients, jq]
+    packages:
+     - bridge-utils
+     - cpu-checker
+     - jq
+     - libvirt-clients
+     - libvirt-daemon-system
+     - qemu-kvm
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
