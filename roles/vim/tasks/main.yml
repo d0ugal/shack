@@ -3,7 +3,7 @@
 - name: Enable neovim repo
   become: true
   apt_repository:
-    repo: ppa:neovim-ppa/stable
+    repo: ppa:neovim-ppa/unstable
 
 - name: Install neovim
   become: true
