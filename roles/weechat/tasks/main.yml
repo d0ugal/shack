@@ -9,7 +9,7 @@
 - name: Enable weechat repo
   become: true
   apt_repository:
-    repo: deb https://weechat.org/ubuntu eoan main
+    repo: deb https://weechat.org/ubuntu focal main
     state: present
     filename: weechat
 
