@@ -111,6 +111,6 @@ set -x EDITOR "nvim"
 alias vim nvim
 alias vimdiff "nvim -d"
 
-status --is-interactive; and . (pyenv init -|psub)
+status --is-interactive; and source (pyenv init -|psub)
 
-. (pyenv virtualenv-init - | psub)
+source (pyenv virtualenv-init - | psub)
