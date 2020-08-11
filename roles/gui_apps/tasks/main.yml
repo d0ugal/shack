@@ -24,16 +24,16 @@
       - codium
     classic: yes
 
-- name: Enable Zeal repo
-  become: true
-  apt_repository:
-    repo: ppa:zeal-developers/ppa
+#- name: Enable Zeal repo
+#  become: true
+#  apt_repository:
+#    repo: ppa:zeal-developers/ppa
 
 - name: Install apt apps
   become: true
   apt:
     name:
-      - zeal
+#      - zeal
       - virt-manager
       - network-manager-openvpn-gnome
       - gnome-session
