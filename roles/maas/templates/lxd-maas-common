@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-DEFAULT_IMAGE="focal"
+DEFAULT_IMAGE=${UBUNTU_VERSION:-focal}
 
 USERNAME="testing"
 PASSWORD="testing"
