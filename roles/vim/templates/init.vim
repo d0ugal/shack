@@ -116,6 +116,9 @@ noremap <leader>0 :tablast<cr>
 " Add line numbers
 set number
 
+" Use the system clipboard
+set clipboard=unnamedplus
+
 " Fix the statusline with lightline
 set laststatus=2
 
