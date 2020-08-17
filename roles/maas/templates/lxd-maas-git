@@ -54,6 +54,12 @@ create_instance(){
 
 }
 
+sync_snap(){
+    maas_url
+    lxc exec $LXD_INSTANCE_NAME -- su ubuntu -c "cd ~/code/canonical/maas/ && make sync-dev-snap"
+    lxc exec $LXD_INSTANCE_NAME -- snap restart maas
+}
+
 install_maas_snap(){
 
     maas_url
@@ -72,13 +78,18 @@ install_maas_snap(){
 
 }
 
-verify_instance_doesnt_exist
-ensure_profile
-create_instance
-create_maas_network
-install_maas_snap
-copy_ssh_keys
-cli_login
-enable_dhcp
-add_kvm_host
-finish
+
+if [ "$1" = "sync" ]; then
+    sync_snap
+else
+    verify_instance_doesnt_exist
+    ensure_profile
+    create_instance
+    create_maas_network
+    install_maas_snap
+    copy_ssh_keys
+    cli_login
+    enable_dhcp
+    add_kvm_host
+    finish
+fi
