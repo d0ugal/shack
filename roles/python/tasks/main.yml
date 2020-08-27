@@ -11,8 +11,8 @@
     path: "/home/dougal/.pyenv"
     state: absent
   when:
-    - pyenv_clean is defined
-    - pyenv_clean|bool
+    - slow is defined and slow|bool
+    - very_slow is defined and very_slow|bool
 
 - name: "Install pyenv and Python versions"
   include_role:
@@ -49,14 +49,15 @@
   shell: ~/.pyenv/shims/pipx uninstall-all
   changed_when: False
   when:
-    - pipx_clean is defined
-    - pipx_clean|bool
+    - slow is defined and slow|bool
+    - very_slow is defined and very_slow|bool
 
 - name: Upgrade all installed packages
   shell: ~/.pyenv/shims/pipx upgrade-all
   changed_when: False
   when:
-    - pipx_clean is not defined
+    - slow is not defined
+    - very_slow is not defined
 
 - name: Install pipx packages
   shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade'

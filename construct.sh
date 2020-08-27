@@ -11,10 +11,8 @@ else
     sudo apt install -y ansible;
 fi
 
-ansible-galaxy install -r requirements.yml;
+/usr/bin/python3 /usr/bin/ansible-galaxy install -r requirements.yml;
 
-# Restart i3 with; ./construct.sh -e "i3_restart=True"
-# Reinstall pipx packages with; ./construct.sh -e "pipx_clean=True"
-# Update the mirrored repos with; ./construct.sh -e "cloneall=True"
-# Update vim plugins (can be slow!); ./construct.sh -e "vim_plug_update=True"
-ansible-playbook main.yml -K --verbose $@;
+# Do additional slower tasks with; ./construct.sh -e "slow=True"
+# Do additional even slower tasks with; ./construct.sh -e "very_slow=True"
+/usr/bin/python3 /usr/bin/ansible-playbook main.yml -K --verbose $@;

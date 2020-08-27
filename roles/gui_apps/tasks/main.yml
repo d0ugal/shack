@@ -3,7 +3,6 @@
   become: true
   snap:
     name:
-      - spotify
       - telegram-desktop
       - chromium
       - discord
@@ -24,20 +23,27 @@
       - codium
     classic: yes
 
-#- name: Enable Zeal repo
-#  become: true
-#  apt_repository:
-#    repo: ppa:zeal-developers/ppa
+- name: Add spotify key
+  become: true
+  apt_key:
+    url: https://download.spotify.com/debian/pubkey.gpg
+    state: present
+
+- name: Enable spotify repo
+  become: true
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
 
 - name: Install apt apps
   become: true
   apt:
     name:
-#      - zeal
       - virt-manager
       - network-manager-openvpn-gnome
       - gnome-session
       - gdm3
+      - spotify-client
 
 - name: Plex media player
   get_url:

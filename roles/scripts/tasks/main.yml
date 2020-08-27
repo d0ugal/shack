@@ -17,12 +17,10 @@
     path: ~/code/mirror/
     state: absent
   when:
-    - cloneall is defined
-    - cloneall |bool
+    - very_slow is defined and very_slow|bool
 
 - name: Updated cloned repos
   shell: ~/bin/cloneall
   changed_when: False
   when:
-    - cloneall is defined
-    - cloneall |bool
+    - very_slow is defined and very_slow|bool

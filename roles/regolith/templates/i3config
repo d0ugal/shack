@@ -269,16 +269,10 @@ mode "Resize Mode" {
         bindsym Shift+Up resize shrink height 24 px or 24 ppt
         bindsym Shift+Right resize grow width 24 px or 24 ppt
 
-        ## Resize // Resize Window // k j h l ##
-        bindsym h resize shrink width 6 px or 6 ppt
-        bindsym k resize grow height 6 px or 6 ppt
-        bindsym j resize shrink height 6 px or 6 ppt
-        bindsym l resize grow width 6 px or 6 ppt
-
-        bindsym Shift+h resize shrink width 24 px or 24 ppt
-        bindsym Shift+k resize grow height 24 px or 24 ppt
-        bindsym Shift+j resize shrink height 24 px or 24 ppt
-        bindsym Shift+l resize grow width 24 px or 24 ppt
+        bindsym $alt+Left resize shrink width 1 px or 1 ppt
+        bindsym $alt+Down resize grow height 1 px or 1 ppt
+        bindsym $alt+Up resize shrink height 1 px or 1 ppt
+        bindsym $alt+Right resize grow width 1 px or 1 ppt
 
         ## Resize // Window Gaps // + - ##
         bindsym minus gaps inner current minus 6

@@ -38,5 +38,5 @@
   shell: nvim +'PlugUpdate --sync' +qa
   changed_when: False
   when:
-    - vim_plug_update is defined
-    - vim_plug_update|bool
+    - slow is defined and slow|bool
+    - very_slow is defined and very_slow|bool

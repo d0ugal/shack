@@ -72,15 +72,15 @@
   shell: regolith-look refresh
   changed_when: false
   when:
-    - i3_restart is defined
-    - i3_restart|bool
+    - slow is defined and slow|bool
+    - very_slow is defined and very_slow|bool
 
 - name: Restart i3
   shell: i3-msg restart
   changed_when: false
   when:
-    - i3_restart is defined
-    - i3_restart|bool
+    - slow is defined and slow|bool
+    - very_slow is defined and very_slow|bool
 
 - name: Copy over scripts
   copy:
