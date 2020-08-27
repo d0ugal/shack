@@ -6,7 +6,13 @@ source $dir_path/lxd-maas-common
 LXD_PROFILE="kvm"
 LXD_INSTANCE_NAME="$DEFAULT_IMAGE-maas-virt"
 
-MAAS_SNAP_DEFAULT="--channel=latest/edge maas"
+if [ -z "$1" ]; then
+    MAAS_SNAP_VERSION="--channel=latest/edge maas"
+else
+    MAAS_SNAP_VERSION="$1"
+fi
+
+echo "Installing $MAAS_SNAP_VERSION"
 
 
 ensure_profile() {
@@ -53,7 +59,7 @@ create_instance(){
 
 
 install_maas_snap(){
-    lxc exec $LXD_INSTANCE_NAME -- snap install $MAAS_SNAP_DEFAULT 
+    lxc exec $LXD_INSTANCE_NAME -- snap install $MAAS_SNAP_VERSION
 
     maas_init
 
