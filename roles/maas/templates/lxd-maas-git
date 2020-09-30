@@ -1,4 +1,5 @@
 #!/bin/bash -ex
+            "release-notifications",
 
 dir_path=$(dirname $(realpath $0))
 source $dir_path/lxd-maas-common
@@ -27,6 +28,9 @@ config:
       - libvirt-clients
       - libvirt-daemon-system
       - qemu-kvm
+      - tox
+      - pcregrep
+      - silversearcher-ag
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
@@ -45,7 +49,7 @@ EOF
 }
 
 create_instance(){
-    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_PROFILE
+    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p essentials -p $LXD_PROFILE
     lxc config set $LXD_INSTANCE_NAME raw.idmap "both $ID $ID"
     lxc config device add $LXD_INSTANCE_NAME homedir disk source=$HOME path=/home/ubuntu
     lxc start $LXD_INSTANCE_NAME

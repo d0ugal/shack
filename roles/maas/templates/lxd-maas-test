@@ -20,7 +20,12 @@ config:
   user.user-data: |
     #cloud-config
     package_upgrade: true
-    packages: [build-essential,git]
+    packages:
+      - build-essential
+      - git
+      - tox
+      - pcregrep
+      - silversearcher-ag
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
@@ -33,7 +38,7 @@ EOF
 }
 
 create_instance(){
-    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_PROFILE
+    lxc init ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p essentials -p $LXD_PROFILE
     lxc config set $LXD_INSTANCE_NAME raw.idmap "both $ID $ID"
     lxc config device add $LXD_INSTANCE_NAME homedir disk source=$HOME path=/home/ubuntu
     lxc start $LXD_INSTANCE_NAME

@@ -100,12 +100,15 @@ finish(){
     maas_url
 
     xdg-open $URL
-    echo $URL
 
     cat << EOF
-A Virtual MAAS Setup is now ready.
+
+$LXD_INSTANCE_NAME is now ready!
+
+  $URL
 
 The username and password are both "testing"
+
 EOF
 
 }

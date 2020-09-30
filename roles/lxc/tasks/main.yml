@@ -34,7 +34,7 @@
       user.user-data: |
         #cloud-config
         package_upgrade: true
-        packages: [tox, pcregrep]
+        packages: [tox, pcregrep, silversearcher-ag]
 
 - name: Jenkins Profile
   lxd_profile:

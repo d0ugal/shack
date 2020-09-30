@@ -35,6 +35,9 @@ config:
      - libvirt-clients
      - libvirt-daemon-system
      - qemu-kvm
+      - tox
+      - pcregrep
+      - silversearcher-ag
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
@@ -52,7 +55,7 @@ EOF
 }
 
 create_instance(){
-    lxc launch ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p $LXD_PROFILE
+    lxc launch ubuntu:$DEFAULT_IMAGE $LXD_INSTANCE_NAME -p default -p essentials -p $LXD_PROFILE
     lxc exec $LXD_INSTANCE_NAME -- cloud-init status --long --wait
 
 }
