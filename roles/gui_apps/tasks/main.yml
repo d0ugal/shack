@@ -7,13 +7,13 @@
       - chromium
       - discord
       - mattermost-desktop
+      - rpi-imager
 
 - name: Install not really gui apps
   become: true
   snap:
     name:
       - matterhorn
-      - spt
 
 - name: Install Classic Snaps
   become: true
