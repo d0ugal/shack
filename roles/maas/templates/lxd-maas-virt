@@ -35,9 +35,9 @@ config:
      - libvirt-clients
      - libvirt-daemon-system
      - qemu-kvm
-      - tox
-      - pcregrep
-      - silversearcher-ag
+     - tox
+     - pcregrep
+     - silversearcher-ag
     runcmd:
      - cat /dev/zero | ssh-keygen -q -N ""
      - cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
