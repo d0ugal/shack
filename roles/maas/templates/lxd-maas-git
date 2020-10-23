@@ -1,5 +1,4 @@
 #!/bin/bash -ex
-            "release-notifications",
 
 dir_path=$(dirname $(realpath $0))
 source $dir_path/lxd-maas-common

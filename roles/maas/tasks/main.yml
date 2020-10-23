@@ -1,11 +1,5 @@
 ---
 
-- name: Install Snaps
-  become: true
-  snap:
-    name:
-      - maas
-
 - name: Copy over lxd scripts
   copy:
     src: "{{ item }}"

@@ -65,6 +65,8 @@ Plug 'majutsushi/tagbar'
 
 call plug#end()
 
+" File search
+nnoremap <C-o> :Files<Cr>
 " Git File search
 nnoremap <C-p> :GFiles<Cr>
 " Git commit search

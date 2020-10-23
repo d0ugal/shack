@@ -1,6 +1,6 @@
 - name: Install lxd
   become: true
-  apt:
+  snap:
     name:
       - lxd
 

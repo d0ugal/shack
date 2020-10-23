@@ -7,13 +7,11 @@
       - chromium
       - discord
       - mattermost-desktop
+      - vlc
       - rpi-imager
-
-- name: Install not really gui apps
-  become: true
-  snap:
-    name:
-      - matterhorn
+      - fast  # not exactly gui, oh well
+      - mosquitto # not exactly gui, oh well
+      - nmap # not exactly gui, oh well
 
 - name: Install Classic Snaps
   become: true

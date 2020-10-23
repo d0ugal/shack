@@ -5,6 +5,11 @@
   apt_repository:
     repo: ppa:git-core/ppa
 
+- name: Enable git ppa
+  become: true
+  apt_repository:
+    repo: ppa:berglh/pulseaudio-a2dp
+
 - name: Install common core packages
   become: true
   apt:
