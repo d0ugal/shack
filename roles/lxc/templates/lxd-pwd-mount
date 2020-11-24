@@ -1,9 +1,9 @@
 #!/bin/bash -ex
 #
-# Create and start a bionic lxd with the home directory mounted
+# Create and start a focal lxd with the home directory mounted
 
 
-IMAGE="bionic"
+IMAGE="focal"
 SLUG=$(echo "$PWD" | iconv -t ascii//TRANSLIT | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z)
 NAME="$IMAGE-with-$SLUG"
 

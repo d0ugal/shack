@@ -12,6 +12,8 @@
       - fast  # not exactly gui, oh well
       - mosquitto # not exactly gui, oh well
       - nmap # not exactly gui, oh well
+      - vidcutter
+      - obs-studio
 
 - name: Install Classic Snaps
   become: true
@@ -43,10 +45,20 @@
       - gdm3
       - spotify-client
 
+- name: Zoom
+  become: true
+  apt:
+    deb: https://zoom.us/client/latest/zoom_amd64.deb
+
+- name: Check p-m-p exists
+  stat: path=~/bin/plex-media-player
+  register: plex_media_player_exists
+
 - name: Plex media player
   get_url:
     url: https://knapsu.eu/data/plex/Plex_Media_Player_2.56.0.1071-85947843_x64.AppImage
     dest: ~/bin/plex-media-player
+  when: not plex_media_player_exists.stat.exists and slow is not defined
 
 - name: chmod p-m-p
   file:

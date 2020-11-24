@@ -11,7 +11,6 @@
     path: "/home/dougal/.pyenv"
     state: absent
   when:
-    - slow is defined and slow|bool
     - very_slow is defined and very_slow|bool
 
 - name: "Install pyenv and Python versions"
@@ -50,14 +49,12 @@
   shell: ~/.pyenv/shims/pipx uninstall-all
   changed_when: False
   when:
-    - slow is defined and slow|bool
     - very_slow is defined and very_slow|bool
 
 - name: Upgrade all installed packages
   shell: ~/.pyenv/shims/pipx upgrade-all
   changed_when: False
   when:
-    - slow is not defined
     - very_slow is not defined
 
 - name: Install pipx packages
@@ -92,5 +89,11 @@
   shell: "{{ item }} install pynvim"
   with_items:
      - ~/.pyenv/versions/vim_py2/bin/pip
+     - ~/.pyenv/versions/vim_py3/bin/pip
+  changed_when: False
+
+- name: vim inject black
+  shell: "{{ item }} install black"
+  with_items:
      - ~/.pyenv/versions/vim_py3/bin/pip
   changed_when: False

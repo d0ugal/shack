@@ -1,3 +1,9 @@
+- name: "Install zfs"
+  become: true
+  apt:
+    name:
+      - zfsutils-linux
+
 - name: Install lxd
   become: true
   snap:

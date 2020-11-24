@@ -6,3 +6,7 @@
 - name: Update all packages
   become: true
   apt: upgrade=dist force_apt_get=yes
+
+- name: Refresh Snaps
+  become: true
+  shell: snap refresh

@@ -147,7 +147,12 @@ let g:tagbar_width = 50
 let g:tagbar_sort = 0
 
 let g:blamer_enabled = 1
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = '        '
+let g:blamer_template = '<committer-time> - <committer> - <summary>'
 
+let g:black_fast = 1
+autocmd BufWritePost *.py silent! execute ':Black'
 let g:python_host_prog  = '~/.pyenv/versions/vim_py2/bin/python'
 let g:python3_host_prog  = '~/.pyenv/versions/vim_py3/bin/python'
 

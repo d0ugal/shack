@@ -106,7 +106,7 @@ function venv-tmp-cleanup
   end
 end
 
-set -x PATH "$HOME/.pyenv/bin" "$HOME/bin" "$HOME/.local/bin" "$HOME/.local/bin-2.7" "/usr/local/heroku/bin" "$HOME/go/bin" $PATH
+set -x PATH "$HOME/.local/bin" "$HOME/.pyenv/bin" "$HOME/bin" "$HOME/.local/bin-2.7" "/usr/local/heroku/bin" "$HOME/go/bin" $PATH
 set -x EDITOR "nvim"
 alias vim nvim
 alias vimdiff "nvim -d"

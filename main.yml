@@ -1,7 +1,14 @@
 ---
 
 - hosts: localhost
+  vars:
+    slow: no
+    very_slow: no
   tasks:
+    - name: Setting slow
+      set_fact:
+        slow: yes
+      when: very_slow is defined and very_slow|bool
     - name: Handle errors
       block:
         - include_role:
