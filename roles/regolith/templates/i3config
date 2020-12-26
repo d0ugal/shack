@@ -438,6 +438,3 @@ exec --no-startup-id dropbox 'start'
 
 # Start nm-applet
 exec --no-startup-id nm-applet
-
-# Zeal
-exec --no-startup-id zeal
