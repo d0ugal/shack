@@ -6,7 +6,6 @@
       - telegram-desktop
       - chromium
       - discord
-      - mattermost-desktop
       - vlc
       - rpi-imager
       - fast  # not exactly gui, oh well

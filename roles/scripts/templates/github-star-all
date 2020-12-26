@@ -15,8 +15,6 @@ except ImportError:
 
 TOKEN = os.environ.get("GITHUB_TOKEN")
 USERS = (
-    "canonical",
-    "maas",
     "python-edinburgh",
     "python-glasgow",
     "python-scotland",

@@ -40,8 +40,6 @@
         - include_role:
             name: lxc
         - include_role:
-            name: maas
-        - include_role:
             name: launchpad
       rescue:
         - name: Update

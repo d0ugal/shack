@@ -17,17 +17,12 @@ ORGS = [
     "d0ugal",  # A user, but the APIs are the same. We also mirror a users orgs
     "django",
     "jazzband",
-    "maas",
     "mkdocs",
     "pallets",
     "pypa",
     "python",
     "twisted",
 ]
-
-GIT_REPOS = {
-    "launchpad": ["https://git.launchpad.net/maas"],
-}
 
 ROOT = os.path.expanduser("~/code/mirror/")
 
@@ -185,28 +180,7 @@ def get_size(path):
     return int(subprocess.check_output(["du", "-s", path]).split()[0])
 
 
-def clone_git_repos():
-    global CLONED
-    for i, (namespace, repos) in enumerate(GIT_REPOS.items(), 1):
-        path = os.path.join(ROOT, namespace)
-        if not os.path.exists(path):
-            os.makedirs(path)
-        os.chdir(path)
-        for repo in repos:
-            print(G, f"{i:04} Cloning  : {repo:50} ... ", end="", flush=True)
-            try:
-                subprocess.check_output(
-                    ["git", "clone", repo], stderr=subprocess.STDOUT
-                )
-                CLONED += 1
-                print("Done", C, flush=True)
-            except subprocess.CalledProcessError as e:
-                FAILED.append((namespace, repo))
-                print(R, "Failed", str(e), C, flush=True)
-
-
 def main():
-    clone_git_repos()
     clone_orgs()
 
 

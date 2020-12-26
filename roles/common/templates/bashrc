@@ -120,9 +120,3 @@ fi
 if test -f "/home/d0ugal/.pyenv/.pyenvrc"; then
     source /home/dougal/.pyenv/.pyenvrc
 fi
-
-if [[ "$(hostname)" =~ "maas" ]]; then
-    if test -d "$HOME/code/canonical/maas"; then
-        cd ~/code/canonical/maas
-    fi
-fi
