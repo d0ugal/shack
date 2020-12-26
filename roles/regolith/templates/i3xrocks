@@ -43,11 +43,6 @@ command=todoist-today-count
 label=☑ 
 interval=10
 
-[lxc]
-command=lxc list --format json | jq ".|length"
-label=LXD 
-interval=10
-
 # Rofication
 #
 # Displays notifications.
