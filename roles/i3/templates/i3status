@@ -3,15 +3,14 @@ general {
         interval = 5
 }
 
-order += "read_file BRIGHTNESS"
 order += "volume master"
 order += "cpu_usage"
+order += "memory"
+order += "load"
 order += "disk /"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
-order += "memory"
-order += "load"
 order += "tztime local"
 
 volume master {
@@ -22,14 +21,8 @@ volume master {
         mixer_idx = 0
 }
 
-read_file BRIGHTNESS {
-        format = "BRI %content%"
-        path = "/home/user_name/.config/brightness"
-        max_characters = 5
-}
-
 cpu_usage {
-        format= "CPU %usage <%cpu0 %cpu1>"
+        format= "CPU %usage"
         max_threshold= 75
 }
 
