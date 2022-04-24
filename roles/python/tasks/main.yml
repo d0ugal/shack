@@ -1,39 +1,27 @@
 ---
 
-- name: Install some deps
-  become: true
-  apt:
-    name:
-      - liblzma-dev
-
 - name: pyenv clean
   file:
-    path: "/home/dougal/.pyenv"
+    path: "/home/dougal.matthews/.pyenv"
     state: absent
-  when:
-    - very_slow is defined and very_slow|bool
 
 - name: "Install pyenv and Python versions"
   include_role:
     name: avanov.pyenv
   vars:
-    pyenv_path: "/home/dougal/.pyenv"
-    pyenv_owner: "dougal"
-    pyenv_global: "3.9.1 3.8.6 3.7.9 3.6.12 3.5.10 2.7.18"
+    pyenv_path: "/home/dougal.matthews/.pyenv"
+    pyenv_owner: "dougal.matthews"
+    pyenv_global: "3.10.4 2.7.18"
     pyenv_update_git_install: yes
     pyenv_python_versions:
-      - "3.9.1"
-      - "3.8.6"
-      - "3.7.9"
-      - "3.6.12"
-      - "3.5.10"
+      - "3.10.4"
       - "2.7.18"
     pyenv_virtualenvs:
       - venv_name: "vim_py2"
         py_version: "2.7.18"
       - venv_name: "vim_py3"
-        py_version: "3.9.1"
-    pyenv_setting_path: /home/dougal/.bashrc
+        py_version: "3.10.4"
+    pyenv_setting_path: /home/dougal.matthews/.bashrc
 
 - name: Upgrade pip
   shell: ~/.pyenv/shims/pip install -U pip
@@ -48,14 +36,10 @@
 - name: Remove any installed packages
   shell: ~/.pyenv/shims/pipx uninstall-all
   changed_when: False
-  when:
-    - very_slow is defined and very_slow|bool
 
 - name: Upgrade all installed packages
   shell: ~/.pyenv/shims/pipx upgrade-all
   changed_when: False
-  when:
-    - very_slow is not defined
 
 - name: Install pipx packages
   shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade'

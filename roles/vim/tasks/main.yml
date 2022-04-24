@@ -1,18 +1,10 @@
 ---
 
-- name: Enable neovim repo
-  become: true
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-
 - name: Install neovim
   become: true
-  apt:
+  dnf:
     name:
       - neovim
-      - exuberant-ctags
-      - universal-ctags
-      - bat
 
 - name: Create config directory
   file:
@@ -37,5 +29,3 @@
 - name: Plugin update
   shell: nvim +'PlugUpdate --sync' +qa
   changed_when: False
-  when:
-    - very_slow is defined and very_slow|bool

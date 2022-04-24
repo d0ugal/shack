@@ -1,46 +1,21 @@
 ---
 
 - hosts: localhost
-  vars:
-    slow: no
-    very_slow: no
   tasks:
-    - name: Setting slow
-      set_fact:
-        slow: yes
-      when: very_slow is defined and very_slow|bool
     - name: Handle errors
       block:
         - include_role:
             name: init
         - include_role:
-            name: common
-        - include_role:
             name: python
-        - include_role:
-            name: javascript
-        - include_role:
-            name: ruby
-        - include_role:
-            name: go
         - include_role:
             name: vim
         - include_role:
             name: fish
         - include_role:
-            name: weechat
-        - include_role:
             name: scripts
         - include_role:
             name: todoist
-        - include_role:
-            name: regolith
-        - include_role:
-            name: gui_apps
-        - include_role:
-            name: lxc
-        - include_role:
-            name: launchpad
       rescue:
         - name: Update
           shell: notify-send -u critical -a Shack Finished "Playbook failed!"

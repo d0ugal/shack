@@ -1,2 +1,3 @@
-- src: avanov.pyenv
-  version: 1.1.0
+- name: avanov.pyenv
+  src: https://github.com/avanov/ansible-galaxy-pyenv.git
+  scm: git

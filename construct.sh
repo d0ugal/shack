@@ -4,15 +4,13 @@ set -eux
 set -o pipefail
 
 
-if dpkg -s ansible;
+if command -v ansible-playbook &> /dev/null;
 then
     echo "Ansible installed";
 else
-    sudo apt install -y ansible;
+    sudo dnf install -y ansible;
 fi
 
-/usr/bin/python3 /usr/bin/ansible-galaxy install -r requirements.yml;
+/usr/bin/python3 /usr/bin/ansible-galaxy install -r requirements.yml --force;
 
-# Do additional slower tasks with; ./construct.sh -e "slow=True"
-# Do additional even slower tasks with; ./construct.sh -e "very_slow=True"
 /usr/bin/python3 /usr/bin/ansible-playbook main.yml -K --verbose $@;

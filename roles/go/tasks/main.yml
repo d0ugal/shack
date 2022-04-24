@@ -1,6 +1,0 @@
----
-- name: "Install go deps"
-  become: true
-  apt:
-    name:
-      - golang

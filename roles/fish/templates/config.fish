@@ -114,3 +114,12 @@ alias vimdiff "nvim -d"
 status --is-interactive; and source (pyenv init -|psub)
 
 source (pyenv virtualenv-init - | psub)
+
+function jj
+    mkdir -p ~/notes/(date +%Y)/(date +%b)/
+    vim ~/notes/(date +%Y)/(date +%b)/(date +%d).txt
+end
+
+function jl
+    tree ~/notes/
+end
