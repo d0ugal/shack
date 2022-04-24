@@ -7,6 +7,8 @@
         - include_role:
             name: init
         - include_role:
+            name: i3
+        - include_role:
             name: python
         - include_role:
             name: vim

@@ -14,7 +14,7 @@
 
 - name: Delete mirrored repos
   file:
-    path: ~/code/mirror/
+    path: ~/Code/mirror/
     state: absent
 
 - name: Updated cloned repos

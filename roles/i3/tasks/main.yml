@@ -1,0 +1,93 @@
+---
+- name: Install i3 packages
+  become: true
+  dnf:
+    name:
+      - compton
+      - i3-gaps
+      - i3lock
+      - rofi
+      - polybar
+      - rxvt-unicode
+      - alsa-utils
+      - mate-power-manager
+      - arandr
+
+- name: Create i3 config directory
+  file:
+    path: ~/.config/i3
+    state: directory
+    mode: '0755'
+
+- name: i3 config file
+  copy:
+    src: ./templates/i3.config
+    dest: ~/.config/i3/config
+
+- name: Create polybar config directory
+  file:
+    path: ~/.config/polybar
+    state: directory
+    mode: '0755'
+
+- name: Create polybar config directory
+  file:
+    path: ~/.config/polybar/scripts
+    state: directory
+    mode: '0755'
+
+- name: polybar config file
+  copy:
+    src: ./templates/polybar.config
+    dest: ~/.config/polybar/config
+
+- name: Polybar scripts
+  copy:
+    src: "{{ item }}"
+    dest: ~/.config/polybar/scripts/{{ item | basename | regex_replace('\.j2','') }}
+    mode: a+x
+  with_fileglob:
+    - ../templates/polybar-scripts/*
+
+- name: polybar run file
+  copy:
+    src: ./templates/polybar-run.sh
+    dest: ~/.config/polybar/run.sh
+
+- name: polybar run file +x
+  file:
+    dest: ~/.config/polybar/run.sh
+    mode: a+x
+
+- name: Create compton config directory
+  file:
+    path: ~/.config/compton
+    state: directory
+    mode: '0755'
+
+- name: compton config file
+  copy:
+    src: ./templates/compton.conf
+    dest: ~/.config/compton/compton.conf
+
+- name: xinitrc
+  copy:
+    src: ./templates/xinitrc
+    dest: ~/.xinitrc
+
+
+- name: Create rofi config directory
+  file:
+    path: ~/.config/rofi
+    state: directory
+    mode: '0755'
+
+- name: rofi theme
+  copy:
+    src: ./templates/rofi-config
+    dest: ~/.config/rofi/config
+
+- name: rofi theme
+  copy:
+    src: ./templates/rofi-theme
+    dest: ~/.config/rofi/default.rasi

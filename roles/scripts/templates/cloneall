@@ -12,19 +12,11 @@ import urllib.error
 import urllib.request
 
 ORGS = [
-    "PyCQA",
-    "canonical",
     "d0ugal",  # A user, but the APIs are the same. We also mirror a users orgs
-    "django",
-    "jazzband",
     "mkdocs",
-    "pallets",
-    "pypa",
-    "python",
-    "twisted",
 ]
 
-ROOT = os.path.expanduser("~/code/mirror/")
+ROOT = os.path.expanduser("~/Code/mirror/")
 
 if not os.path.exists(ROOT):
     os.makedirs(ROOT)
