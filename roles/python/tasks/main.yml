@@ -1,10 +1,5 @@
 ---
 
-- name: pyenv clean
-  file:
-    path: "/home/dougal.matthews/.pyenv"
-    state: absent
-
 - name: "Install pyenv and Python versions"
   include_role:
     name: avanov.pyenv
