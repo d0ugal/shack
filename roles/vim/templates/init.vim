@@ -43,7 +43,7 @@ nnoremap <esc> :noh<return>
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.26'}
 Plug 'gregsexton/MatchTag'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -52,10 +52,10 @@ Plug 'nathanaelkane/vim-indent-guides', {'tag': '1.6'}
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'psf/black'
 Plug 'ruanyl/vim-gh-line'
-Plug 'scrooloose/nerdtree', {'tag': '6.3.0'}
+Plug 'scrooloose/nerdtree', {'tag': '6.10.16'}
 Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'tpope/vim-eunuch', {'tag': 'v1.2'}
-Plug 'tpope/vim-fugitive', {'tag': 'v3.1'}
+Plug 'tpope/vim-fugitive', {'tag': 'v3.6'}
 Plug 'tpope/vim-sensible', {'tag': 'v1.2'}
 Plug 'vim-scripts/taglist.vim', {'tag': '4.5'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
