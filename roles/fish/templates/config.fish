@@ -1,3 +1,5 @@
+set_fish_greeting
+
 set normal (set_color normal)
 set magenta (set_color magenta)
 set yellow (set_color yellow)
