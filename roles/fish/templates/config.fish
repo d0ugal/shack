@@ -1,4 +1,4 @@
-set_fish_greeting
+set fish_greeting
 
 set normal (set_color normal)
 set magenta (set_color magenta)
