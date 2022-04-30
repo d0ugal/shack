@@ -39,7 +39,7 @@
 - name: polybar config file
   copy:
     src: ./templates/polybar.config
-    dest: ~/.config/polybar/config
+    dest: ~/.config/polybar/config.ini
 
 - name: Polybar scripts
   copy:
