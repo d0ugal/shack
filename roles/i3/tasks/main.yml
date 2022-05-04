@@ -3,15 +3,21 @@
   become: true
   dnf:
     name:
-      - i3-gaps
-      - i3lock
-      - xautolock
       - rofi
-      - polybar
       - rxvt-unicode
       - alsa-utils
       - mate-power-manager
-      - arandr
+      - sway
+      - sway-systemd
+      - swaybg
+      - swayidle
+      - swaylock
+      - waybar
+      - grim
+      - kanshi
+      - wlsunset
+      - wdisplays
+      - mako
 
 - name: Create i3 config directory
   file:
@@ -24,40 +30,16 @@
     src: ./templates/i3.config
     dest: ~/.config/i3/config
 
-- name: Create polybar config directory
+- name: Create waybar config directory
   file:
-    path: ~/.config/polybar
+    path: ~/.config/waybar
     state: directory
     mode: '0755'
 
-- name: Create polybar config directory
-  file:
-    path: ~/.config/polybar/scripts
-    state: directory
-    mode: '0755'
-
-- name: polybar config file
+- name: waybar config file
   copy:
-    src: ./templates/polybar.config
-    dest: ~/.config/polybar/config.ini
-
-- name: Polybar scripts
-  copy:
-    src: "{{ item }}"
-    dest: ~/.config/polybar/scripts/{{ item | basename | regex_replace('\.j2','') }}
-    mode: a+x
-  with_fileglob:
-    - ../templates/polybar-scripts/*
-
-- name: polybar run file
-  copy:
-    src: ./templates/polybar-run.sh
-    dest: ~/.config/polybar/run.sh
-
-- name: polybar run file +x
-  file:
-    dest: ~/.config/polybar/run.sh
-    mode: a+x
+    src: ./templates/waybar.config
+    dest: ~/.config/waybar/config
 
 - name: xinitrc
   copy:
