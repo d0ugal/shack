@@ -5,6 +5,7 @@
     name:
       - i3-gaps
       - i3lock
+      - xautolock
       - rofi
       - polybar
       - rxvt-unicode
