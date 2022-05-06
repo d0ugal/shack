@@ -122,6 +122,27 @@ function jj
     vim ~/notes/(date +%Y)/(date +%b)/(date +%d).txt
 end
 
+function jh
+    mkdir -p ~/notes/(date -d 'yesterday' +%Y)/(date -d 'yesterday' +%b)/
+    vim ~/notes/(date -d 'yesterday' +%Y)/(date -d 'yesterday' +%b)/(date -d 'yesterday' +%d).txt
+end
+
+function jk
+    mkdir -p ~/notes/(date -d 'tomorrow' +%Y)/(date -d 'tomorrow' +%b)/
+    vim ~/notes/(date -d 'tomorrow' +%Y)/(date -d 'tomorrow' +%b)/(date -d 'tomorrow' +%d).txt
+end
+
 function jl
     tree ~/notes/
+end
+
+function ju
+     set path (find ~/notes/ -name "*.txt" | fzf --preview='less {}')
+     if set -q path
+         vim $path
+     end
+end
+
+function jm
+    
 end

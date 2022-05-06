@@ -41,11 +41,21 @@
     src: ./templates/waybar.config
     dest: ~/.config/waybar/config
 
-- name: xinitrc
+- name: waybar css file
   copy:
-    src: ./templates/xinitrc
-    dest: ~/.xinitrc
+    src: ./templates/waybar.css
+    dest: ~/.config/waybar/style.css
 
+- name: Create kanshi config directory
+  file:
+    path: ~/.config/kanshi
+    state: directory
+    mode: '0755'
+
+- name: kanshi config file
+  copy:
+    src: ./templates/kanshi.config
+    dest: ~/.config/kanshi/config
 
 - name: Create rofi config directory
   file:
