@@ -3,21 +3,41 @@
   become: true
   dnf:
     name:
+      - alsa-utils
+      - grim
+      - kanshi
+      - mako
+      - mate-power-manager
+      - playerctl
       - rofi
       - rxvt-unicode
-      - alsa-utils
-      - mate-power-manager
       - sway
       - sway-systemd
       - swaybg
       - swayidle
       - swaylock
       - waybar
-      - grim
-      - kanshi
-      - wlsunset
       - wdisplays
-      - mako
+      - wlsunset
+
+- name: Install PyGObject dnf deps
+  become: true
+  dnf:
+    name:
+      - python3-gobject
+      - gtk3
+      - gcc
+      - gobject-introspection-devel
+      - cairo-gobject-devel
+      - pkg-config
+      - python3-devel
+      - gtk3
+
+- name: Install PyGObject pip deps
+  pip:
+    name:
+      - pycairo
+      - PyGObject
 
 - name: Create i3 config directory
   file:
@@ -45,6 +65,14 @@
   copy:
     src: ./templates/waybar.css
     dest: ~/.config/waybar/style.css
+
+- name: waybar mediaplayer script
+  copy:
+    src: ./templates/mediaplayer.py
+    dest: ~/.config/waybar/mediaplayer.py
+
+- name: Reload waybar config
+  ansible.builtin.command: killall -SIGUSR2 waybar
 
 - name: Create kanshi config directory
   file:

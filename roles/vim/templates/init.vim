@@ -62,6 +62,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'rhysd/git-messenger.vim'
 Plug 'APZelos/blamer.nvim'
 Plug 'majutsushi/tagbar'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'francoiscabrol/ranger.vim'
 
 call plug#end()
 
@@ -184,6 +188,8 @@ function! NumberToggle()
 endfunc
 
 nnoremap <leader>nt :call NumberToggle()<cr>
+
+" vim-lsp
 
 
 " Jenkinsfile VIM syntax highlighting

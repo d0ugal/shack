@@ -6,7 +6,7 @@
   vars:
     pyenv_path: "/home/dougal.matthews/.pyenv"
     pyenv_owner: "dougal.matthews"
-    pyenv_global: "3.10.4 2.7.18"
+    pyenv_global: "3.10.4"
     pyenv_update_git_install: yes
     pyenv_python_versions:
       - "3.10.4"

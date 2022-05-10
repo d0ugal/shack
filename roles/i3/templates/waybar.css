@@ -7,15 +7,28 @@
 
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 1);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
 }
 
-.modules-left, .modules-center, .modules-right {
+window#waybar.top {
     border-bottom: 3px solid rgba(100, 114, 125, 1);
+}
+window#waybar.bottom {
+    border-top: 3px solid rgba(100, 114, 125, 1);
+}
+
+.modules-left, .modules-center, .modules-right {
     padding: 0 20px;
+}
+
+.top .modules-left, .top .modules-center, .top .modules-right {
+    border-bottom: 3px solid rgba(100, 114, 125, 1);
+}
+
+.bottom .modules-left, .bottom .modules-center, .bottom .modules-right {
+    border-top: 3px solid rgba(100, 114, 125, 1);
 }
 
 window#waybar.hidden {
@@ -80,7 +93,7 @@ window#waybar.chromium {
 #backlight,
 #network,
 #pulseaudio,
-#custom-media,
+#custom-load,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -174,18 +187,9 @@ label:focus {
     color: #2a5c45;
 }
 
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 150px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
+#custom-load {
+    background-color: #42f5bf;
+    color: #000000;
 }
 
 #temperature {
@@ -259,13 +263,13 @@ label:focus {
     background: rgba(0, 0, 0, 0.2);
 }
 
-#custom-helsinki {
+#clock.helsinki {
     background-color: #002F6C;
     color: #ffffff;
     padding: 0 20px;
 }
 
-#custom-berlin {
+#clock.berlin {
     background-color: #000000;
     color: #ffCE00;
     padding: 0 20px;
