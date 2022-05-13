@@ -72,7 +72,12 @@
     dest: ~/.config/waybar/mediaplayer.py
 
 - name: Reload waybar config
-  ansible.builtin.command: killall -SIGUSR2 waybar
+  shell: killall -SIGUSR2 waybar
+
+- name: Disable sleep
+  become: true
+  shell: systemctl status sleep.target suspend.target hibernate.target hybrid-sleep.target
+  ignore_errors: yes
 
 - name: Create kanshi config directory
   file:

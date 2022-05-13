@@ -37,7 +37,7 @@
   changed_when: False
 
 - name: Install pipx packages
-  shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3 --pip-args='--upgrade'
+  shell: ~/.pyenv/shims/pipx install {{ item }} --python=python3
   with_items:
     - awscli
     - black
