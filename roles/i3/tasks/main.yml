@@ -74,11 +74,6 @@
 - name: Reload waybar config
   shell: killall -SIGUSR2 waybar
 
-- name: Disable sleep
-  become: true
-  shell: systemctl status sleep.target suspend.target hibernate.target hybrid-sleep.target
-  ignore_errors: yes
-
 - name: Create kanshi config directory
   file:
     path: ~/.config/kanshi
