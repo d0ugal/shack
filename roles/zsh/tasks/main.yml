@@ -1,0 +1,11 @@
+---
+- name: Install zsh
+  become: true
+  dnf:
+    name:
+      - zsh
+
+- name: zsh config file
+  copy:
+    src: ./templates/zshrc
+    dest: ~/.zshrc

@@ -4,10 +4,13 @@
   dnf:
     name:
       - alsa-utils
+      - gnome-shell-extension-system-monitor-applet
       - grim
+      - grimshot
       - kanshi
       - mako
       - mate-power-manager
+      - network-manager-applet
       - playerctl
       - rofi
       - rxvt-unicode
@@ -16,6 +19,7 @@
       - swaybg
       - swayidle
       - swaylock
+      - system-config-printer-applet
       - waybar
       - wdisplays
       - wlsunset

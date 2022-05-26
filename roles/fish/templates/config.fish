@@ -113,13 +113,32 @@ set -x EDITOR "nvim"
 alias vim nvim
 alias vimdiff "nvim -d"
 
+set -x GPG_TTY (tty)
+
 status --is-interactive; and source (pyenv init -|psub)
 
 source (pyenv virtualenv-init - | psub)
 
 function jj
+
     mkdir -p ~/notes/(date +%Y)/(date +%b)/
-    vim ~/notes/(date +%Y)/(date +%b)/(date +%d).txt
+    mkdir -p ~/notes/named/
+    if not test -d ~/notes/.git/;
+        pushd ~/notes/
+        git init
+        popd
+    end
+
+    if set -q argv[1]
+        vim ~/notes/named/$argv[1].txt
+    else
+        vim ~/notes/(date +%Y)/(date +%b)/(date +%d).txt
+    end
+
+    pushd ~/notes;
+    git add -A;
+    git commit -m "saving";
+    popd
 end
 
 function jh
@@ -141,8 +160,4 @@ function ju
      if set -q path
          vim $path
      end
-end
-
-function jm
-    
 end

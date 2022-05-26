@@ -1,0 +1,6 @@
+[[ -f /home/dougal.matthews/.aiven/rc.zsh ]] && source /home/dougal.matthews/.aiven/rc.zsh
+
+HISTFILE=~/.zsh_histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory
