@@ -2,7 +2,7 @@
 
 - name: Download todoist CLI
   get_url:
-    url: https://github.com/sachaos/todoist/releases/download/v0.15.0/todoist_linux_amd64
+    url: https://github.com/sachaos/todoist/releases/download/v0.16.0/todoist_linux_amd64
     dest: ~/bin/todoist
 
 - name: chmod todoist

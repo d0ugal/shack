@@ -144,15 +144,27 @@ end
 function jh
     mkdir -p ~/notes/(date -d 'yesterday' +%Y)/(date -d 'yesterday' +%b)/
     vim ~/notes/(date -d 'yesterday' +%Y)/(date -d 'yesterday' +%b)/(date -d 'yesterday' +%d).txt
+    pushd ~/notes;
+    git add -A;
+    git commit -m "saving";
+    popd
 end
 
 function jk
     mkdir -p ~/notes/(date -d 'tomorrow' +%Y)/(date -d 'tomorrow' +%b)/
     vim ~/notes/(date -d 'tomorrow' +%Y)/(date -d 'tomorrow' +%b)/(date -d 'tomorrow' +%d).txt
+    pushd ~/notes;
+    git add -A;
+    git commit -m "saving";
+    popd
 end
 
 function jl
     tree ~/notes/
+    pushd ~/notes;
+    git add -A;
+    git commit -m "saving";
+    popd
 end
 
 function ju
@@ -160,4 +172,8 @@ function ju
      if set -q path
          vim $path
      end
+    pushd ~/notes;
+    git add -A;
+    git commit -m "saving";
+    popd
 end

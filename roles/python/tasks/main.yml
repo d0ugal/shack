@@ -52,6 +52,7 @@
     - pipenv
     - poetry
     - pynd
+    - radon
     - shotman
     - super3
     - towncrier
