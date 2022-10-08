@@ -18,6 +18,8 @@
             name: scripts
         - include_role:
             name: todoist
+        - include_role:
+            name: spotify
       rescue:
         - name: Update
           shell: notify-send -u critical -a Shack Finished "Playbook failed!"

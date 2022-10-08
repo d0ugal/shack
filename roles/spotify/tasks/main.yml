@@ -1,0 +1,13 @@
+---
+
+- name: Install snap
+  become: true
+  dnf:
+    name:
+      - snapd
+
+- name: Install spotify
+  become: true
+  snap:
+    name:
+      - spotify
