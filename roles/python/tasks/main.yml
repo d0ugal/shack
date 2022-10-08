@@ -4,19 +4,16 @@
   include_role:
     name: avanov.pyenv
   vars:
-    pyenv_path: "/home/dougal.matthews/.pyenv"
-    pyenv_owner: "dougal.matthews"
-    pyenv_global: "3.10.4"
+    pyenv_path: "/home/dougal/.pyenv"
+    pyenv_owner: "dougal"
+    pyenv_global: "3.10.7"
     pyenv_update_git_install: yes
     pyenv_python_versions:
-      - "3.10.4"
-      - "2.7.18"
+      - "3.10.7"
     pyenv_virtualenvs:
-      - venv_name: "vim_py2"
-        py_version: "2.7.18"
       - venv_name: "vim_py3"
-        py_version: "3.10.4"
-    pyenv_setting_path: /home/dougal.matthews/.bashrc
+        py_version: "3.10.7"
+    pyenv_setting_path: /home/dougal/.bashrc
 
 - name: Upgrade pip
   shell: ~/.pyenv/shims/pip install -U pip
@@ -69,7 +66,6 @@
 - name: vim inject pynvim
   shell: "{{ item }} install pynvim"
   with_items:
-     - ~/.pyenv/versions/vim_py2/bin/pip
      - ~/.pyenv/versions/vim_py3/bin/pip
   changed_when: False
 

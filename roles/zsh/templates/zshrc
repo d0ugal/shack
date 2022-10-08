@@ -100,8 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-[[ -f /home/dougal.matthews/.aiven/rc.zsh ]] && source /home/dougal.matthews/.aiven/rc.zsh
-
 export TERM=xterm
 
 cd $AIVEN_CORE_PATH;

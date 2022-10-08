@@ -155,7 +155,6 @@ let g:blamer_template = '<committer-time> - <committer> - <summary>'
 
 let g:black_fast = 1
 autocmd BufWritePost *.py silent! execute ':Black'
-let g:python_host_prog  = '~/.pyenv/versions/vim_py2/bin/python'
 let g:python3_host_prog  = '~/.pyenv/versions/vim_py3/bin/python'
 
 " Automatically reload files if they are changed but have not beed edited

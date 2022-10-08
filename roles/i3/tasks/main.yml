@@ -8,6 +8,7 @@
       - grim
       - grimshot
       - kanshi
+      - kitty
       - mako
       - mate-power-manager
       - network-manager-applet
@@ -20,6 +21,8 @@
       - swayidle
       - swaylock
       - system-config-printer-applet
+      - the_silver_searcher
+      - util-linux-user
       - waybar
       - wdisplays
       - wlsunset
@@ -77,6 +80,7 @@
 
 - name: Reload waybar config
   shell: killall -SIGUSR2 waybar
+  ignore_errors: yes
 
 - name: Create kanshi config directory
   file:

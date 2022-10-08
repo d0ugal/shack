@@ -10,6 +10,13 @@
     path: ~/bin/todoist
     mode: +x
 
+- name: Install snap
+  become: true
+  dnf:
+    name:
+      - snapd
+      - cronie
+
 - name: Install peco
   become: true
   snap:
@@ -28,4 +35,4 @@
   cron:
     name: todoist sync
     minute: "*/5"
-    job: '/home/dougal.matthews/bin/todoist --debug sync > /tmp/todoist.log 2>&1'
+    job: '/home/dougal/bin/todoist --debug sync > /tmp/todoist.log 2>&1'
